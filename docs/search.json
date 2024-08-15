@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "consulting.html",
+    "href": "consulting.html",
+    "title": "Consulting",
+    "section": "",
+    "text": "Sometimes I do freelance consulting in which I provide data research services.\nI can help with R, Python, Stata and quantitative work in general.\nWhy do I do this?\nSELECT \n  consulting_income,\n  nursery_fees,\n  transport_to_from_nursery,\n  germany_visits_to_see_granny,\n  babysitter_for_sanity,\n  (consulting_income - \n    (nursery_fees + \n     transport_to_from_nursery + \n     germany_visits_to_see_granny + \n     babysitter_for_sanity)\n  ) AS EMERGENCY_COFFEE_BUDGET\nFROM \n  my_household_income\nWHERE \n  consulting_income IS NOT NULL\nAND \n  sanity_level &lt; 50;\nLet me know if you would like to discuss your project."
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "In the coming academic year, I will teach on the following courses:\nMN3101 Corporate Finance and Control (undergraduate)\nModule guide 2024-25\nFI5613 Behavioural Finance (postgraduate)\nModule guide 2023-24\nMN5499 Individual Dissertation and MN5498 Group Dissertation (postgraduate)\nModule guide 2023-24"
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "“When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit” (with Iftekhar Hasan, Sizhe Hong and Dennis Philip)\nThis version: June 2024\n[SSRN]\n\nAbstract\nHate-motivated crimes have risen to unprecedented levels, yet their far-reaching economic consequences remain understudied. Utilizing comprehensive data on US mortgage applications and county-level hate crime statistics, we document significant effects on housing decisions. An increase in anti-minority racial hate crimes reduces mortgage applications, with both minority and White applicants exhibiting strong demand-side responses. We find that residents migrate away from hate crime-affected counties rather than delaying home purchases or entering the rental market. These patterns speak to an erosion of social cohesion in impacted neighborhoods. Supporting this, survey evidence shows elevated psychological distress levels and reduced visible consumption in affected counties, as well as a diminished presence of civic organizations. Our findings illuminate the far-reaching consequences of hate crimes on housing choice with consequences for the economic development of entire neighborhoods.\n\n\nBibTeX\n@article{EHHP2024, \n  title={When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit}, \n  author={Christian Engels and Iftekhar Hasan and Sizhe Hong and Dennis Philip}, \n  year={2024}, \n}\n\n\nWinner: Best Paper Award in Memory of Phil Molyneux, Finest 2023 Autumn Workshop\n\nEarly Roots of Inequality: Evidence of a Gender Income Gap Among Children (with Ray Charles “Chuck” Howard, Marcel Lukas and Dennis Philip)\nThis version: June 2024\n[SSRN]\n\nAbstract\nThe gender pay gap among adults is well documented. This article uncovers an analogous gender income gap between girls and boys aged 6 to 15, where 'income' is defined as the amount of money children receive from their parents. Our analysis is based on large-scale, longitudinal data by a financial service provider that parents use to transfer money to their children. The data reveal that the gender income gap exists as early as age 6, when girls receive 6.36% less income than boys. The gap then grows throughout childhood (age 6 to 10), before diminishing and eventually reversing in adolescence (age 11 to 15). However, the data also show that (a) it takes almost a decade for girls to reach cumulative income parity with boys, despite girls completing more household tasks, and (b) the income gap in childhood means that girls never catch up with boys in terms of savings capacity, even after achieving income parity as teenagers. These early life disparities are notable because they indicate that girls have less opportunity to learn money management skills, and because they foreshadow many of the financial gender gaps that exist in adulthood.\n\n\nBibTeX\n@article{EHLP2024, \n  title={Early Roots of Inequality: Evidence of a Gender Income Gap Among Children}, \n  author={Christian Engels and Ray Charles \"Chuck\" Howard and Marcel Lukas and Dennis Philip}, \n  year={2024}, \n}\n\n\nMedia coverage: Zeit Online: “Es beginnt schon beim Taschengeld”\n\nThe Cost of Privacy Failures: Evidence from Bank Depositors’ Reactions to Breaches (with Bill Francis and Dennis Philip)\nThis version: June 2022\n[SSRN]\n\nAbstract\nWe study consumers’ reactions in response to material privacy violations. Exploring privacy breach incidences of U.S. banks, where personally identifiable information (social security numbers, addresses, names) is exposed to unauthorized parties, we find that depositors reallocate significant wealth holdings away from breached banks – we note a 12% differential in total deposits growth between breached and control banks in the year following a breach of privacy. In response to the depletion in deposits, breached banks increase deposit rates just after breach incidences and draw on funding liquidity from the interbank market. The results highlight the importance of privacy for consumers.\n\n\nBibTeX\n@article{EFP2022, \n  title={The Cost of Privacy Failures: Evidence from Bank Depositors' Reactions to Breaches}, \n  author={Christian Engels and Bill Francis and Dennis Philip}, \n  year={2022}, \n}"
+  },
+  {
+    "objectID": "research.html#working-papers",
+    "href": "research.html#working-papers",
+    "title": "Research",
+    "section": "",
+    "text": "“When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit” (with Iftekhar Hasan, Sizhe Hong and Dennis Philip)\nThis version: June 2024\n[SSRN]\n\nAbstract\nHate-motivated crimes have risen to unprecedented levels, yet their far-reaching economic consequences remain understudied. Utilizing comprehensive data on US mortgage applications and county-level hate crime statistics, we document significant effects on housing decisions. An increase in anti-minority racial hate crimes reduces mortgage applications, with both minority and White applicants exhibiting strong demand-side responses. We find that residents migrate away from hate crime-affected counties rather than delaying home purchases or entering the rental market. These patterns speak to an erosion of social cohesion in impacted neighborhoods. Supporting this, survey evidence shows elevated psychological distress levels and reduced visible consumption in affected counties, as well as a diminished presence of civic organizations. Our findings illuminate the far-reaching consequences of hate crimes on housing choice with consequences for the economic development of entire neighborhoods.\n\n\nBibTeX\n@article{EHHP2024, \n  title={When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit}, \n  author={Christian Engels and Iftekhar Hasan and Sizhe Hong and Dennis Philip}, \n  year={2024}, \n}\n\n\nWinner: Best Paper Award in Memory of Phil Molyneux, Finest 2023 Autumn Workshop\n\nEarly Roots of Inequality: Evidence of a Gender Income Gap Among Children (with Ray Charles “Chuck” Howard, Marcel Lukas and Dennis Philip)\nThis version: June 2024\n[SSRN]\n\nAbstract\nThe gender pay gap among adults is well documented. This article uncovers an analogous gender income gap between girls and boys aged 6 to 15, where 'income' is defined as the amount of money children receive from their parents. Our analysis is based on large-scale, longitudinal data by a financial service provider that parents use to transfer money to their children. The data reveal that the gender income gap exists as early as age 6, when girls receive 6.36% less income than boys. The gap then grows throughout childhood (age 6 to 10), before diminishing and eventually reversing in adolescence (age 11 to 15). However, the data also show that (a) it takes almost a decade for girls to reach cumulative income parity with boys, despite girls completing more household tasks, and (b) the income gap in childhood means that girls never catch up with boys in terms of savings capacity, even after achieving income parity as teenagers. These early life disparities are notable because they indicate that girls have less opportunity to learn money management skills, and because they foreshadow many of the financial gender gaps that exist in adulthood.\n\n\nBibTeX\n@article{EHLP2024, \n  title={Early Roots of Inequality: Evidence of a Gender Income Gap Among Children}, \n  author={Christian Engels and Ray Charles \"Chuck\" Howard and Marcel Lukas and Dennis Philip}, \n  year={2024}, \n}\n\n\nMedia coverage: Zeit Online: “Es beginnt schon beim Taschengeld”\n\nThe Cost of Privacy Failures: Evidence from Bank Depositors’ Reactions to Breaches (with Bill Francis and Dennis Philip)\nThis version: June 2022\n[SSRN]\n\nAbstract\nWe study consumers’ reactions in response to material privacy violations. Exploring privacy breach incidences of U.S. banks, where personally identifiable information (social security numbers, addresses, names) is exposed to unauthorized parties, we find that depositors reallocate significant wealth holdings away from breached banks – we note a 12% differential in total deposits growth between breached and control banks in the year following a breach of privacy. In response to the depletion in deposits, breached banks increase deposit rates just after breach incidences and draw on funding liquidity from the interbank market. The results highlight the importance of privacy for consumers.\n\n\nBibTeX\n@article{EFP2022, \n  title={The Cost of Privacy Failures: Evidence from Bank Depositors' Reactions to Breaches}, \n  author={Christian Engels and Bill Francis and Dennis Philip}, \n  year={2022}, \n}"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Christian Engels",
+    "section": "",
+    "text": "Lecturer (Assistant Professor) in Banking and Finance\nUniversity of St Andrews Business School\nI am a Financial Economist with a Business Analytics background. I am very curious about how finance impacts wider society and how, in turn, society influences financial decisions of households and coporations.\nMy main research interests lie at the intersection of\nGet in touch if you have any questions or want to meet up."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Christian Engels",
+    "section": "Education",
+    "text": "Education\nI studied for my PhD in Economics at Durham University Business School where I received the Best Dissertation Prize in the Factulty of Business.\nMy MSc in Economics with Distinction is from the University of Edinburgh. From the Frankfurt School of Finance & Management, I gained a BSc in Management, Philosophy and Economics."
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Christian Engels",
+    "section": "Experience",
+    "text": "Experience\nFor several years, I worked in Statistics and Business Analytics roles in the public and private sectors in the UK where I fell in love with R and Python.\nFrom time to time, I take on consulting projects."
+  }
+]
