@@ -11,7 +11,7 @@
     "href": "consulting.html",
     "title": "Consulting",
     "section": "",
-    "text": "Sometimes I do freelance consulting where I provide services for empirical projects.\nI can help with econometrics, statistics and storytelling using quantitative information.\nImplementations can be provided in R, Python, Stata, or a combination of these.\nWhy do I do this?\nSELECT \n  consulting_income,\n  nursery_fees,\n  transport_to_from_nursery,\n  germany_visits_to_see_granny,\n  babysitter_for_sanity,\n  (consulting_income - \n    (nursery_fees + \n     transport_to_from_nursery + \n     germany_visits_to_see_granny + \n     babysitter_for_sanity)\n  ) AS EMERGENCY_COFFEE_BUDGET\nFROM \n  my_household_income\nWHERE \n  consulting_income &gt; 0\nAND \n  sanity_level &lt; 50;\nLet me know if you would like to discuss your project."
+    "text": "Sometimes I do freelance consulting where I provide services for empirical projects, from research design to execution and storytelling.\nI can assist with everything from shaping research questions and literature review to econometrics, statistics and crafting compelling narratives using quantitative information.\nImplementations can be provided in R, Python, Stata, or a combination of these, with insights tailored to your specific research needs.\nWhy do I do this?\nSELECT \n  consulting_income,\n  nursery_fees,\n  transport_to_from_nursery,\n  germany_visits_to_see_granny,\n  babysitter_for_sanity,\n  (consulting_income - \n    (nursery_fees + \n     transport_to_from_nursery + \n     germany_visits_to_see_granny + \n     babysitter_for_sanity)\n  ) AS EMERGENCY_COFFEE_BUDGET\nFROM \n  my_household_income\nWHERE \n  consulting_income &gt; 0\nAND \n  sanity_level &lt; 50;\nLet me know if you would like to discuss your project."
   },
   {
     "objectID": "teaching.html",
@@ -39,7 +39,7 @@
     "href": "index.html",
     "title": "Dr Christian Engels",
     "section": "",
-    "text": "Lecturer (Assistant Professor) in Banking and Finance\nUniversity of St Andrews Business School\nI am a Financial Economist with a Business Analytics background. I am very curious about how finance impacts wider society and how, in turn, society influences financial decisions of households and coporations.\nMy main research interests lie at the intersection of\nGet in touch if you have questions or would like to meet."
+    "text": "Lecturer (Assistant Professor) in Banking and Finance\nUniversity of St Andrews Business School\nI am a Financial Economist with a Business Analytics background.\nIn my research I explore the interplay between financial systems and societal dynamics, particularly how societal factors such as discrimination, income inequality and psychological well-being shape financial behaviours and outcomes for individuals, households and corporations.\nMy main research interests lie at the intersection of\nGet in touch if you have questions or would like to meet."
   },
   {
     "objectID": "index.html#education",
