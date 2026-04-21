@@ -1,48 +1,145 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Christian Engels</title>
+  <title>Christian Engels — Lecturer in Banking &amp; Finance, University of St Andrews</title>
   <meta name="description" content="Dr Christian Engels — Lecturer in Banking &amp; Finance, Department of Finance, University of St Andrews Business School. Applied research on household finance, consumer credit and mortgage behaviour.">
+  <meta name="theme-color" content="#141013">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
 
-    <header>
-      <div class="header-top">
-        <h1>Dr Christian Engels</h1>
-        <nav>
+  <!-- Masthead strip -->
+  <div class="masthead" aria-hidden="true">
+    <div class="masthead-inner">
+      <span class="masthead-left">
+        <span class="ce-mark">CE</span>
+        <span class="dot">·</span>
+        <span>Research notes from St Andrews</span>
+      </span>
+      <span class="masthead-right">
+        <span>Department of Finance</span>
+        <span class="dot">·</span>
+        <span>Spring 2026</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Sticky mini-nav (appears on scroll) -->
+  <div class="mininav" id="mininav" aria-hidden="true">
+    <div class="mininav-inner">
+      <a href="#top" class="mininav-brand">Christian Engels</a>
+      <div class="mininav-links">
+        <a href="#about">About</a>
+        <a href="#glance">At a glance</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" class="icon-sun" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7" y2="7"/><line x1="17" y1="17" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="7" y2="17"/><line x1="17" y1="7" x2="18.8" y2="5.2"/></g></svg>
+        <svg viewBox="0 0 24 24" class="icon-moon" aria-hidden="true"><path d="M20.5 14.5A8 8 0 0 1 9.5 3.5a8.2 8.2 0 1 0 11 11Z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <header class="hero">
+      <div class="hero-top">
+        <nav class="nav-primary">
           <a href="#about">About</a>
+          <a href="#glance">At a glance</a>
           <a href="#research">Research</a>
           <a href="#contact">Contact</a>
         </nav>
+        <button class="theme-toggle theme-toggle--hero" id="themeToggleHero" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg viewBox="0 0 24 24" class="icon-sun" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7" y2="7"/><line x1="17" y1="17" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="7" y2="17"/><line x1="17" y1="7" x2="18.8" y2="5.2"/></g></svg>
+          <svg viewBox="0 0 24 24" class="icon-moon" aria-hidden="true"><path d="M20.5 14.5A8 8 0 0 1 9.5 3.5a8.2 8.2 0 1 0 11 11Z"/></svg>
+        </button>
       </div>
-      <div class="tagline">
-        <div class="role">Lecturer in Banking &amp; Finance</div>
-        <div>Department of Finance</div>
-        <div>University of St Andrews Business School</div>
+
+      <div class="hero-body">
+        <span class="hero-year" aria-hidden="true">MMXXVI</span>
+        <div class="kicker">
+          <span class="kicker-line"></span>
+          <span class="kicker-text">Lecturer · Department of Finance · St Andrews Business School</span>
+        </div>
+        <h1 class="display"><span class="fore">Christian</span><span class="surname">Engels</span></h1>
+        <p class="lede">
+          Applied empirical work on <em>household finance</em>, <em>consumer credit</em>,
+          <em>mortgage behaviour</em> and <em>global payment infrastructure</em>.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#research">
+            <span>Read the research</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="mailto:ce50@st-andrews.ac.uk">Get in touch</a>
+        </div>
       </div>
     </header>
 
-    <section id="about">
-      <h2>About</h2>
+    <div class="ornament" aria-hidden="true"><span>❦</span></div>
+
+    <section id="about" class="reveal">
+      <h2><span class="h-num">I</span><span class="h-label">About</span></h2>
       <div class="bio">
-        <img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="140" height="140">
+        <figure class="portrait-wrap">
+          <img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="160" height="160">
+          <figcaption>Edinburgh</figcaption>
+        </figure>
         <div class="bio-text">
-          <p>I'm a Lecturer (Assistant Professor) in Banking &amp; Finance at the University of St Andrews. My applied research uses large transactional datasets to ask questions about household finance, consumer credit, mortgage behaviour and global payment infrastructure. Work has appeared in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
+          <p><span class="dropcap">I</span>'m a Lecturer (Assistant Professor) in Banking &amp; Finance at the University of St Andrews. My applied research uses large transactional datasets to ask questions about household finance, consumer credit, mortgage behaviour and global payment infrastructure. Work has appeared in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
           <p>Before academia I worked as a statistician at the Scottish Government and as a consultant at Aquila Insight. My current toolkit is Python, R and SQL (DuckDB), with reproducible, LLM-assisted pipelines in VS Code and Claude Code.</p>
+
+          <ul class="topic-chips" aria-label="Research interests">
+            <li>Household finance</li>
+            <li>Consumer credit</li>
+            <li>Mortgage markets</li>
+            <li>Payment infrastructure</li>
+            <li>Cross-border remittances</li>
+            <li>Financial literacy</li>
+            <li>Banking</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="research">
-      <h2>Research</h2>
+    <div class="ornament ornament--small" aria-hidden="true"><span>⁂</span></div>
+
+    <section id="glance" class="reveal">
+      <h2><span class="h-num">II</span><span class="h-label">At a glance</span></h2>
+      <dl class="glance-grid">
+        <div class="glance-item">
+          <dt>Position</dt>
+          <dd>Lecturer<span class="glance-sub">Banking &amp; Finance, St Andrews</span></dd>
+        </div>
+        <div class="glance-item">
+          <dt>Refereed publications</dt>
+          <dd><span class="big-num">2</span><span class="glance-sub">JBF · EJF</span></dd>
+        </div>
+        <div class="glance-item">
+          <dt>Working &amp; in progress</dt>
+          <dd><span class="big-num">7</span><span class="glance-sub">across six topics</span></dd>
+        </div>
+        <div class="glance-item">
+          <dt>Tools</dt>
+          <dd>Python · R · DuckDB<span class="glance-sub">reproducible pipelines</span></dd>
+        </div>
+      </dl>
+
+    </section>
+
+    <div class="ornament ornament--small" aria-hidden="true"><span>⁂</span></div>
+
+    <section id="research" class="reveal">
+      <h2><span class="h-num">III</span><span class="h-label">Research</span></h2>
 
       <h3 class="subhead">Research in progress</h3>
 
@@ -50,6 +147,12 @@
         <div class="title">&ldquo;Payment Infrastructure and Pricing of Cross-Border Transfers: Evidence from Banks and Money Transfer Operators&rdquo;</div>
         <div class="authors">with <a href="https://www.st-andrews.ac.uk/business-school/people/finance/als23/"><em>Anna L. Sobiech</em></a></div>
         <div class="meta">Current draft: March 2026</div>
+        <ul class="paper-tags">
+          <li>Remittances</li>
+          <li>Cross-border payments</li>
+          <li>Payment infrastructure</li>
+          <li>Staggered adoption</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">Cross-border payment links connect national payment systems across borders. We exploit their staggered global rollout to study how payment infrastructure affects the pricing of cross-border transfers, focusing on the remittance market. Using the imputation estimator of Borusyak, Jaravel and Spiess (2024), we find that a single infrastructure shock produces opposing pricing responses from banks and money transfer operators (MTOs). Banks reduce fees by approximately 14% at impact, driven by lower FX margins. MTOs raise transfer fees by approximately 10% at impact; an offsetting decline in FX margins leaves total fees initially unchanged, but as the FX effect fades, total MTO fees rise to approximately 10% by four quarters after activation. The MTO fee increase varies across corridors: where banks have a larger market presence, MTO fee increases are substantially muted. The results have direct implications for the G20 target of reducing remittance costs below 3%: while CB links lower bank fees, the unintended increase in MTO transfer fees may offset these gains for customers who depend on non-bank providers, particularly in corridors where bank competition is absent.</div>
@@ -86,6 +189,12 @@
         <div class="title"><a href="papers/hatecrimesandthemarketformortgagecredit.pdf">&ldquo;When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit&rdquo;</a></div>
         <div class="authors">with <a href="https://www.fordham.edu/gabelli-school-of-business/faculty/full-time-faculty/iftekhar-hasan/"><em>Iftekhar Hasan</em></a>, <a href="https://www.gla.ac.uk/schools/business/staff/sizhehong/"><em>Sizhe Hong</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta">This version: March 2025<span class="sep">·</span><a href="https://ssrn.com/abstract=4580504">SSRN</a><span class="sep">·</span><a href="papers/hatecrimesandthemarketformortgagecredit.pdf">PDF</a></div>
+        <ul class="paper-tags">
+          <li>Mortgage credit</li>
+          <li>Hate crime</li>
+          <li>Migration</li>
+          <li>HMDA</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">Hate-motivated crimes have risen to unprecedented levels, yet their far-reaching economic consequences remain understudied. Utilizing comprehensive data on US mortgage applications and county-level hate crime statistics, we document significant effects on housing decisions. An increase in anti-minority racial hate crimes reduces mortgage applications, with both minority and White applicants exhibiting strong demand-side responses. We find that residents migrate away from hate crime-affected counties rather than delaying home purchases or entering the rental market. These patterns speak to an erosion of social cohesion in impacted neighborhoods. Supporting this, survey evidence shows elevated psychological distress levels and reduced visible consumption in affected counties, as well as a diminished presence of civic organizations. Our findings illuminate the far-reaching consequences of hate crimes on housing choice with consequences for the economic development of entire neighborhoods.</div>
@@ -105,6 +214,12 @@
         <div class="title"><a href="papers/genderincomegapamongchildren.pdf">&ldquo;Early Roots of Inequality: Evidence of a Gender Income Gap Among Children&rdquo;</a></div>
         <div class="authors">with <a href="https://www.darden.virginia.edu/faculty-research/directory/ray-charles-howard"><em>Ray Charles "Chuck" Howard</em></a>, <a href="https://www.st-andrews.ac.uk/management/people/mfl3"><em>Marcel Lukas</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta">This version: June 2024<span class="sep">·</span><a href="https://ssrn.com/abstract=4879297">SSRN</a><span class="sep">·</span><a href="papers/genderincomegapamongchildren.pdf">PDF</a></div>
+        <ul class="paper-tags">
+          <li>Household finance</li>
+          <li>Gender</li>
+          <li>Children</li>
+          <li>Transactional data</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">The gender pay gap among adults is well documented. This article uncovers an analogous gender income gap between girls and boys aged 6 to 15, where 'income' is defined as the amount of money children receive from their parents. Our analysis is based on large-scale, longitudinal data by a financial service provider that parents use to transfer money to their children. The data reveal that the gender income gap exists as early as age 6, when girls receive 6.36% less income than boys. The gap then grows throughout childhood (age 6 to 10), before diminishing and eventually reversing in adolescence (age 11 to 15). However, the data also show that (a) it takes almost a decade for girls to reach cumulative income parity with boys, despite girls completing more household tasks, and (b) the income gap in childhood means that girls never catch up with boys in terms of savings capacity, even after achieving income parity as teenagers. These early life disparities are notable because they indicate that girls have less opportunity to learn money management skills, and because they foreshadow many of the financial gender gaps that exist in adulthood.</div>
@@ -126,6 +241,12 @@
         <div class="title"><a href="papers/bankdepositorsreactionstobreaches.pdf">&ldquo;The Cost of Privacy Failures: Evidence from Bank Depositors&rsquo; Reactions to Breaches&rdquo;</a></div>
         <div class="authors">with <a href="https://faculty.rpi.edu/bill-francis"><em>Bill Francis</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta">This version: June 2022<span class="sep">·</span><a href="https://ssrn.com/abstract=3625668">SSRN</a><span class="sep">·</span><a href="papers/bankdepositorsreactionstobreaches.pdf">PDF</a></div>
+        <ul class="paper-tags">
+          <li>Banking</li>
+          <li>Privacy</li>
+          <li>Deposits</li>
+          <li>Consumer behaviour</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">We study consumers' reactions in response to material privacy violations. Exploring privacy breach incidences of U.S. banks, where personally identifiable information (social security numbers, addresses, names) is exposed to unauthorized parties, we find that depositors reallocate significant wealth holdings away from breached banks — we note a 12% differential in total deposits growth between breached and control banks in the year following a breach of privacy. In response to the depletion in deposits, breached banks increase deposit rates just after breach incidences and draw on funding liquidity from the interbank market. The results highlight the importance of privacy for consumers.</div>
@@ -146,6 +267,11 @@
         <div class="title"><span class="venue-pill">JBF</span><a href="https://doi.org/10.1016/j.jbankfin.2022.106620">&ldquo;When It Rains It Drains: Psychological Distress and Household Net Worth&rdquo;</a></div>
         <div class="authors">with <a href="https://www.massey.ac.nz/massey/expertise/profile.cfm?stref=076450"><em>Adnan Balloch</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta"><span class="venue">Journal of Banking and Finance</span>, Volume 143, October 2022, 106620<span class="sep">·</span><a href="https://doi.org/10.1016/j.jbankfin.2022.106620">DOI</a><span class="sep">·</span><a href="https://ssrn.com/abstract=3625668">SSRN</a></div>
+        <ul class="paper-tags">
+          <li>Mental health</li>
+          <li>Household wealth</li>
+          <li>Panel data</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">This paper establishes a sizeable negative effect of poor mental health on individuals' net worth. In a representative panel of U.S. households, we find that a one standard deviation (or four unit) increase in Kessler's K6 psychological distress level decreases net worth by 13.2 percent and increases by 5 percent the baseline risk of being in deficit net worth, where levels of debt outstrip the value of assets. Survival analyses further show that psychological distress accelerates the entry into and prolongs the stay in deficit net worth states, as well as increasing the probability of re-entry into deficit. Using a Blinder-Oaxaca decomposition, we find that differences in level of savings, medical debt and labor income predominantly explain the lower net worth and higher likelihood of deficit net worth of individuals with high psychological distress. Our findings highlight the significant longer-term implications of mental health on the net worth of individuals.</div>
@@ -168,6 +294,11 @@
         <div class="title"><span class="venue-pill">EJF</span><a href="https://doi.org/10.1080/1351847X.2019.1646666">&ldquo;Financial Literacy and Fraud Detection&rdquo;</a></div>
         <div class="authors">with <a href="https://scholar.google.co.uk/citations?user=P6qgG7EAAAAJ&amp;hl=en"><em>Kamlesh Kumar</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta"><span class="venue">European Journal of Finance</span>, 26.4–5 (2020): 420–442<span class="sep">·</span><a href="https://doi.org/10.1080/1351847X.2019.1646666">DOI</a></div>
+        <ul class="paper-tags">
+          <li>Financial literacy</li>
+          <li>Fraud</li>
+          <li>Consumer protection</li>
+        </ul>
         <details>
           <summary>Abstract</summary>
           <div class="abstract">Who is better at detecting fraud? This paper finds that more financially knowledgeable individuals have a higher propensity to detect fraud: a one standard deviation increase in financial knowledge increases fraud detection probabilities by 3 percentage points. The result is not driven by individuals' higher financial product usage and is observed to be moderated by individuals' low subjective well-being, effectively depleting skills to detect fraud. Interestingly, prudent financial behavior relating to basic money management is found to have negligible effects for detecting fraud. The findings attest to the fact that fraud tactics are increasingly complex and it is greater financial knowledge rather than basic money management skills that provides the degree of sophistication necessary to detect fraud. The paper draws policy implications for consumer education programs to go beyond cultivating money management skills, and provide advanced financial knowledge necessary for tackling fraud.</div>
@@ -189,21 +320,133 @@
 
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <ul class="contact-links">
-        <li><a href="mailto:ce50@st-andrews.ac.uk">Email</a></li>
-        <li><a href="https://www.st-andrews.ac.uk/management/people/ce50">St Andrews</a></li>
-        <li><a href="https://www.linkedin.com/in/christian-engels">LinkedIn</a></li>
-        <li><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3308918">SSRN</a></li>
-        <li><a href="https://github.com/christian-engels">GitHub</a></li>
-      </ul>
+    <div class="ornament ornament--small" aria-hidden="true"><span>⁂</span></div>
+
+    <section id="contact" class="reveal">
+      <h2><span class="h-num">IV</span><span class="h-label">Contact</span></h2>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:ce50@st-andrews.ac.uk">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">ce50@st-andrews.ac.uk</span>
+        </a>
+        <a class="contact-card" href="https://www.st-andrews.ac.uk/management/people/ce50">
+          <span class="contact-label">St Andrews</span>
+          <span class="contact-value">Staff profile</span>
+        </a>
+        <a class="contact-card" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3308918">
+          <span class="contact-label">SSRN</span>
+          <span class="contact-value">Working papers</span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/christian-engels">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">christian-engels</span>
+        </a>
+        <a class="contact-card" href="https://github.com/christian-engels">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">christian-engels</span>
+        </a>
+      </div>
+      <p class="contact-footnote">
+        Based in Edinburgh (UTC+0 / UTC+1).
+      </p>
     </section>
 
     <footer>
-      © 2026 Christian Engels
+      <div class="footer-grid">
+        <div class="footer-left">
+          <span class="ce-mark-small">CE</span>
+          <div>
+            <div class="footer-name">Dr Christian Engels</div>
+            <div class="footer-role">Lecturer in Banking &amp; Finance · University of St Andrews</div>
+          </div>
+        </div>
+        <div class="footer-right">
+          <div>© 2026 Christian Engels</div>
+          <div class="footer-meta">Last updated April 2026 · Built with HTML &amp; restraint</div>
+        </div>
+      </div>
     </footer>
 
   </main>
+
+  <script>
+    (function () {
+      // Theme handling — honour system preference, allow override
+      var KEY = 'ce-theme';
+      var root = document.documentElement;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+
+      function toggleTheme() {
+        var current = root.getAttribute('data-theme');
+        if (!current) {
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          current = prefersDark ? 'dark' : 'light';
+        }
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+      }
+      ['themeToggle', 'themeToggleHero'].forEach(function (id) {
+        var btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+
+      // Sticky mini-nav — appears after scrolling past the hero
+      var mininav = document.getElementById('mininav');
+      var hero = document.querySelector('.hero');
+      if (mininav && hero && 'IntersectionObserver' in window) {
+        var sentinel = document.createElement('div');
+        sentinel.style.cssText = 'position:absolute;bottom:0;height:1px;width:1px;';
+        hero.style.position = hero.style.position || 'relative';
+        hero.appendChild(sentinel);
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting && e.boundingClientRect.top < 0) {
+              mininav.classList.add('is-visible');
+            } else {
+              mininav.classList.remove('is-visible');
+            }
+          });
+        });
+        io.observe(sentinel);
+      }
+
+      // Active-section highlighting in mini-nav
+      var sections = document.querySelectorAll('main section[id]');
+      var navLinks = mininav ? mininav.querySelectorAll('.mininav-links a') : [];
+      if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              var id = e.target.id;
+              navLinks.forEach(function (a) {
+                a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+              });
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(function (s) { spy.observe(s); });
+      }
+
+      // Scroll reveals (respect reduced motion)
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+      if (!reduced && 'IntersectionObserver' in window && reveals.length) {
+        var rio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              rio.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        reveals.forEach(function (el) { rio.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('is-in'); });
+      }
+    })();
+  </script>
 </body>
 </html>
