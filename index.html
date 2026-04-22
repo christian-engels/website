@@ -20,11 +20,11 @@
       <span class="masthead-left">
         <span class="ce-mark">CE</span>
         <span class="dot">·</span>
-        <span>Research notes from St Andrews</span>
+        <span class="masthead-tag">Research notes from St Andrews</span>
       </span>
       <span class="masthead-right">
-        <span>Department of Finance</span>
-        <span class="dot">·</span>
+        <span class="masthead-dept">Department of Finance</span>
+        <span class="dot masthead-dept-sep">·</span>
         <span>Spring 2026</span>
       </span>
     </div>
@@ -36,7 +36,7 @@
       <a href="#top" class="mininav-brand">Christian Engels</a>
       <div class="mininav-links">
         <a href="#about">About</a>
-        <a href="#glance">At a glance</a>
+        <a href="#glance"><span class="long-label">At a glance</span><span class="short-label">Glance</span></a>
         <a href="#research">Research</a>
         <a href="#contact">Contact</a>
       </div>
@@ -44,6 +44,19 @@
         <svg viewBox="0 0 24 24" class="icon-sun" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7" y2="7"/><line x1="17" y1="17" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="7" y2="17"/><line x1="17" y1="7" x2="18.8" y2="5.2"/></g></svg>
         <svg viewBox="0 0 24 24" class="icon-moon" aria-hidden="true"><path d="M20.5 14.5A8 8 0 0 1 9.5 3.5a8.2 8.2 0 1 0 11 11Z"/></svg>
       </button>
+    </div>
+  </div>
+
+  <!-- Research subnav — appears when scrolling through Research -->
+  <div class="subnav" id="subnav" aria-hidden="true">
+    <div class="subnav-inner">
+      <span class="subnav-label">§ Research</span>
+      <div class="subnav-links">
+        <a href="#in-progress">In&nbsp;progress</a>
+        <a href="#working-papers">Working&nbsp;papers</a>
+        <a href="#earlier-papers">Earlier</a>
+        <a href="#publications">Publications</a>
+      </div>
     </div>
   </div>
 
@@ -95,7 +108,7 @@
           <figcaption>Edinburgh</figcaption>
         </figure>
         <div class="bio-text">
-          <p><span class="dropcap">I</span>'m a Lecturer (Assistant Professor) in Banking &amp; Finance at the University of St Andrews. My applied research uses large transactional datasets to ask questions about household finance, consumer credit, mortgage behaviour and global payment infrastructure. Work has appeared in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
+          <p><span class="dropcap">I</span>'m a Lecturer (Assistant Professor) in Banking &amp; Finance at the University of St Andrews. My applied research spans household finance, consumer credit, mortgage behaviour and global payment infrastructure, drawing on administrative, transactional and survey data. Work has appeared in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
           <p>Before academia I worked as a statistician at the Scottish Government and as a consultant at Aquila Insight. My current toolkit is Python, R and SQL (DuckDB), with reproducible, LLM-assisted pipelines in VS Code and Claude Code.</p>
 
           <ul class="topic-chips" aria-label="Research interests">
@@ -141,7 +154,7 @@
     <section id="research" class="reveal">
       <h2><span class="h-num">III</span><span class="h-label">Research</span></h2>
 
-      <h3 class="subhead">Research in progress</h3>
+      <h3 class="subhead" id="in-progress">Research in progress</h3>
 
       <article class="paper">
         <div class="title">&ldquo;Payment Infrastructure and Pricing of Cross-Border Transfers: Evidence from Banks and Money Transfer Operators&rdquo;</div>
@@ -169,22 +182,19 @@
         <p class="note"><strong>Accepted</strong> <span>LAPE Finest Spring Workshop, June 2026</span></p>
       </article>
 
-      <article class="paper">
-        <div class="authors">with <a href="https://www.business-school.ed.ac.uk/staff/raffaella-calabrese"><em>Raffaella Calabrese</em></a>, <a href="https://business.leeds.ac.uk/departments-analytics-technology-operations/staff/2920/dr-yujia-chen"><em>Yujia Chen</em></a> and <a href="https://www.federalreserve.gov/econres/daniel-a-dias.htm"><em>Daniel A. Dias</em></a></div>
-        <div class="meta">Draft in preparation</div>
+      <article class="paper paper--compact">
+        <div class="authors"><span class="compact-label">Draft in preparation</span>with <a href="https://www.business-school.ed.ac.uk/staff/raffaella-calabrese"><em>Raffaella Calabrese</em></a>, <a href="https://business.leeds.ac.uk/departments-analytics-technology-operations/staff/2920/dr-yujia-chen"><em>Yujia Chen</em></a> and <a href="https://www.federalreserve.gov/econres/daniel-a-dias.htm"><em>Daniel A. Dias</em></a></div>
       </article>
 
-      <article class="paper">
-        <div class="authors">with <a href="https://www.st-andrews.ac.uk/business-school/people/management/bab20/"><em>Boyka Bratanova</em></a></div>
-        <div class="meta">Draft in preparation</div>
+      <article class="paper paper--compact">
+        <div class="authors"><span class="compact-label">Draft in preparation</span>with <a href="https://www.st-andrews.ac.uk/business-school/people/management/bab20/"><em>Boyka Bratanova</em></a></div>
       </article>
 
-      <article class="paper">
-        <div class="authors">with <a href="https://research-portal.st-andrews.ac.uk/en/persons/amelia-rachel-elizabeth-nelson/"><em>Amelia Nelson</em></a>, <a href="https://www.st-andrews.ac.uk/management/people/mfl3"><em>Marcel Lukas</em></a> and <a href="https://www.st-andrews.ac.uk/business-school/people/finance/jsw7/"><em>John Wilson</em></a></div>
-        <div class="meta">Draft in preparation</div>
+      <article class="paper paper--compact">
+        <div class="authors"><span class="compact-label">Draft in preparation</span>with <a href="https://research-portal.st-andrews.ac.uk/en/persons/amelia-rachel-elizabeth-nelson/"><em>Amelia Nelson</em></a>, <a href="https://www.st-andrews.ac.uk/management/people/mfl3"><em>Marcel Lukas</em></a> and <a href="https://www.st-andrews.ac.uk/business-school/people/finance/jsw7/"><em>John Wilson</em></a></div>
       </article>
 
-      <h3 class="subhead">Working papers</h3>
+      <h3 class="subhead" id="working-papers">Working papers</h3>
 
       <article class="paper">
         <div class="title">&ldquo;When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit&rdquo;</div>
@@ -238,7 +248,7 @@
         <p class="note"><strong>Media</strong> <span><a href="https://www.zeit.de/geld/2024-07/ungleiches-einkommen-gender-gap-frauen-gleichberechtigung">Zeit Online: &ldquo;Es beginnt schon beim Taschengeld&rdquo;</a></span></p>
       </article>
 
-      <h3 class="subhead">Earlier working papers</h3>
+      <h3 class="subhead" id="earlier-papers">Earlier working papers</h3>
 
       <article class="paper">
         <div class="title"><a href="papers/bankdepositorsreactionstobreaches.pdf">&ldquo;The Cost of Privacy Failures: Evidence from Bank Depositors&rsquo; Reactions to Breaches&rdquo;</a></div>
@@ -266,7 +276,7 @@
         </details>
       </article>
 
-      <h3 class="subhead">Publications</h3>
+      <h3 class="subhead" id="publications">Publications</h3>
 
       <article class="paper">
         <div class="title"><span class="venue-pill">JBF</span><a href="https://doi.org/10.1016/j.jbankfin.2022.106620">&ldquo;When It Rains It Drains: Psychological Distress and Household Net Worth&rdquo;</a></div>
@@ -357,9 +367,6 @@
           <span class="contact-value">christian-engels</span>
         </a>
       </div>
-      <p class="contact-footnote">
-        Based in Edinburgh (UTC+0 / UTC+1).
-      </p>
     </section>
 
     <footer>
@@ -373,7 +380,7 @@
         </div>
         <div class="footer-right">
           <div>© 2026 Christian Engels</div>
-          <div class="footer-meta">Last updated April 2026 · Built with HTML &amp; restraint</div>
+          <div class="footer-meta">Last updated April 2026</div>
         </div>
       </div>
     </footer>
@@ -439,6 +446,35 @@
           });
         }, { rootMargin: '-40% 0px -55% 0px' });
         sections.forEach(function (s) { spy.observe(s); });
+      }
+
+      // Research subnav — show only inside #research, highlight current subhead
+      var subnav = document.getElementById('subnav');
+      var research = document.getElementById('research');
+      if (subnav && research && 'IntersectionObserver' in window) {
+        var researchIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            // show when research is in the viewport at all
+            subnav.classList.toggle('is-visible', e.isIntersecting);
+          });
+        }, { rootMargin: '-80px 0px -40% 0px', threshold: 0 });
+        researchIO.observe(research);
+
+        var subheads = research.querySelectorAll('h3.subhead[id]');
+        var subLinks = subnav.querySelectorAll('.subnav-links a');
+        if (subheads.length && subLinks.length) {
+          var subSpy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                var id = e.target.id;
+                subLinks.forEach(function (a) {
+                  a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+                });
+              }
+            });
+          }, { rootMargin: '-20% 0px -70% 0px' });
+          subheads.forEach(function (h) { subSpy.observe(h); });
+        }
       }
 
       // Scroll reveals (respect reduced motion)
