@@ -561,6 +561,13 @@
       // Sticky mini-nav — appears after scrolling past the hero
       var mininav = document.getElementById('mininav');
       var hero = document.querySelector('.hero');
+      if (mininav) {
+        var syncMininavHeight = function () {
+          document.documentElement.style.setProperty('--mininav-h', mininav.offsetHeight + 'px');
+        };
+        syncMininavHeight();
+        window.addEventListener('resize', syncMininavHeight);
+      }
       if (mininav && hero && 'IntersectionObserver' in window) {
         var sentinel = document.createElement('div');
         sentinel.style.cssText = 'position:absolute;bottom:0;height:1px;width:1px;';

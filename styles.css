@@ -212,6 +212,8 @@ main, .masthead, .mininav { position: relative; z-index: 2; }
   text-decoration: none;
   letter-spacing: -0.01em;
   font-variation-settings: "opsz" 24, "SOFT" 30;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .mininav-links {
   display: flex;
@@ -256,7 +258,7 @@ main, .masthead, .mininav { position: relative; z-index: 2; }
   transition: transform 320ms var(--ease-emph), opacity 260ms var(--ease);
 }
 .subnav.is-visible {
-  transform: translateY(3rem);
+  transform: translateY(var(--mininav-h, 3rem));
   opacity: 1;
   pointer-events: auto;
 }
