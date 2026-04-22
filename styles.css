@@ -523,6 +523,7 @@ h1.display .surname {
   border-color: var(--burgundy);
   transform: translateY(-2px);
 }
+.btn-ghost:hover svg { transform: translateX(3px); }
 
 /* ---------- Ornament ---------- */
 .ornament {
@@ -1258,6 +1259,216 @@ footer {
   .theme-toggle--hero { display: none; }
   .hero-year { display: none; }
   h1.display { font-size: clamp(2.3rem, 12vw, 3rem); }
+}
+
+/* ---------- Teaching ---------- */
+.teaching-honour {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 0.4rem 0 2.2rem;
+  padding: 1rem 1.2rem 1rem 1.05rem;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--burgundy);
+  border-radius: 2px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.honour-ornament {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--burgundy);
+  font-size: 1.7rem;
+  line-height: 1;
+  margin-top: 0.15rem;
+  font-variation-settings: "opsz" 48, "SOFT" 80, "WONK" 1;
+  flex-shrink: 0;
+}
+.honour-body { flex: 1 1 auto; min-width: 0; }
+.honour-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 0.35rem;
+}
+.teaching-honour p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.teaching-honour p em {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink);
+  font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 1;
+}
+
+@media (max-width: 560px) {
+  .teaching-honour { padding: 0.9rem 1rem; gap: 0.75rem; }
+  .honour-ornament { font-size: 1.4rem; }
+}
+
+.module {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 7rem;
+}
+.module:last-of-type {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0.8rem;
+}
+
+.module-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 0.2rem 1rem 1.1rem;
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  user-select: none;
+  transition: background 160ms var(--ease);
+}
+.module-summary::-webkit-details-marker { display: none; }
+.module-summary::marker { content: ""; }
+
+.module-summary::before {
+  content: "§";
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-55%);
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--burgundy);
+  font-size: 1rem;
+  font-variation-settings: "opsz" 24;
+}
+.module-summary:hover { background: var(--surface); }
+.module-summary:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: -2px;
+}
+
+.module-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  transition: color 160ms var(--ease);
+}
+.module-summary:hover .module-title { color: var(--burgundy); }
+.module[open] .module-title { color: var(--burgundy); }
+
+.module-count {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.module-chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: transform 260ms var(--ease-emph), color 160ms var(--ease);
+}
+.module[open] .module-chevron {
+  transform: rotate(180deg);
+  color: var(--burgundy);
+}
+
+.module > .lecture-list {
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 480px) {
+  .module-summary { padding: 0.85rem 0.15rem 0.85rem 1rem; gap: 0.6rem; }
+  .module-count { display: none; }
+}
+
+.lecture-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+.lecture-list li {
+  display: grid;
+  grid-template-columns: 4.8rem 1fr auto;
+  align-items: baseline;
+  column-gap: 1.2rem;
+  padding: 0.7rem 0.5rem 0.7rem 0.05rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  transition: background 160ms var(--ease);
+}
+.lecture-list li::before {
+  content: "";
+  position: absolute;
+  left: -1rem; top: 50%;
+  width: 2px; height: 0;
+  background: var(--burgundy);
+  transform: translateY(-50%);
+  transition: height 260ms var(--ease-emph);
+}
+.lecture-list li:hover { background: var(--surface); }
+.lecture-list li:hover::before { height: 1.1rem; }
+
+.lecture-week {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lecture-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  text-wrap: balance;
+  transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+.lecture-title:hover {
+  color: var(--burgundy);
+  border-bottom-color: var(--burgundy);
+}
+.lecture-format {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .lecture-list li {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.15rem;
+    column-gap: 0.8rem;
+  }
+  .lecture-week { grid-column: 1 / -1; }
 }
 
 /* ---------- Print ---------- */
