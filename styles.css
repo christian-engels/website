@@ -1231,8 +1231,8 @@ footer {
   .mininav .long-label { display: none; }
   .mininav .short-label { display: inline; }
   .subnav-inner { padding: 0.45rem 1.1rem; gap: 0.7rem; }
-  .subnav-label { font-size: 0.78rem; }
-  .subnav-links { gap: 0.8rem; font-size: 0.62rem; letter-spacing: 0.06em; }
+  .subnav-label { display: none; }
+  .subnav-links { gap: 0.9rem; font-size: 0.64rem; letter-spacing: 0.06em; }
   .ornament { margin: 2.2rem 0 1.5rem; }
   .ornament--small { margin: 1.8rem 0 1.1rem; }
   .dropcap { font-size: 3.8rem; margin-right: 0.5rem; }
