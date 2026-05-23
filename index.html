@@ -167,7 +167,7 @@
         <div class="authors">with <a href="https://www.st-andrews.ac.uk/business-school/people/finance/als23/"><em>Anna L. Sobiech</em></a></div>
         <div class="meta">Current draft: March 2026</div>
         <ul class="paper-tags">
-          <li class="tag-status">First draft · Coming May '26</li>
+          <li class="tag-status">First draft · Coming soon</li>
           <li>Remittances</li>
           <li>Cross-border payments</li>
           <li>Payment infrastructure</li>
@@ -233,7 +233,7 @@
         <div class="authors">with <a href="https://www.darden.virginia.edu/faculty-research/directory/ray-charles-howard"><em>Ray Charles "Chuck" Howard</em></a>, <a href="https://www.st-andrews.ac.uk/business-school/people/finance/mfl3/"><em>Marcel Lukas</em></a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/"><em>Dennis Philip</em></a></div>
         <div class="meta">This version: June 2024<span class="sep">·</span><a href="https://ssrn.com/abstract=4879297">SSRN</a></div>
         <ul class="paper-tags">
-          <li class="tag-status">New draft · Coming May '26</li>
+          <li class="tag-status">New draft · Coming soon</li>
           <li>Gender pay gap</li>
           <li>Gender savings gap</li>
           <li>Income inequality</li>
@@ -541,7 +541,28 @@
       var root = document.documentElement;
       var stored = null;
       try { stored = localStorage.getItem(KEY); } catch (e) {}
-      if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+
+      // Resolve initial theme
+      var activeTheme = stored;
+      if (activeTheme === 'light' || activeTheme === 'dark') {
+        root.setAttribute('data-theme', activeTheme);
+      } else {
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        activeTheme = prefersDark ? 'dark' : 'light';
+      }
+
+      // Sync button accessibility labels with active theme
+      function updateThemeButtons(theme) {
+        var isDark = theme === 'dark';
+        var label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        ['themeToggle', 'themeToggleHero'].forEach(function (id) {
+          var btn = document.getElementById(id);
+          if (btn) {
+            btn.setAttribute('aria-label', label);
+            btn.setAttribute('title', label);
+          }
+        });
+      }
 
       function toggleTheme() {
         var current = root.getAttribute('data-theme');
@@ -552,11 +573,16 @@
         var next = current === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         try { localStorage.setItem(KEY, next); } catch (e) {}
+        updateThemeButtons(next);
       }
+
       ['themeToggle', 'themeToggleHero'].forEach(function (id) {
         var btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', toggleTheme);
       });
+
+      // Run theme button labels setup immediately after they render
+      updateThemeButtons(activeTheme);
 
       // Sticky mini-nav — appears after scrolling past the hero
       var mininav = document.getElementById('mininav');
@@ -646,6 +672,84 @@
         reveals.forEach(function (el) { rio.observe(el); });
       } else {
         reveals.forEach(function (el) { el.classList.add('is-in'); });
+      }
+
+      // Open external absolute links and local PDF documents in a new tab
+      document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(function (a) {
+        if (!a.hasAttribute('target')) {
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener');
+        }
+      });
+
+      // Smooth custom accordion animations for all details elements
+      if (!reduced && typeof Element.prototype.animate === 'function') {
+        document.querySelectorAll('details').forEach(function (details) {
+          var summary = details.querySelector('summary');
+          var content = details.querySelector('.abstract, .bibtex, .lecture-list');
+          if (!summary || !content) return;
+
+          var animation = null;
+          var isClosing = false;
+          var isExpanding = false;
+
+          summary.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (isClosing || !details.open) {
+              open();
+            } else if (isExpanding || details.open) {
+              shrink();
+            }
+          });
+
+          function shrink() {
+            isClosing = true;
+            details.style.overflow = 'hidden';
+            var startHeight = details.offsetHeight + 'px';
+            var endHeight = summary.offsetHeight + 'px';
+
+            if (animation) animation.cancel();
+
+            animation = details.animate({
+              height: [startHeight, endHeight]
+            }, {
+              duration: 220,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+            });
+
+            animation.onfinish = function () {
+              details.removeAttribute('open');
+              details.style.height = '';
+              details.style.overflow = '';
+              isClosing = false;
+              animation = null;
+            };
+          }
+
+          function open() {
+            isExpanding = true;
+            details.style.overflow = 'hidden';
+            var startHeight = summary.offsetHeight + 'px';
+            details.setAttribute('open', 'true');
+            var endHeight = details.offsetHeight + 'px';
+
+            if (animation) animation.cancel();
+
+            animation = details.animate({
+              height: [startHeight, endHeight]
+            }, {
+              duration: 250,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+            });
+
+            animation.onfinish = function () {
+              details.style.height = '';
+              details.style.overflow = '';
+              isExpanding = false;
+              animation = null;
+            };
+          }
+        });
       }
     })();
   </script>
