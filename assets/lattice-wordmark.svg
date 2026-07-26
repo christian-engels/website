@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title description">
+  <title id="title">Lattice</title>
+  <desc id="description">Lattice private literature research</desc>
+  <rect width="640" height="160" rx="12" fill="#f6f2ea"/>
+  <g transform="translate(44 44)">
+    <path d="M0 36 36 0l36 36-36 36z" fill="none" stroke="#a4813a" stroke-width="5"/>
+    <path d="M18 36 36 18l18 18-18 18z" fill="#a4813a"/>
+  </g>
+  <text x="142" y="91" fill="#0b0b0b"
+        font-family="Iowan Old Style, Palatino, Book Antiqua, Georgia, serif"
+        font-size="56" font-weight="600" letter-spacing="12">LATTICE</text>
+  <text x="146" y="120" fill="#52514e"
+        font-family="Avenir Next, Helvetica Neue, Arial, sans-serif"
+        font-size="15" letter-spacing="3">PRIVATE LITERATURE RESEARCH</text>
+</svg>
