@@ -11,12 +11,12 @@
   <meta property="og:description" content="Research on household finance and banking: consumer credit, mortgage markets and cross-border payments.">
   <meta property="og:url" content="https://christianengels.net/">
   <meta property="og:image" content="https://christianengels.net/pictures/christian-engels.jpg">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#121413" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151e1b" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="favicon.ico">
   <link rel="preload" href="assets/fonts/literata-roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261010c">
+  <link rel="stylesheet" href="styles.css?v=20261010d">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,25 +37,36 @@
   </script>
 </head>
 <body>
-<div class="page">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="page" id="top">
 
-  <nav class="topnav" aria-label="Sections">
-    <a href="#research">Research</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#workshops">Workshops</a>
-  </nav>
+  <div class="site-header">
+    <a class="wordmark" href="#top" aria-label="Christian Engels, home"><span class="monogram" aria-hidden="true">ce.</span><span>Christian Engels</span></a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#workshops">Workshops</a>
+    </nav>
+  </div>
 
-  <header class="masthead grid">
-    <img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="400" height="400">
-    <div class="body">
+  <header class="masthead">
+    <div class="hero-copy">
+      <p class="eyebrow">Household finance &amp; banking</p>
       <h1>Christian Engels</h1>
       <p class="title">Lecturer (Assistant Professor) in Banking and Finance</p>
       <div class="intro">
-        <p>My research is in household finance and banking, with a focus on consumer credit, mortgage markets and cross-border payments. I use administrative, transaction and survey data, and my work has been published in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
+        <p class="lead">My research is in household finance and banking, with a focus on consumer credit, mortgage markets and cross-border payments.</p>
+        <p>I use administrative, transaction and survey data, and my work has been published in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
         <p>I am based at the University of St Andrews. Before academia I was a statistician at the Scottish Government and a consultant at Aquila Insight.</p>
       </div>
-      <ul class="links">
-        <li class="email-item"><a class="email" data-u="seiriuqne" data-d="ten.slegnenaitsirhc">enquiries [at] christianengels [dot] net</a></li>
+    </div>
+    <figure class="profile">
+      <div class="portrait-frame"><img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="400" height="400" fetchpriority="high"></div>
+      <figcaption><span>University of St Andrews</span>Business School</figcaption>
+    </figure>
+    <div class="contact-strip">
+      <a class="email contact-link" data-u="seiriuqne" data-d="ten.slegnenaitsirhc">enquiries [at] christianengels [dot] net</a>
+      <ul class="links" aria-label="Academic and professional profiles">
         <li><a href="https://scholar.google.com/citations?user=UZ8c3bMAAAAJ">Google Scholar</a></li>
         <li><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3308918">SSRN</a></li>
         <li><a href="https://orcid.org/0000-0002-6198-431X">ORCID</a></li>
@@ -65,10 +76,10 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <section id="research" class="grid">
-      <h2 class="label">Research</h2>
+      <h2 class="label"><span class="section-number" aria-hidden="true">01 /</span>Research</h2>
       <div class="body">
         <h3>Working papers</h3>
 
@@ -222,21 +233,20 @@
     </section>
 
     <section id="teaching" class="grid">
-      <h2 class="label">Teaching</h2>
+      <h2 class="label"><span class="section-number" aria-hidden="true">02 /</span>Teaching</h2>
       <div class="body">
         <h3>Awards</h3>
-        <ul class="list">
+        <ul class="list awards">
           <li>Department of Finance Teaching Award, 2025&ndash;26</li>
           <li>CPD Teaching Award, 2025&ndash;26, runner-up</li>
           <li>Herald Higher Education Awards 2026, finalist (Innovative Use of Technology)</li>
           <li>University of St Andrews 1413 Teaching Excellence Award, shortlisted</li>
         </ul>
-        <p class="small-note">The Herald and 1413 nominations were for my use of AI in teaching and assessment design.</p>
 
         <h3>Lecture slides</h3>
         <div class="modules">
           <details class="module">
-            <summary>Econometrics with Python (FI5699)<span class="count">5 lectures</span></summary>
+            <summary><span class="module-name">Econometrics with Python <span class="module-code">FI5699</span></span><span class="count">5 lectures</span></summary>
             <ul class="lectures">
               <li><span class="wk">Week 2</span><a href="slides/FI5699/Week%202%20Introduction%20to%20Python.pdf">Introduction to Python</a></li>
               <li><span class="wk">Week 4</span><a href="slides/FI5699/Week%204%20Working%20with%20Data%20in%20Python.pdf">Working with Data in Python</a></li>
@@ -247,7 +257,7 @@
           </details>
 
           <details class="module">
-            <summary>Behavioural Finance (FI5614)<span class="count">10 lectures</span></summary>
+            <summary><span class="module-name">Behavioural Finance <span class="module-code">FI5614</span></span><span class="count">10 lectures</span></summary>
             <ul class="lectures">
               <li><span class="wk">Week 1</span><a href="slides/FI5614/Week%201%20Psychology%20and%20Behavioural%20Economics.pdf">Psychology and Behavioural Economics</a></li>
               <li><span class="wk">Week 2</span><a href="slides/FI5614/Week%202%20Heuristics%20and%20Biases.pdf">Heuristics and Biases</a></li>
@@ -263,7 +273,7 @@
           </details>
 
           <details class="module">
-            <summary>Corporate Finance (EC3318 / MN3101)<span class="count">4 lectures</span></summary>
+            <summary><span class="module-name">Corporate Finance <span class="module-code">EC3318 / MN3101</span></span><span class="count">4 lectures</span></summary>
             <ul class="lectures">
               <li><span class="wk">Lecture 0</span><a href="slides/EC3318-MN3101/L0%20Orientation%20Week.pdf">Orientation Week</a></li>
               <li><span class="wk">Lecture 1</span><a href="slides/EC3318-MN3101/L1%20Discounting%2C%20compounding%20and%20investment%20appraisal.pdf">Discounting, Compounding and Investment Appraisal</a></li>
@@ -276,7 +286,7 @@
     </section>
 
     <section id="workshops" class="grid">
-      <h2 class="label">Workshops and consultancy</h2>
+      <h2 class="label"><span class="section-number" aria-hidden="true">03 /</span>Workshops <span class="label-continuation">&amp; consultancy</span></h2>
       <div class="body">
         <p>I give regular workshops on three topics:</p>
         <ul class="list">
@@ -291,8 +301,9 @@
 
   </main>
 
-  <footer class="site-footer grid">
-    <p class="body">&copy; 2026 Christian Engels &middot; Last updated October 2026</p>
+  <footer class="site-footer">
+    <p>&copy; 2026 Christian Engels <span class="footer-update">&middot; Last updated October 2026</span></p>
+    <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </footer>
 
 </div>
