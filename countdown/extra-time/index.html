@@ -63,7 +63,7 @@ footer a { color: var(--muted); }
   <div id="summary"></div>
   <div id="notice" aria-live="polite"></div>
   <table><thead><tr id="head"></tr></thead><tbody id="rows"></tbody></table>
-  <p id="privacy">Entries stay in this browser tab only and are cleared when it closes.</p>
+  <p id="privacy">Entries are kept in this browser only, so the board survives closing it. They expire 12 hours after last use.</p>
 </main>
 <footer>
   <form id="controls">
@@ -84,11 +84,12 @@ const KEY = 'extra-time-countdown';
 const blank = () => ({ id: '', extra: 0, rest: 0, breakMs: 0, breakFrom: null, finishedAt: null });
 
 // All timing is stored as timestamps, so a reload mid-test restores it exactly.
-// sessionStorage keeps student entries in this tab only; closing the tab clears them.
+// localStorage keeps the board through a closed browser; entries expire 12 hours after last use.
 let S, rows = [], lock;
-try { S = JSON.parse(sessionStorage.getItem(KEY)); } catch {}
-if (!S || !Array.isArray(S.students)) S = { title: q.get('t') || '', mins: +q.get('m') || 50, students: [blank()], startedAt: null, pausedAt: null, pausedMs: 0, addedMs: 0 };
-const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+try { S = JSON.parse(localStorage.getItem(KEY)); } catch {}
+if (!S || !Array.isArray(S.students) || !(Date.now() - S.at < 12 * 3600000)) S = { title: q.get('t') || '', mins: +q.get('m') || 50, students: [blank()], startedAt: null, pausedAt: null, pausedMs: 0, addedMs: 0 };
+const save = () => { S.at = Date.now(); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+const wake = () => navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
 
 // Allowances are minutes per hour, scaled to the test: 15 min/h on a 50-minute test is 12:30.
 const scaled = (perHour, mins = S.mins) => mins * perHour * 1000;
@@ -209,7 +210,7 @@ function startPause() {
     renderBoard();
   } else if (S.pausedAt !== null) { S.pausedMs += now - S.pausedAt; S.pausedAt = null; }
   else S.pausedAt = now;
-  if (S.pausedAt === null) navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
+  if (S.pausedAt === null) wake();
   save(); tick();
 }
 function reset() {
@@ -235,6 +236,8 @@ document.onkeydown = e => {
   if (e.key === 'f') $('full').click();
 };
 S.startedAt === null ? renderSetup() : renderBoard();
+if (S.startedAt !== null && S.pausedAt === null) wake();
+save(); // overwrites expired entries straight away
 tick();
 setInterval(tick, 250);
 </script>

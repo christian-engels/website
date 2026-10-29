@@ -77,6 +77,7 @@ if (q.has('t')) $('title').textContent = q.get('t');
 
 // Count against a fixed end time, not ticks, so throttled or sleeping tabs stay accurate.
 let end = null, due, started, left, tick, lock, added = 0;
+const KEY = 'countdown';
 const total = () => Math.max(0, +$('mins').value || 0) * 60000 + added;
 const clockTime = t => new Date(t).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
@@ -108,30 +109,40 @@ function render() {
   $('from').textContent = live ? 'Started ' + clockTime(started) : '';
   $('to').textContent = (!live ? '' : end ? 'Ends ' + clockTime(end) : ms === 0 ? 'Ended ' + clockTime(due) : 'Ends —')
     + (live && added ? ` · ${+(added / 60000).toFixed(2)} min added` : '');
+  $('go').textContent = end ? 'Pause' : live && left ? 'Resume' : 'Start';
+  save();
 }
 
+// A running or paused test survives closing the browser; nothing else is kept.
+function save() {
+  try {
+    if (end || (left > 0 && left < total())) localStorage.setItem(KEY, JSON.stringify({ mins: $('mins').value, title: $('title').textContent, end, due, started, left, added, at: Date.now() }));
+    else localStorage.removeItem(KEY);
+  } catch {}
+}
+function run() {
+  tick = setInterval(render, 250);
+  navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
+}
 function start() {
   if (!left) return;
   if (left === total()) started = Date.now();
   end = due = Date.now() + left;
-  tick = setInterval(render, 250);
-  navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
-  $('go').textContent = 'Pause';
+  run();
 }
 function stop() {
   left = end ? Math.max(0, end - Date.now()) : left;
   end = null;
   clearInterval(tick);
   lock?.release(); lock = null;
-  $('go').textContent = left ? 'Resume' : 'Start';
 }
-function reset() { stop(); added = 0; left = total(); $('go').textContent = 'Start'; render(); }
+function reset() { stop(); added = 0; left = total(); render(); }
 // Disruption time; a negative entry takes back a mistaken addition, never below none added.
 function addTime() {
   const d = Math.max(-added, (+$('addmins').value || 0) * 60000);
   added += d;
   if (end) end += d;
-  else { left = Math.max(0, left + d); $('go').textContent = left ? 'Resume' : 'Start'; }
+  else left = Math.max(0, left + d);
   render();
 }
 
@@ -139,13 +150,20 @@ $('controls').onsubmit = e => { e.preventDefault(); end ? stop() : start(); rend
 $('reset').onclick = reset;
 $('addtime').onclick = addTime;
 $('mins').oninput = reset;
+$('title').oninput = save;
 $('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
 document.onkeydown = e => {
   if (e.target.isContentEditable || e.target.tagName === 'INPUT') return;
   if (e.key === ' ') { e.preventDefault(); $('go').click(); }
   if (e.key === 'f') $('full').click();
 };
-reset();
+// Pick up a test left running or paused within the last 12 hours; if it ran out meanwhile, render shows time up.
+try {
+  const s = JSON.parse(localStorage.getItem(KEY));
+  if (s && Date.now() - s.at < 12 * 3600000) { $('mins').value = s.mins; $('title').textContent = s.title; ({ end, due, started, left, added } = s); }
+} catch {}
+if (left === undefined) reset();
+else { if (end > Date.now()) run(); render(); }
 </script>
 </body>
 </html>
