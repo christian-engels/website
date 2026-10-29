@@ -42,6 +42,7 @@ input, button { font: inherit; font-size: 1.1rem; padding: .5em .9em; border-rad
 input { width: 5em; }
 button { cursor: pointer; }
 #go { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; min-width: 6em; }
+footer a { color: var(--muted); }
 :focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
 </style>
 </head>
@@ -61,8 +62,10 @@ button { cursor: pointer; }
   <form id="controls">
     <label><input id="mins" type="number" min="0" step="any" value="50"> minutes</label>
     <button id="go" type="submit">Start</button>
+    <span id="addwrap"><input id="addmins" type="number" step="any" value="5" aria-label="Minutes to add"> <button id="addtime" type="button">Add time</button></span>
     <button id="reset" type="button">Reset</button>
     <button id="full" type="button">Full screen</button>
+    <a href="extra-time/">Extra time version</a>
   </form>
 </footer>
 </div>
@@ -73,8 +76,8 @@ if (q.has('m')) $('mins').value = q.get('m');
 if (q.has('t')) $('title').textContent = q.get('t');
 
 // Count against a fixed end time, not ticks, so throttled or sleeping tabs stay accurate.
-let end = null, due, started, left, tick, lock;
-const total = () => Math.max(0, +$('mins').value || 0) * 60000;
+let end = null, due, started, left, tick, lock, added = 0;
+const total = () => Math.max(0, +$('mins').value || 0) * 60000 + added;
 const clockTime = t => new Date(t).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
 function fmt(ms) {
@@ -93,6 +96,7 @@ function render() {
   cls.toggle('running', end !== null);
   cls.toggle('final', live && ms <= 300000);
   $('mins').disabled = live; // a stray scroll on the number box must not change a running test
+  $('addwrap').hidden = !live;
   $('clock').textContent = document.title = fmt(ms);
   $('label').textContent = !live ? 'Not started yet'
     : ms === 0 ? 'Time is up. Please stop writing.'
@@ -102,7 +106,8 @@ function render() {
     : 'Time remaining';
   $('bar').style.width = live ? (100 * (1 - ms / total())) + '%' : '0';
   $('from').textContent = live ? 'Started ' + clockTime(started) : '';
-  $('to').textContent = !live ? '' : end ? 'Ends ' + clockTime(end) : ms === 0 ? 'Ended ' + clockTime(due) : 'Ends —';
+  $('to').textContent = (!live ? '' : end ? 'Ends ' + clockTime(end) : ms === 0 ? 'Ended ' + clockTime(due) : 'Ends —')
+    + (live && added ? ` · ${+(added / 60000).toFixed(2)} min added` : '');
 }
 
 function start() {
@@ -120,10 +125,19 @@ function stop() {
   lock?.release(); lock = null;
   $('go').textContent = left ? 'Resume' : 'Start';
 }
-function reset() { stop(); left = total(); $('go').textContent = 'Start'; render(); }
+function reset() { stop(); added = 0; left = total(); $('go').textContent = 'Start'; render(); }
+// Disruption time; a negative entry takes back a mistaken addition, never below none added.
+function addTime() {
+  const d = Math.max(-added, (+$('addmins').value || 0) * 60000);
+  added += d;
+  if (end) end += d;
+  else { left = Math.max(0, left + d); $('go').textContent = left ? 'Resume' : 'Start'; }
+  render();
+}
 
 $('controls').onsubmit = e => { e.preventDefault(); end ? stop() : start(); render(); };
 $('reset').onclick = reset;
+$('addtime').onclick = addTime;
 $('mins').oninput = reset;
 $('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
 document.onkeydown = e => {

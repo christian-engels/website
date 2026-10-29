@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extra time countdown</title>
+<link rel="icon" href="../../favicon.ico">
+<style>
+@font-face { font-family: "Schibsted Grotesk"; src: url("../../assets/fonts/schibsted-grotesk.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+/* St Andrews blue (StAndrewsBlue in the slide theme); white on it is 7.8:1.
+   No state relies on colour: words and type weight carry it. */
+:root { --bg: #00539b; --text: #ffffff; --muted: #d6e3f0; --rule: #ffffff40; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: "Schibsted Grotesk", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+/* Grid on a pinned wrapper, not body: browser extensions inject elements into body. */
+#page {
+  position: fixed; inset: 0; overflow: auto;
+  display: grid; grid-template-rows: 1fr auto 1fr; gap: 2vh;
+  padding: clamp(16px, 3vw, 40px);
+}
+header { align-self: start; }
+footer { align-self: end; }
+header img { display: block; height: clamp(40px, 7vh, 80px); width: auto; }
+main { display: flex; flex-direction: column; align-items: center; gap: 1.5vh; text-align: center; }
+#title { font-size: clamp(1.25rem, 3.5vw, 2.75rem); font-weight: 600; outline: none; min-height: 1.2em; min-width: 10em; }
+body:not(.running) #title:empty::before { content: "Click to add a title"; opacity: .5; font-weight: 400; }
+#now { font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+#summary { font-size: clamp(1rem, 2.2vw, 1.6rem); color: var(--muted); }
+#notice { font-size: clamp(1rem, 2.2vw, 1.6rem); font-weight: 700; min-height: 1.3em; }
+table { border-collapse: collapse; width: min(100%, 72rem); font-size: clamp(1rem, 2.2vw, 1.75rem); margin-top: 1vh; }
+th { font-size: .6em; font-weight: 400; color: var(--muted); text-align: left; padding: 0 .6em .5em; vertical-align: bottom; }
+td { padding: .3em .6em; border-top: 1px solid var(--rule); text-align: left; font-variant-numeric: tabular-nums; }
+td.big { font-size: 1.35em; font-weight: 700; }
+tr.onbreak td.status { font-weight: 700; }
+tr.done td { color: var(--muted); }
+tr.done td.big { font-weight: 400; }
+#privacy { color: var(--muted); font-size: .95rem; }
+body.live #privacy { display: none; }
+form { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; transition: opacity .3s; }
+body.running form:not(:hover):not(:focus-within) { opacity: .25; }
+input, button { font: inherit; font-size: 1.1rem; padding: .45em .8em; border-radius: 6px; border: 1px solid #ffffff80; background: transparent; color: inherit; }
+td input { width: 100%; font-size: .8em; }
+td input[type=number] { width: 5em; }
+td button { font-size: .7em; padding: .35em .7em; }
+input[type=number] { width: 5em; }
+button { cursor: pointer; }
+button:disabled { opacity: .4; cursor: default; }
+#go { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; min-width: 7em; }
+footer a { color: var(--muted); }
+:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="page">
+<header><img src="../st-andrews-logo.png" alt="University of St Andrews"></header>
+<main>
+  <div id="title" contenteditable="true" spellcheck="false" aria-label="Title"></div>
+  <div id="now"></div>
+  <div id="summary"></div>
+  <div id="notice" aria-live="polite"></div>
+  <table><thead><tr id="head"></tr></thead><tbody id="rows"></tbody></table>
+  <p id="privacy">Entries stay in this browser tab only and are cleared when it closes.</p>
+</main>
+<footer>
+  <form id="controls">
+    <label><input id="mins" type="number" min="0" step="any"> minute test</label>
+    <button id="add" type="button">Add student</button>
+    <button id="go" type="submit">Start</button>
+    <span id="addwrap"><input id="addmins" type="number" step="any" value="5" aria-label="Minutes to add"> <button id="addtime" type="button">Add time</button></span>
+    <button id="reset" type="button">Reset</button>
+    <button id="full" type="button">Full screen</button>
+    <a href="../">Single timer</a>
+  </form>
+</footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const q = new URLSearchParams(location.search);
+const KEY = 'extra-time-countdown';
+const blank = () => ({ id: '', extra: 0, rest: 0, breakMs: 0, breakFrom: null, finishedAt: null });
+
+// All timing is stored as timestamps, so a reload mid-test restores it exactly.
+// sessionStorage keeps student entries in this tab only; closing the tab clears them.
+let S, rows = [], lock;
+try { S = JSON.parse(sessionStorage.getItem(KEY)); } catch {}
+if (!S || !Array.isArray(S.students)) S = { title: q.get('t') || '', mins: +q.get('m') || 50, students: [blank()], startedAt: null, pausedAt: null, pausedMs: 0, addedMs: 0 };
+const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+
+// Allowances are minutes per hour, scaled to the test: 15 min/h on a 50-minute test is 12:30.
+const scaled = (perHour, mins = S.mins) => mins * perHour * 1000;
+console.assert(scaled(15, 50) === 750000 && scaled(30, 50) === 1500000 && scaled(10, 50) === 500000);
+// Time added for a disruption is real time lost, so everyone gets the same amount, unscaled.
+const writing = s => S.mins * 60000 + scaled(s.extra) + S.addedMs;
+const elapsed = now => now - S.startedAt - S.pausedMs - (S.pausedAt !== null ? now - S.pausedAt : 0);
+const breakUsed = (s, el) => s.breakMs + (s.breakFrom === null ? 0 : el - s.breakFrom);
+// A break stops the student's clock up to their allowance; beyond it, time counts again.
+const credit = (s, el) => Math.min(breakUsed(s, el), scaled(s.rest));
+
+function fmt(ms) {
+  const s = Math.ceil(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60;
+  const p = n => String(n).padStart(2, '0');
+  return h ? `${h}:${p(m)}:${p(s % 60)}` : `${p(m)}:${p(s % 60)}`;
+}
+const clock = t => {
+  const d = new Date(Math.round(t / 1000) * 1000);
+  return d.toLocaleTimeString('en-GB', d.getSeconds() ? {} : { hour: '2-digit', minute: '2-digit' });
+};
+
+function renderSetup() {
+  $('head').innerHTML = '<th>Student ID</th><th>Extra writing time<br>min per hour</th><th>Rest breaks<br>min per hour</th><th>Total time</th><th></th>';
+  $('rows').innerHTML = '';
+  rows = S.students.map((s, i) => {
+    const tr = $('rows').insertRow();
+    tr.innerHTML = '<td><input data-k="id" placeholder="ID" aria-label="Student ID"></td>'
+      + '<td><input data-k="extra" type="number" min="0" step="any" aria-label="Extra writing time, minutes per hour"></td>'
+      + '<td><input data-k="rest" type="number" min="0" step="any" aria-label="Rest breaks, minutes per hour"></td>'
+      + '<td class="total"></td><td><button type="button" aria-label="Remove student">Remove</button></td>';
+    tr.querySelectorAll('input').forEach(input => {
+      const k = input.dataset.k;
+      input.value = s[k];
+      input.oninput = () => { s[k] = k === 'id' ? input.value : Math.max(0, +input.value || 0); save(); totals(); };
+    });
+    tr.querySelector('button').onclick = () => { S.students.splice(i, 1); save(); renderSetup(); };
+    return { total: tr.cells[3] };
+  });
+  totals();
+}
+function totals() {
+  S.students.forEach((s, i) => rows[i].total.textContent = fmt(writing(s)) + (s.rest ? ` + up to ${fmt(scaled(s.rest))} breaks` : ''));
+}
+
+function renderBoard() {
+  $('head').innerHTML = '<th>Student ID</th><th>Ends at</th><th>Time left</th><th>Status</th><th></th>';
+  $('rows').innerHTML = '';
+  rows = S.students.map(s => {
+    const tr = $('rows').insertRow();
+    tr.innerHTML = '<td></td><td class="big"></td><td class="big"></td><td class="status"></td><td></td>';
+    tr.cells[0].textContent = s.id;
+    let btn = null;
+    if (s.rest) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.onclick = () => toggleBreak(s);
+      tr.cells[4].append(btn);
+    }
+    return { tr, end: tr.cells[1], left: tr.cells[2], status: tr.cells[3], btn };
+  });
+}
+
+function tick() {
+  const now = Date.now(), live = S.startedAt !== null, paused = S.pausedAt !== null;
+  $('now').textContent = new Date(now).toLocaleTimeString('en-GB');
+  document.body.classList.toggle('live', live);
+  document.body.classList.toggle('running', live && !paused);
+  $('mins').disabled = live;
+  $('add').hidden = live;
+  $('reset').hidden = !live;
+  $('addwrap').hidden = !live;
+  if (!live) {
+    $('summary').textContent = `${S.mins}-minute test. Enter each student's arrangements, then press Start.`;
+    $('notice').textContent = '';
+    $('go').textContent = 'Start';
+    $('go').disabled = false;
+    return;
+  }
+  const el = elapsed(now);
+  S.students.forEach((s, i) => {
+    const left = writing(s) - el + credit(s, el);
+    if (left <= 0 && s.finishedAt === null) {
+      s.finishedAt = now + left;
+      if (s.breakFrom !== null) { s.breakMs = breakUsed(s, el); s.breakFrom = null; }
+      save();
+    }
+    const r = rows[i], done = s.finishedAt !== null, onBreak = s.breakFrom !== null;
+    r.tr.className = done ? 'done' : onBreak ? 'onbreak' : '';
+    r.end.textContent = clock(done ? s.finishedAt : now - el + writing(s) + credit(s, el));
+    r.left.textContent = done ? '00:00' : fmt(left);
+    r.status.textContent = done ? 'Finished'
+      : onBreak ? `On break ${fmt(breakUsed(s, el))} of ${fmt(scaled(s.rest))}` + (breakUsed(s, el) >= scaled(s.rest) ? ', allowance used' : '')
+      : paused ? 'Paused' : 'Writing';
+    if (r.btn) { r.btn.hidden = done; r.btn.textContent = onBreak ? 'End break' : 'Start break'; }
+  });
+  const allDone = S.students.length > 0 && S.students.every(s => s.finishedAt !== null);
+  $('summary').textContent = `Started ${clock(S.startedAt)} · standard time ends ${clock(now - el + S.mins * 60000 + S.addedMs)}`
+    + (S.addedMs ? ` · ${+(S.addedMs / 60000).toFixed(2)} min added for everyone` : '');
+  $('notice').textContent = allDone ? 'All students have finished.' : paused ? `Paused at ${clock(S.pausedAt)}. All clocks are stopped.` : '';
+  $('go').textContent = paused ? 'Resume all' : 'Pause all';
+  $('go').disabled = allDone;
+  $('addtime').disabled = allDone;
+  $('reset').disabled = !paused && !allDone; // pause first, so a stray click cannot wipe a running test
+}
+
+function toggleBreak(s) {
+  const el = elapsed(Date.now());
+  if (s.breakFrom === null) s.breakFrom = el;
+  else { s.breakMs = breakUsed(s, el); s.breakFrom = null; }
+  save(); tick();
+}
+function startPause() {
+  const now = Date.now();
+  if (S.startedAt === null) {
+    S.students = S.students.filter(s => s.id.trim());
+    S.students.sort((a, b) => a.id.localeCompare(b.id, 'en', { numeric: true }));
+    S.startedAt = now;
+    renderBoard();
+  } else if (S.pausedAt !== null) { S.pausedMs += now - S.pausedAt; S.pausedAt = null; }
+  else S.pausedAt = now;
+  if (S.pausedAt === null) navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
+  save(); tick();
+}
+function reset() {
+  Object.assign(S, { startedAt: null, pausedAt: null, pausedMs: 0, addedMs: 0 });
+  S.students.forEach(s => Object.assign(s, { breakMs: 0, breakFrom: null, finishedAt: null }));
+  if (!S.students.length) S.students.push(blank());
+  lock?.release(); lock = null;
+  save(); renderSetup(); tick();
+}
+
+$('title').textContent = S.title;
+$('title').oninput = () => { S.title = $('title').textContent; save(); };
+$('mins').value = S.mins;
+$('mins').oninput = () => { S.mins = Math.max(0, +$('mins').value || 0); save(); totals(); tick(); };
+$('add').onclick = () => { S.students.push(blank()); save(); renderSetup(); $('rows').lastElementChild.querySelector('input').focus(); };
+$('controls').onsubmit = e => { e.preventDefault(); startPause(); };
+$('reset').onclick = reset;
+$('addtime').onclick = () => { S.addedMs = Math.max(0, S.addedMs + (+$('addmins').value || 0) * 60000); save(); tick(); };
+$('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+document.onkeydown = e => {
+  if (e.target.isContentEditable || e.target.tagName === 'INPUT') return;
+  if (e.key === ' ' && !$('go').disabled) { e.preventDefault(); $('go').click(); }
+  if (e.key === 'f') $('full').click();
+};
+S.startedAt === null ? renderSetup() : renderBoard();
+tick();
+setInterval(tick, 250);
+</script>
+</body>
+</html>
