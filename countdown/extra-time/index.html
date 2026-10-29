@@ -112,11 +112,11 @@ const clock = t => {
 };
 
 function renderSetup() {
-  $('head').innerHTML = '<th>Student ID</th><th>Extra writing time<br>min per hour</th><th>Rest breaks<br>min per hour</th><th>Total time</th><th></th>';
+  $('head').innerHTML = '<th>Student initials,<br>username or ID</th><th>Extra writing time<br>min per hour</th><th>Rest breaks<br>min per hour</th><th>Total time</th><th></th>';
   $('rows').innerHTML = '';
   rows = S.students.map((s, i) => {
     const tr = $('rows').insertRow();
-    tr.innerHTML = '<td><input data-k="id" placeholder="ID" aria-label="Student ID"></td>'
+    tr.innerHTML = '<td><input data-k="id" aria-label="Student initials, username or ID"></td>'
       + '<td><input data-k="extra" type="number" min="0" step="any" aria-label="Extra writing time, minutes per hour"></td>'
       + '<td><input data-k="rest" type="number" min="0" step="any" aria-label="Rest breaks, minutes per hour"></td>'
       + '<td class="total"></td><td><button type="button" aria-label="Remove student">Remove</button></td>';
@@ -135,7 +135,7 @@ function totals() {
 }
 
 function renderBoard() {
-  $('head').innerHTML = '<th>Student ID</th><th>Ends at</th><th>Time left</th><th>Status</th><th></th>';
+  $('head').innerHTML = '<th>Student initials,<br>username or ID</th><th>Ends at</th><th>Time left</th><th>Status</th><th></th>';
   $('rows').innerHTML = '';
   rows = S.students.map(s => {
     const tr = $('rows').insertRow();
