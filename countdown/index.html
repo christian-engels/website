@@ -13,11 +13,13 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body {
-  display: grid; grid-template-rows: auto 1fr auto; gap: 2vh;
+  display: grid; grid-template-rows: 1fr auto 1fr; gap: 2vh; /* equal outer rows keep main at true centre */
   padding: clamp(16px, 3vw, 40px);
   background: var(--bg); color: var(--text);
   font-family: "Schibsted Grotesk", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
+header { align-self: start; }
+footer { align-self: end; }
 header img { display: block; height: clamp(40px, 7vh, 80px); width: auto; }
 main { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh; text-align: center; }
 #title { font-size: clamp(1.25rem, 4vw, 3rem); font-weight: 600; outline: none; min-height: 1.2em; min-width: 10em; }
@@ -25,8 +27,7 @@ body:not(.running) #title:empty::before { content: "Click to add a title"; opaci
 #clock { font-size: min(22vw, 50vh); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
 #label { font-size: clamp(1.1rem, 3.2vw, 2.5rem); color: var(--muted); min-height: 1.3em; }
 body.final #label { color: var(--text); font-weight: 700; }
-#timeline { width: min(100%, 64rem); visibility: hidden; }
-body.live #timeline { visibility: visible; }
+#timeline { width: min(100%, 64rem); }
 #track { height: 12px; border-radius: 6px; background: var(--track); overflow: hidden; }
 #bar { height: 100%; width: 0; background: var(--text); transition: width .25s linear; }
 #times { display: flex; justify-content: space-between; margin-top: .5em; font-size: clamp(.95rem, 2vw, 1.5rem); color: var(--muted); }
