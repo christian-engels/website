@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Countdown</title>
+<link rel="icon" href="../favicon.ico">
+<style>
+@font-face { font-family: "Schibsted Grotesk"; src: url("../assets/fonts/schibsted-grotesk.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+/* St Andrews blue (StAndrewsBlue in the slide theme); white on it is 7.8:1.
+   No state relies on colour: words, the progress bar and type weight carry it. */
+:root { --bg: #00539b; --text: #ffffff; --muted: #d6e3f0; --track: #ffffff40; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid; grid-template-rows: auto 1fr auto; gap: 2vh;
+  padding: clamp(16px, 3vw, 40px);
+  background: var(--bg); color: var(--text);
+  font-family: "Schibsted Grotesk", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+header img { display: block; height: clamp(40px, 7vh, 80px); width: auto; }
+main { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh; text-align: center; }
+#title { font-size: clamp(1.25rem, 4vw, 3rem); font-weight: 600; outline: none; min-height: 1.2em; min-width: 10em; }
+body:not(.running) #title:empty::before { content: "Click to add a title"; opacity: .5; font-weight: 400; }
+#clock { font-size: min(22vw, 50vh); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+#label { font-size: clamp(1.1rem, 3.2vw, 2.5rem); color: var(--muted); min-height: 1.3em; }
+body.final #label { color: var(--text); font-weight: 700; }
+#timeline { width: min(100%, 64rem); visibility: hidden; }
+body.live #timeline { visibility: visible; }
+#track { height: 12px; border-radius: 6px; background: var(--track); overflow: hidden; }
+#bar { height: 100%; width: 0; background: var(--text); transition: width .25s linear; }
+#times { display: flex; justify-content: space-between; margin-top: .5em; font-size: clamp(.95rem, 2vw, 1.5rem); color: var(--muted); }
+form { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; transition: opacity .3s; }
+body.running form:not(:hover):not(:focus-within) { opacity: .25; }
+input, button { font: inherit; font-size: 1.1rem; padding: .5em .9em; border-radius: 6px; border: 1px solid #ffffff80; background: transparent; color: inherit; }
+input { width: 5em; }
+button { cursor: pointer; }
+#go { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; min-width: 6em; }
+:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<header><img src="st-andrews-logo.png" alt="University of St Andrews"></header>
+<main>
+  <div id="title" contenteditable="true" spellcheck="false" aria-label="Title"></div>
+  <div id="clock">50:00</div>
+  <div id="label" aria-live="polite"></div>
+  <div id="timeline" aria-hidden="true">
+    <div id="track"><div id="bar"></div></div>
+    <div id="times"><span id="from"></span><span id="to"></span></div>
+  </div>
+</main>
+<footer>
+  <form id="controls">
+    <label><input id="mins" type="number" min="0" step="any" value="50"> minutes</label>
+    <button id="go" type="submit">Start</button>
+    <button id="reset" type="button">Reset</button>
+    <button id="full" type="button">Full screen</button>
+  </form>
+</footer>
+<script>
+const $ = id => document.getElementById(id);
+const q = new URLSearchParams(location.search);
+if (q.has('m')) $('mins').value = q.get('m');
+if (q.has('t')) $('title').textContent = q.get('t');
+
+// Count against a fixed end time, not ticks, so throttled or sleeping tabs stay accurate.
+let end = null, due, started, left, tick, lock;
+const total = () => Math.max(0, +$('mins').value || 0) * 60000;
+const clockTime = t => new Date(t).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+function fmt(ms) {
+  const s = Math.ceil(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60;
+  const p = n => String(n).padStart(2, '0');
+  return h ? `${h}:${p(m)}:${p(s % 60)}` : `${p(m)}:${p(s % 60)}`;
+}
+console.assert(fmt(3000000) === '50:00' && fmt(5400000) === '1:30:00' && fmt(2999001) === '50:00' && fmt(1) === '00:01');
+
+function render() {
+  if (end && end <= Date.now()) stop();
+  const ms = end ? end - Date.now() : left;
+  const live = end !== null || left < total(); // running, paused or finished
+  const cls = document.body.classList;
+  cls.toggle('live', live);
+  cls.toggle('running', end !== null);
+  cls.toggle('final', live && ms <= 300000);
+  $('mins').disabled = live; // a stray scroll on the number box must not change a running test
+  $('clock').textContent = document.title = fmt(ms);
+  $('label').textContent = !live ? 'Not started yet'
+    : ms === 0 ? 'Time is up. Please stop writing.'
+    : !end ? 'Paused'
+    : ms <= 60000 ? 'Final minute'
+    : ms <= 300000 ? 'Final five minutes'
+    : 'Time remaining';
+  $('bar').style.width = live ? (100 * (1 - ms / total())) + '%' : '0';
+  $('from').textContent = live ? 'Started ' + clockTime(started) : '';
+  $('to').textContent = !live ? '' : end ? 'Ends ' + clockTime(end) : ms === 0 ? 'Ended ' + clockTime(due) : 'Ends —';
+}
+
+function start() {
+  if (!left) return;
+  if (left === total()) started = Date.now();
+  end = due = Date.now() + left;
+  tick = setInterval(render, 250);
+  navigator.wakeLock?.request('screen').then(l => lock = l).catch(() => {});
+  $('go').textContent = 'Pause';
+}
+function stop() {
+  left = end ? Math.max(0, end - Date.now()) : left;
+  end = null;
+  clearInterval(tick);
+  lock?.release(); lock = null;
+  $('go').textContent = left ? 'Resume' : 'Start';
+}
+function reset() { stop(); left = total(); $('go').textContent = 'Start'; render(); }
+
+$('controls').onsubmit = e => { e.preventDefault(); end ? stop() : start(); render(); };
+$('reset').onclick = reset;
+$('mins').oninput = reset;
+$('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+document.onkeydown = e => {
+  if (e.target.isContentEditable || e.target.tagName === 'INPUT') return;
+  if (e.key === ' ') { e.preventDefault(); $('go').click(); }
+  if (e.key === 'f') $('full').click();
+};
+reset();
+</script>
+</body>
+</html>
