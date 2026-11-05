@@ -1166,14 +1166,14 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <p>Check each provider’s current page before you sign up. All of them ask for a payment card.</p>
 <p>Delete the server when you finish. Providers keep charging for a server that is switched off.</p>
 <h2 id="licensed-data-with-the-wrds-guard" class="anchored">15. Licensed data with the WRDS guard</h2>
-<p>Workspace or laptop. Session 2 set out two safeguards for data whose licence forbids loading it into a language model: route the model through a contract with zero retention, and keep every row out of the conversation with permission rules and hooks. The folder <code>wrds-guard/</code> in the <a href="https://github.com/christian-engels/ai-research-workshop">workshop repository</a> is that setup, built and tested. In the workspace it routes through the workshop’s OpenRouter key; on your laptop, through your own Bedrock or OpenRouter account.</p>
+<p>Workspace or laptop. Session 2 set out two safeguards for data whose licence forbids loading it into a language model: route the model through a contract with zero retention, and keep every row out of the conversation with permission rules and hooks. The folder <code>wrds-guard/</code> in the <a href="https://github.com/christian-engels/ai-research-workshop">workshop repository</a> is that setup, built and tested. In the workspace it uses the workshop’s OpenRouter key; on your laptop, your own OpenRouter key. Claude Code’s hooks run locally in either case.</p>
 <p>The simplest route is to let Claude take you through it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries use the WRDS guard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>By hand:</p>
 <ol type="1">
 <li>In a workspace, <code>cp -r /opt/wrds-guard ~/wrds-guard</code>. Elsewhere, download <a href="wrds-guard.zip">wrds-guard.zip</a> and unzip it</li>
 <li>Read its <code>README.md</code>: what Claude may see, what it never sees, and what the tests cover</li>
-<li>Set the routing: in a workspace, the exports in the runbook; on a laptop, copy <code>.claude/settings.local.json.example</code> to <code>.claude/settings.local.json</code> and fill in Bedrock</li>
+<li>Run <code>bin/claude-openrouter</code>: it uses the workspace key and preserves your subscription login. On a laptop, first load your own <code>OPENROUTER_API_KEY</code> and enable zero retention in your account</li>
 <li>Run the unit tests: <code>python3 -m unittest discover -s tests</code></li>
 <li>Start <code>claude</code> in the folder. The first message tells you how the session is routed</li>
 </ol>
