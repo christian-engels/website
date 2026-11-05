@@ -689,37 +689,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <style type="text/css">
-body { font-family: "Fira Sans", "Helvetica Neue", Arial, sans-serif; font-weight: 300; color: #23373B; background: #FAFAFA; line-height: 1.55; font-size: 18px; }
-h1, h2, h3, h4 { font-weight: 300; color: #003764; }
-h1.title, .quarto-title h1 { font-weight: 300; }
-strong { font-weight: 500; color: #003764; }
-a { color: #13706F; }
-code { font-family: "Fira Code", Menlo, Consolas, monospace; font-size: 0.88em; color: #13706F; background: none; }
-pre code { color: #F4F1E8; }
-div.sourceCode, pre.sourceCode, pre { background: #0B1F33 !important; border: none; border-radius: 3px; }
-pre code span { color: #F4F1E8 !important; }
-table { border-top: 1px solid #23373B; border-bottom: 1px solid #23373B; }
-thead th { color: #003764; font-weight: 500; border-bottom: 1px solid #23373B; }
-td, th { padding: 0.4em 1em 0.4em 0; vertical-align: top; border: none; }
-.nav-footer, footer { font-size: 0.8em; color: #5C6672; }
+:root {
+--navy: #003764; --deep: #0B1F33; --teal: #66CCCC; --teal-ink: #13706F; --amber: #E0A100;
+--ink: #23373B; --grey: #5C6672; --rule: #E3E1DC; --paper: #FAFAFA;
+}
+html { font-size: 18px; scroll-padding-top: 3.6rem; }
+@media (max-width: 560px) { html { font-size: 17px; } }
 
-body { max-width: 50rem; margin: 0 auto; padding: 24px 16px 56px; box-sizing: border-box; overflow-wrap: break-word; }
-pre { padding: 12px 14px; overflow-x: auto; white-space: pre-wrap; margin: 0.8em 0; }
-div.sourceCode { position: relative; margin: 0.8em 0; }
-div.sourceCode pre { margin: 0; }
-.code-copy-button { position: absolute; top: 6px; right: 6px; background: none; border: none; color: #F4F1E8; cursor: pointer; opacity: 0.7; }
-.code-copy-button:hover { opacity: 1; }
-table { max-width: 100%; border-collapse: collapse; }
-nav#TOC { font-size: 0.92em; }
-nav#TOC ul { columns: 2; column-gap: 2em; list-style: none; padding-left: 0; }
-@media (max-width: 560px) { nav#TOC ul { columns: 1; } body { font-size: 16px; } td, th { padding-right: 0.6em; } }
+body {
+--frame: 38rem; --edge: max(16px, calc((100vw - var(--frame)) / 2)); --left: var(--edge);
+margin: 0; padding: 0 var(--edge) 4rem var(--left); box-sizing: border-box;
+background: var(--paper); color: var(--ink); overflow-wrap: break-word;
+font-family: "Fira Sans", "Helvetica Neue", Arial, sans-serif; font-weight: 300; line-height: 1.6;
+}
+body:has(.home) { --frame: 62rem; }
+h1, h2, h3, h4 { color: var(--navy); font-weight: 300; line-height: 1.2; }
+h2 { font-size: 1.6rem; margin: 2.8rem 0 1rem; padding-top: 1.3rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.2rem; margin: 1.8rem 0 0.6rem; }
+strong { color: var(--navy); font-weight: 500; }
+a { color: var(--teal-ink); }
+a:hover { color: var(--navy); }
+:focus-visible { outline: 2px solid var(--teal-ink); outline-offset: 2px; }
+li { margin-bottom: 0.35em; }
+code { font-family: "Fira Code", Menlo, Consolas, monospace; font-size: 0.86em; color: var(--teal-ink); font-variant-ligatures: none; }
+h2 code, h3 code { color: inherit; font-weight: 400; }
+
+.site-bar {
+position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+margin: 0 calc(-1 * var(--edge)) 0 calc(-1 * var(--left)); padding: 0 var(--edge); background: var(--navy); color: white;
+}
+.site-bar div { display: flex; flex-wrap: wrap; margin-left: -0.5rem; }
+.site-bar a { padding: 0.72rem 0.5rem 0.66rem; color: white; text-decoration: none; line-height: 1.2; }
+.site-bar a:hover { text-decoration: underline; color: white; }
+.site-bar a[aria-current] { font-weight: 500; box-shadow: inset 0 -3px 0 var(--amber); }
+.site-bar a:focus-visible { outline-color: var(--teal); outline-offset: -3px; }
+.site-bar span { white-space: nowrap; color: rgba(255, 255, 255, 0.72); font-size: 0.85rem; }
+@media (max-width: 640px) { .site-bar span { display: none; } }
+
+#title-block-header { margin: 2rem 0 1.1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--amber); }
+h1.title { font-size: 2.4rem; margin: 0; }
+#title-block-header .subtitle { margin: 0.35rem 0 0; font-size: 1.2rem; color: var(--grey); }
+
+nav#TOC { margin: 0 0 1rem; font-size: 0.92rem; line-height: 1.35; }
+nav#TOC #toc-title { font-size: 1rem; font-weight: 500; margin: 0 0 0.5rem; padding: 0; border: none; }
+nav#TOC ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 1.6rem; }
+nav#TOC li { margin-bottom: 0.42em; break-inside: avoid; }
+nav#TOC a { text-decoration: none; }
+nav#TOC a:hover { text-decoration: underline; }
+@media (max-width: 560px) { nav#TOC ul { columns: 1; } }
+@media (min-width: 1060px) {
+body:has(nav#TOC) { --frame: 57rem; --left: calc(var(--edge) + 19rem); }
+nav#TOC { position: fixed; top: 5rem; left: var(--edge); width: 16rem; max-height: calc(100vh - 6rem); overflow-y: auto; margin: 0; }
+nav#TOC ul { columns: 1; }
+}
+
+.tracks nav#TOC li:nth-child(1)::before, .tracks nav#TOC li:nth-child(10)::before { display: block; margin-bottom: 0.4em; color: var(--grey); }
+.tracks nav#TOC li:nth-child(1)::before { content: "In the workspace"; }
+.tracks nav#TOC li:nth-child(10)::before { content: "On your laptop or a cloud account"; }
+.tracks nav#TOC li:nth-child(10) { margin-top: 1em; }
+@media (min-width: 561px) and (max-width: 1059px) { .tracks nav#TOC li:nth-child(10) { margin-top: 0; break-before: column; } }
+
+.code-copy-outer-scaffold { position: relative; margin: 0.9em 0; }
+pre { margin: 0.9em 0; padding: 0.8rem 4.4rem 0.8rem 1rem; background: var(--deep); border-radius: 3px; font-size: 0.82rem; line-height: 1.5; white-space: pre-wrap; }
+.code-copy-outer-scaffold pre, div.sourceCode { margin: 0; }
+pre code, pre code span { color: #F4F1E8 !important; font-size: 1em; }
 pre code, pre > code.sourceCode, pre > code.sourceCode > span { white-space: pre-wrap !important; display: inline; overflow-wrap: anywhere; }
-pre.sourceCode { overflow: visible; }
+.code-copy-button {
+position: absolute; top: 0.45rem; right: 0.45rem; padding: 0.12rem 0.5rem; cursor: pointer; background: var(--deep); color: var(--teal);
+border: 1px solid rgba(102, 204, 204, 0.45); border-radius: 3px; font: 400 0.72rem/1.4 "Fira Sans", Arial, sans-serif;
+}
+.code-copy-button:hover { border-color: var(--teal); }
+.code-copy-button:focus-visible { outline-color: var(--teal); }
+.code-copy-button i { display: none; }
+.code-copy-button::before { content: "Copy"; }
+.code-copy-button-checked::before { content: "Copied"; }
+
+@media (min-width: 1240px) { body:has(nav#TOC) .code-copy-outer-scaffold, body:has(nav#TOC) pre { margin-right: -5rem; } body:has(nav#TOC) .code-copy-outer-scaffold pre { margin-right: 0; } }
+
+table { max-width: 100%; border-collapse: collapse; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 1em 0; }
+thead th { color: var(--navy); font-weight: 500; text-align: left; border-bottom: 1px solid var(--ink); }
+td, th { padding: 0.4em 1em 0.4em 0; vertical-align: top; }
+@media (max-width: 560px) { td, th { padding-right: 0.6em; } }
+
+.home { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; column-gap: 4rem; grid-template-rows: auto auto 1fr;
+grid-template-areas: "slides work" "slides guides" "slides files"; }
+.home-slides { grid-area: slides; } .home-work { grid-area: work; } .home-guides { grid-area: guides; } .home-files { grid-area: files; }
+.home h2 { font-size: 1.25rem; margin: 1.2rem 0 0.6rem; padding: 0; border: none; font-weight: 400; }
+.home ul { list-style: none; margin: 0; padding: 0; }
+.home li { margin-bottom: 0.6em; }
+.home-work p, .home-guides, .home-files { font-size: 0.92rem; line-height: 1.5; }
+.home-work p:has(.action) { margin: 0 0 0.8rem; }
+.action { display: inline-block; padding: 0.55rem 1.1rem; border-radius: 3px; background: var(--amber); color: var(--ink); font-size: 1.05rem; font-weight: 500; text-decoration: none; }
+.action:hover { background: #F2B82A; color: var(--ink); }
+@media (max-width: 860px) { .home { display: block; } }
+
+.day { list-style: none; margin: 0 0 1.2rem; padding: 0; }
+.day li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); column-gap: 0.7rem; margin: 0 0 2px; min-height: calc(var(--min) * 0.07rem); }
+.day time { font-size: 0.82rem; line-height: 1; color: var(--grey); font-variant-numeric: tabular-nums; }
+.day a { display: flex; gap: 0.8em; padding: 0.7rem 1rem; background: var(--navy); color: white; text-decoration: none; line-height: 1.3; }
+.day a:hover { background: #00508F; color: white; }
+.day .n { flex: none; width: 1.5em; font-weight: 500; }
+.day .gap { align-self: center; padding-left: 1rem; font-size: 0.85rem; color: var(--grey); }
 </style>
 </head>
 
-<body>
+<body class="tracks">
 
+<nav class="site-bar" aria-label="Workshop pages">
+  <div>
+    <a href="index.html">Home</a>
+    <a href="session-1a.html">1a</a>
+    <a href="session-1b.html">1b</a>
+    <a href="session-2.html">2</a>
+    <a href="session-3.html">3</a>
+    <a href="session-4.html">4</a>
+    <a href="self-guided.html">Tracks</a>
+    <a href="own-machine.html">Setup</a>
+  </div>
+  <span>AI Research Workshop</span>
+</nav>
+<script>
+// Mark the current page. The site root serves index.html.
+const page = location.pathname.split('/').pop() || 'index.html';
+document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-current', 'page');
+</script>
 
 <header id="title-block-header">
 <h1 class="title">Self-guided tracks</h1>
@@ -746,14 +839,11 @@ pre.sourceCode { overflow: visible; }
   <li><a href="#your-own-server" id="toc-your-own-server">14. Your own server</a></li>
   </ul>
 </nav>
-<p><a href="index.html">Back to the workshop page</a></p>
 <p>Each track takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account.</p>
 <h2 id="long-tasks-with-goal" class="anchored">1. Long tasks with <code>/goal</code></h2>
 <p><code>/goal</code> sets a condition. Claude keeps working until a small model confirms that the condition is met.</p>
 <p>Exercise: convert a PDF to Word.</p>
-<pre class="text"><code>/goal papers/lopez-lira-tang.docx exists and contains every section heading of
-papers/lopez-lira-tang.pdf in the same order. Show the list of headings from both
-files. Stop after 15 turns.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/goal papers/lopez-lira-tang.docx exists and contains every section heading of papers/lopez-lira-tang.pdf in the same order. Show the list of headings from both files. Stop after 15 turns.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>State a check that Claude can show in the conversation</li>
 <li>Add a limit on turns or time</li>
@@ -830,13 +920,12 @@ files. Stop after 15 turns.</code></pre>
 </tbody>
 </table>
 <p>Exercise:</p>
-<pre class="text"><code>/loop 5m check whether data/ has any new files and list them</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>/loop 5m check whether data/ has any new files and list them</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Stop a fixed-interval loop by asking Claude to cancel it. Recurring tasks expire after seven days.</p>
 <p><code>/schedule</code> runs on a fresh clone of a GitHub repository, so it can outlive the workspace. The minimum interval is one hour.</p>
 <h2 id="artefacts" class="anchored">4. Artefacts</h2>
 <p>An artefact is a web page that Claude publishes to a private address on claude.ai. It stays private until you share it.</p>
-<pre class="text"><code>Make an artifact that shows the Dow Jones summary table from tables/ and lets me
-sort it by volatility.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Make an artifact that shows the Dow Jones summary table from tables/ and lets me sort it by volatility.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>/artifacts</code> lists your artefacts</li>
 <li><code>Ctrl+]</code> reopens the most recent one</li>
@@ -845,10 +934,7 @@ sort it by volatility.</code></pre>
 </ul>
 <h2 id="other-models-through-openrouter" class="anchored">5. Other models through OpenRouter</h2>
 <p>For classification and other batch work, keep Claude in charge and have it write a script that calls another model.</p>
-<pre class="text"><code>Write a script that sends each row of data/texts.csv to the OpenRouter API at
-https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env,
-using a fixed model, temperature 0 and JSON output. Save the label, the model name
-returned by the API and the time to data/labels.csv.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Write a script that sends each row of data/texts.csv to the OpenRouter API at https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env, using a fixed model, temperature 0 and JSON output. Save the label, the model name returned by the API and the time to data/labels.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run the agent itself on another model:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> <span class="op">&lt;</span>model-id<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or set these variables before you start <code>claude</code>:</p>
@@ -860,13 +946,11 @@ returned by the API and the time to data/labels.csv.</code></pre>
 <h2 id="research-websites" class="anchored">6. Research websites</h2>
 <p>Exercise: a personal or project page on GitHub Pages.</p>
 <p>Install the design plugin:</p>
-<pre class="text"><code>/plugin install frontend-design@claude-plugins-official</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>/plugin install frontend-design@claude-plugins-official</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create the site:</p>
-<pre class="text"><code>Create a one-page academic website in site/ with my name, research interests,
-papers and contact details. Plain HTML and CSS, no build step.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Create a one-page academic website in site/ with my name, research interests, papers and contact details. Plain HTML and CSS, no build step.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For a project showcase:</p>
-<pre class="text"><code>Create site/index.html that presents this project: the question, the data, the
-main figure from figures/ and a link to the code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Create site/index.html that presents this project: the question, the data, the main figure from figures/ and a link to the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Publish it:</p>
 <ol type="1">
 <li>Create a public repository called <code>&lt;username&gt;.github.io</code></li>
@@ -938,13 +1022,10 @@ main figure from figures/ and a link to the code.</code></pre>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## First slide</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>One point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre class="text"><code>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background,
-with a full-width navy title bar, Fira Sans Light and wide margins.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background, with a full-width navy title bar, Fira Sans Light and wide margins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="primary-data-collection" class="anchored">8. Primary data collection</h2>
 <p>Exercise: the survivorship problem from session 1b needs the history of the Dow Jones index.</p>
-<pre class="text"><code>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and
-find the changes to its components since 2000. Then write code/03-dow_history.R that
-collects the same table without the browser and saves it to data/dow_changes.csv.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and find the changes to its components since 2000. Then write code/03-dow_history.R that collects the same table without the browser and saves it to data/dow_changes.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Before you collect data from a site:</p>
 <ul>
 <li>Read its terms and <code>robots.txt</code></li>
@@ -971,8 +1052,7 @@ collects the same table without the browser and saves it to data/dow_changes.csv
 <li>Sign in to your library in Chrome yourself</li>
 <li>Start Claude Code with <code>claude --chrome</code></li>
 </ol>
-<pre class="text"><code>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives
-access, download the PDF to papers/. Do not sign in for me.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives access, download the PDF to papers/. Do not sign in for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The browser uses your real logins, so Claude can reach any site you are signed in to. Check your library’s and the publisher’s terms. Bulk downloading is often not allowed.</p>
 <p>Zotero 10 on your laptop has a local API at <code>localhost:23119</code>, enabled in Zotero’s Advanced settings. Scripts on the same machine can read and write your library through it.</p>
 <h2 id="stata-mcp" class="anchored">11. Stata MCP</h2>
