@@ -769,7 +769,7 @@ border: 1px solid rgba(102, 204, 204, 0.45); border-radius: 3px; font: 400 0.72r
 table { max-width: 100%; border-collapse: collapse; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 1em 0; }
 thead th { color: var(--navy); font-weight: 500; text-align: left; border-bottom: 1px solid var(--ink); }
 td, th { padding: 0.4em 1em 0.4em 0; vertical-align: top; }
-@media (max-width: 560px) { td, th { padding-right: 0.6em; } }
+@media (max-width: 560px) { td, th { padding-right: 0.6em; } td code { white-space: normal; overflow-wrap: anywhere; } }
 
 .home { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; column-gap: 4rem; grid-template-rows: auto auto 1fr;
 grid-template-areas: "slides work" "slides guides" "slides files"; }
@@ -805,6 +805,7 @@ grid-template-areas: "slides work" "slides guides" "slides files"; }
     <a href="session-4.html">4</a>
     <a href="self-guided.html">Tracks</a>
     <a href="own-machine.html">Setup</a>
+    <a href="basics.html">Basics</a>
   </div>
   <span>AI Research Workshop</span>
 </nav>
@@ -839,11 +840,14 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
   <li><a href="#your-own-server" id="toc-your-own-server">14. Your own server</a></li>
   </ul>
 </nav>
-<p>Each track takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account.</p>
+<p>Choose any track. Each takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account. New words are explained in <a href="basics.html">Basics</a>.</p>
+<p>For anything that involves installing, signing in or a server, let Claude take you through a tested runbook. Type this inside Claude, with what you want to do:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries I want to publish a website</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Claude says what the runbook does, what it costs and how far it has been tested, then goes one step at a time. You do sign-ins, passwords and payments yourself.</p>
 <h2 id="long-tasks-with-goal" class="anchored">1. Long tasks with <code>/goal</code></h2>
 <p><code>/goal</code> sets a condition. Claude keeps working until a small model confirms that the condition is met.</p>
 <p>Exercise: convert a PDF to Word.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/goal papers/lopez-lira-tang.docx exists and contains every section heading of papers/lopez-lira-tang.pdf in the same order. Show the list of headings from both files. Stop after 15 turns.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>/goal papers/lopez-lira-tang.docx exists and contains every section heading of papers/lopez-lira-tang.pdf in the same order. Show the list of headings from both files. Stop after 15 turns.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>State a check that Claude can show in the conversation</li>
 <li>Add a limit on turns or time</li>
@@ -920,12 +924,12 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tbody>
 </table>
 <p>Exercise:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>/loop 5m check whether data/ has any new files and list them</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>/loop 5m check whether data/ has any new files and list them</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Stop a fixed-interval loop by asking Claude to cancel it. Recurring tasks expire after seven days.</p>
 <p><code>/schedule</code> runs on a fresh clone of a GitHub repository, so it can outlive the workspace. The minimum interval is one hour.</p>
 <h2 id="artefacts" class="anchored">4. Artefacts</h2>
 <p>An artefact is a web page that Claude publishes to a private address on claude.ai. It stays private until you share it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Make an artifact that shows the Dow Jones summary table from tables/ and lets me sort it by volatility.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Make an artifact that shows the Dow Jones summary table from tables/ and lets me sort it by volatility.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>/artifacts</code> lists your artefacts</li>
 <li><code>Ctrl+]</code> reopens the most recent one</li>
@@ -933,31 +937,36 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <li>Needs a claude.ai sign-in, on a Pro plan or above</li>
 </ul>
 <h2 id="other-models-through-openrouter" class="anchored">5. Other models through OpenRouter</h2>
+<p>OpenRouter gives you one account and one key for many companies’ models. It charges per use, so set a credit limit. Its runbook has not been tested: Claude will say so before it starts.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries set up OpenRouter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For classification and other batch work, keep Claude in charge and have it write a script that calls another model.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Write a script that sends each row of data/texts.csv to the OpenRouter API at https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env, using a fixed model, temperature 0 and JSON output. Save the label, the model name returned by the API and the time to data/labels.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Write a script that sends each row of data/texts.csv to the OpenRouter API at https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env, using a fixed model, temperature 0 and JSON output. Save the label, the model name returned by the API and the time to data/labels.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run the agent itself on another model:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> <span class="op">&lt;</span>model-id<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> <span class="op">&lt;</span>model-id<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or set these variables before you start <code>claude</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_BASE_URL</span><span class="op">=</span>https://openrouter.ai/api</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_AUTH_TOKEN</span><span class="op">=</span><span class="va">$OPENROUTER_API_KEY</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&quot;&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_BASE_URL</span><span class="op">=</span>https://openrouter.ai/api</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_AUTH_TOKEN</span><span class="op">=</span><span class="va">$OPENROUTER_API_KEY</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&quot;&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This uses OpenRouter credit, not your Claude plan. Claude Code is tuned for Anthropic models, so results with other models vary.</p>
 <p>Routers such as <code>typesafe/jev-router</code> choose a model for each request. For research labels, pin one specific model so that the results can be reproduced and reported.</p>
 <h2 id="research-websites" class="anchored">6. Research websites</h2>
-<p>Exercise: a personal or project page on GitHub Pages.</p>
+<p>Exercise: a personal or project page on GitHub Pages, GitHub’s free hosting for web pages. On a free GitHub plan the repository must be public, so keep the site in a repository of its own.</p>
+<p>The simplest route is to let Claude take you through it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries publish a website with GitHub Pages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The steps below are the same, by hand.</p>
 <p>Install the design plugin:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>/plugin install frontend-design@claude-plugins-official</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>/plugin install frontend-design@claude-plugins-official</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create the site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Create a one-page academic website in site/ with my name, research interests, papers and contact details. Plain HTML and CSS, no build step.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Create a one-page academic website in docs/index.html with my name, research interests, papers and contact details. Plain HTML and CSS, no build step.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For a project showcase:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Create site/index.html that presents this project: the question, the data, the main figure from figures/ and a link to the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Create docs/index.html that presents this project: the question, the data, the main figure from figures/ and a link to the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Publish it:</p>
 <ol type="1">
-<li>Create a public repository called <code>&lt;username&gt;.github.io</code></li>
-<li>Push the site to the <code>main</code> branch</li>
-<li>In the repository, open <strong>Settings → Pages</strong>, and choose the branch and folder</li>
-<li>The site appears at <code>https://&lt;username&gt;.github.io</code></li>
+<li>Create a public repository on GitHub and push the site to its <code>main</code> branch</li>
+<li>In the repository, open <strong>Settings → Pages</strong>. Choose the branch <code>main</code> and the folder <code>/docs</code>. Pages serves only <code>/</code> or <code>/docs</code></li>
+<li>After about a minute the site appears at <code>https://&lt;username&gt;.github.io/&lt;repository&gt;/</code></li>
 </ol>
+<p>For the address <code>https://&lt;username&gt;.github.io</code>, name the repository <code>&lt;username&gt;.github.io</code>.</p>
 <p>To use your own domain:</p>
 <ol type="1">
 <li>Buy a domain, for example at Namecheap</li>
@@ -1003,29 +1012,30 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </table>
 <p>DNS changes can take up to 24 hours.</p>
 <h2 id="quarto-slide-decks" class="anchored">7. Quarto slide decks</h2>
-<p>The workshop slides are Quarto files.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init slides <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> slides</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add quarto-cli</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run quarto render deck.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The workshop slides are Quarto files: plain text that Quarto turns into slides. Claude can take you through this with <code>/workshop-queries make Quarto slides</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init slides <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> slides</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add quarto-cli</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run quarto render deck.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A minimal deck with a fixed 16:9 frame:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">    width: 1280</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">    height: 720</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">    margin: 0.03</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">    center: false</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## First slide</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>One point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background, with a full-width navy title bar, Fira Sans Light and wide margins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    width: 1280</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    height: 720</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    margin: 0.03</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    center: false</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## First slide</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>One point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background, with a full-width navy title bar, Fira Sans Light and wide margins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Simple Browser cannot open a local file in a workspace. To view the deck, ask Claude to serve the folder and give you the address, or right-click <code>deck.html</code> and choose <strong>Download…</strong>.</p>
 <h2 id="primary-data-collection" class="anchored">8. Primary data collection</h2>
 <p>Exercise: the survivorship problem from session 1b needs the history of the Dow Jones index.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and find the changes to its components since 2000. Then write code/03-dow_history.R that collects the same table without the browser and saves it to data/dow_changes.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and find the changes to its components since 2000. Then write code/03-dow_history.R that collects the same table without the browser and saves it to data/dow_changes.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Before you collect data from a site:</p>
 <ul>
 <li>Read its terms and <code>robots.txt</code></li>
@@ -1047,19 +1057,19 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <h2 id="papers-through-chrome-into-zotero" class="anchored">10. Papers through Chrome into Zotero</h2>
 <p>Runs on your laptop. Claude Code connects to your own Chrome through the Claude in Chrome extension. This does not work from the workshop workspaces.</p>
 <ol type="1">
-<li>Install Claude Code on your laptop: see <a href="own-machine.html">Setting up your own machine</a></li>
+<li>Install Claude Code on your laptop: see <a href="own-machine.html">Setting up your own machine</a>. It takes about 30 minutes the first time</li>
 <li>Install the Claude in Chrome extension and sign in with the same Claude account</li>
 <li>Sign in to your library in Chrome yourself</li>
 <li>Start Claude Code with <code>claude --chrome</code></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives access, download the PDF to papers/. Do not sign in for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives access, download the PDF to papers/. Do not sign in for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The browser uses your real logins, so Claude can reach any site you are signed in to. Check your library’s and the publisher’s terms. Bulk downloading is often not allowed.</p>
 <p>Zotero 10 on your laptop has a local API at <code>localhost:23119</code>, enabled in Zotero’s Advanced settings. Scripts on the same machine can read and write your library through it.</p>
 <h2 id="stata-mcp" class="anchored">11. Stata MCP</h2>
-<p>See <a href="own-machine.html#stata-mcp">Setting up your own machine</a>.</p>
+<p>Runs on your laptop and needs your own licensed Stata. See <a href="own-machine.html#stata-mcp">Setting up your own machine</a>, or use <code>/workshop-queries use Stata from Claude</code> there.</p>
 <h2 id="remote-control" class="anchored">12. Remote control</h2>
 <p>Remote Control connects claude.ai or the Claude mobile app to a session running on your own machine. Code and files stay on that machine.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> remote-control</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> remote-control</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or type <code>/remote-control</code> in a session. It needs a claude.ai subscription, and the machine must stay on.</p>
 <h2 id="terminal-desktop-and-cloud" class="anchored">13. Terminal, desktop and cloud</h2>
 <p>Runs on your laptop. One session moves from the terminal to the Claude desktop app and then to a cloud machine, which keeps working after you close the laptop.</p>
@@ -1073,7 +1083,46 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </ol>
 <p>The cloud machine works from GitHub, so push first. Uncommitted changes can arrive as a work-in-progress commit: fold it into your next commit rather than pushing it as it is.</p>
 <h2 id="your-own-server" class="anchored">14. Your own server</h2>
-<p>The workshop runs on one server with Coder. You can set up something similar.</p>
+<p>A server is a computer you rent that runs all the time. You might want one for long jobs, or to run RStudio or Coder for a group. It costs money from the moment you create it, and only deleting it stops the charge.</p>
+<p>Let Claude take you through the tested runbooks, in this order:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">Ask Claude</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Make an SSH key</td>
+<td style="text-align: left;"><code>/workshop-queries make an SSH key</code></td>
+<td style="text-align: left;">Validated</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Rent a server and make it safe</td>
+<td style="text-align: left;"><code>/workshop-queries rent a server</code></td>
+<td style="text-align: left;">Partly validated</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Run RStudio on it</td>
+<td style="text-align: left;"><code>/workshop-queries run RStudio on my server</code></td>
+<td style="text-align: left;">Validated</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Or run Coder on it</td>
+<td style="text-align: left;"><code>/workshop-queries run Coder on my server</code></td>
+<td style="text-align: left;">Partly validated</td>
+</tr>
+</tbody>
+</table>
+<p>Do this from your laptop if you can. An SSH key made in a workspace is deleted with the workspace.</p>
+<p>The runbooks were tested on a Hetzner cx23 with Ubuntu 24.04, which costs about €6.59 a month or €0.011 an hour with VAT. Other providers were not tested:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -1090,7 +1139,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Hetzner</td>
-<td style="text-align: left;">No free tier; from about €6 a month</td>
+<td style="text-align: left;">No free tier; from about €6.59 a month</td>
 <td style="text-align: left;">Simplest for ongoing use</td>
 </tr>
 <tr class="even">
@@ -1111,20 +1160,6 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tbody>
 </table>
 <p>Check each provider’s current page before you sign up. All of them ask for a payment card.</p>
-<p>Steps:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519            <span class="co"># on your laptop, once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol type="1">
-<li>Add the public key <code>~/.ssh/id_ed25519.pub</code> to the provider when you create the server</li>
-<li>Choose Ubuntu LTS</li>
-<li>Connect with <code>ssh root@&lt;address&gt;</code></li>
-</ol>
-<p>RStudio in Docker, reachable only through an SSH tunnel:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> docker.io</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 127.0.0.1:8787:8787 <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>choose-one<span class="op">&gt;</span> rocker/rstudio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L</span> 8787:localhost:8787 root@<span class="op">&lt;</span>address<span class="op">&gt;</span>    <span class="co"># then open http://localhost:8787</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Coder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://coder.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">coder</span> server</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Delete the server when you finish. Providers keep charging for a server that is switched off.</p>
 
 <script id="quarto-html-after-body" type="application/javascript">

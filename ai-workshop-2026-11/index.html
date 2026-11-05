@@ -734,7 +734,7 @@ border: 1px solid rgba(102, 204, 204, 0.45); border-radius: 3px; font: 400 0.72r
 table { max-width: 100%; border-collapse: collapse; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 1em 0; }
 thead th { color: var(--navy); font-weight: 500; text-align: left; border-bottom: 1px solid var(--ink); }
 td, th { padding: 0.4em 1em 0.4em 0; vertical-align: top; }
-@media (max-width: 560px) { td, th { padding-right: 0.6em; } }
+@media (max-width: 560px) { td, th { padding-right: 0.6em; } td code { white-space: normal; overflow-wrap: anywhere; } }
 
 .home { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; column-gap: 4rem; grid-template-rows: auto auto 1fr;
 grid-template-areas: "slides work" "slides guides" "slides files"; }
@@ -770,6 +770,7 @@ grid-template-areas: "slides work" "slides guides" "slides files"; }
     <a href="session-4.html">4</a>
     <a href="self-guided.html">Tracks</a>
     <a href="own-machine.html">Setup</a>
+    <a href="basics.html">Basics</a>
   </div>
   <span>AI Research Workshop</span>
 </nav>
@@ -811,6 +812,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <section id="guides" class="home-guides">
 <h2 class="anchored">Guides</h2>
 <ul>
+<li><a href="basics.html">Basics</a>: the terms and skills the workshop uses, for beginners</li>
 <li><a href="self-guided.html">Self-guided tracks</a>: the material for session 4</li>
 <li><a href="own-machine.html">Setting up your own machine</a>: Claude Code, <code>uv</code>, LaTeX and Stata MCP on your laptop</li>
 </ul>

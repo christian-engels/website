@@ -769,7 +769,7 @@ border: 1px solid rgba(102, 204, 204, 0.45); border-radius: 3px; font: 400 0.72r
 table { max-width: 100%; border-collapse: collapse; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 1em 0; }
 thead th { color: var(--navy); font-weight: 500; text-align: left; border-bottom: 1px solid var(--ink); }
 td, th { padding: 0.4em 1em 0.4em 0; vertical-align: top; }
-@media (max-width: 560px) { td, th { padding-right: 0.6em; } }
+@media (max-width: 560px) { td, th { padding-right: 0.6em; } td code { white-space: normal; overflow-wrap: anywhere; } }
 
 .home { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; column-gap: 4rem; grid-template-rows: auto auto 1fr;
 grid-template-areas: "slides work" "slides guides" "slides files"; }
@@ -805,6 +805,7 @@ grid-template-areas: "slides work" "slides guides" "slides files"; }
     <a href="session-4.html">4</a>
     <a href="self-guided.html">Tracks</a>
     <a href="own-machine.html">Setup</a>
+    <a href="basics.html">Basics</a>
   </div>
   <span>AI Research Workshop</span>
 </nav>
@@ -823,9 +824,10 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
     <h2 id="toc-title">Contents</h2>
    
   <ul>
+  <li><a href="#opening-a-terminal" id="toc-opening-a-terminal">Opening a terminal</a></li>
+  <li><a href="#git-and-the-github-cli" id="toc-git-and-the-github-cli">Git and the GitHub CLI</a></li>
   <li><a href="#claude-code" id="toc-claude-code">Claude Code</a></li>
   <li><a href="#claude-desktop-app" id="toc-claude-desktop-app">Claude desktop app</a></li>
-  <li><a href="#github-cli" id="toc-github-cli">GitHub CLI</a></li>
   <li><a href="#uv" id="toc-uv"><code>uv</code></a></li>
   <li><a href="#vs-code" id="toc-vs-code">VS Code</a></li>
   <li><a href="#r-and-python" id="toc-r-and-python">R and Python</a></li>
@@ -837,67 +839,87 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
   <li><a href="#claude-in-chrome" id="toc-claude-in-chrome">Claude in Chrome</a></li>
   </ul>
 </nav>
-<p>The workshop workspaces are deleted on Saturday 7 November. This page sets up the same tools on your laptop.</p>
+<p>The workshop workspaces are deleted on Saturday 7 November. This page sets up the same tools on your laptop. The first time takes 30 to 60 minutes.</p>
+<p>Go in this order. Once Claude Code runs, you can let it do the rest with a tested runbook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries install the workshop tools on my laptop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To use that, first get your project onto the laptop: see <a href="#your-project">Your project</a>. New words are explained in <a href="basics.html">Basics</a>.</p>
+<p>These steps have been run on a clean Linux server, not on a clean Mac or on Windows. If a message differs, read it, and ask Claude what it means.</p>
+<h2 id="opening-a-terminal" class="anchored">Opening a terminal</h2>
+<p>Everything below is typed into a terminal, then Enter.</p>
+<ul>
+<li><strong>Mac:</strong> press <code>Cmd+Space</code>, type <code>Terminal</code> and press Enter</li>
+<li><strong>Windows:</strong> press the Windows key, type <code>PowerShell</code> and press Enter</li>
+</ul>
+<p>After installing a tool, close the terminal and open a new one, or it may say <code>command not found</code>.</p>
+<h2 id="git-and-the-github-cli" class="anchored">Git and the GitHub CLI</h2>
+<p>Git records versions of your work. The GitHub CLI, <code>gh</code>, connects it to GitHub.</p>
+<p><strong>Mac.</strong> Run <code>git --version</code>. If a window offers to install the developer tools, accept it. Then install Homebrew, an installer for command-line tools. It asks for your Mac’s password, and nothing appears on screen as you type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>At the end it prints <strong>Next steps</strong>: run those lines. Then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Windows:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Git<span class="op">.</span><span class="fu">Git</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id GitHub<span class="op">.</span><span class="fu">cli</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then, on either, sign in. Choose GitHub.com, HTTPS, Yes and <strong>Login with a web browser</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="claude-code" class="anchored">Claude Code</h2>
 <p>Needs a Claude subscription (Pro or above).</p>
-<p>macOS and Linux:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://claude.ai/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mac and Linux:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://claude.ai/install.sh <span class="kw">|</span> <span class="fu">bash</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Windows PowerShell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>claude<span class="op">.</span><span class="fu">ai</span><span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Open a new terminal, then run <code>claude</code> and sign in. On Windows, Git for Windows is recommended.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>claude<span class="op">.</span><span class="fu">ai</span><span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open a new terminal, then run <code>claude</code> and sign in.</p>
 <h2 id="claude-desktop-app" class="anchored">Claude desktop app</h2>
-<p>Download it from <a href="https://claude.ai/download">claude.ai/download</a> and sign in with the same Claude account. <code>/desktop</code> hands a terminal session to the app on macOS and Windows (x64).</p>
-<h2 id="github-cli" class="anchored">GitHub CLI</h2>
-<p>Cloud sessions reach your repositories through <code>gh</code>.</p>
-<p>macOS: <code>brew install gh</code></p>
-<p>Windows: <code>winget install --id GitHub.cli</code></p>
-<p>Then run <code>gh auth login</code>.</p>
+<p>Optional, for track 13. Download it from <a href="https://claude.ai/download">claude.ai/download</a> and sign in with the same Claude account. <code>/desktop</code> hands a terminal session to the app on macOS and Windows (x64).</p>
 <h2 id="uv" class="anchored"><code>uv</code></h2>
-<p>macOS and Linux:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Installs Python, packages and tools.</p>
+<p>Mac and Linux:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Windows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="vs-code" class="anchored">VS Code</h2>
-<p>Install VS Code and its Claude Code extension. On the desktop version, the built-in browser shows local pages: use <strong>Browser: Open Integrated Browser</strong> from the command palette.</p>
+<p>Install VS Code from <a href="https://code.visualstudio.com">code.visualstudio.com</a>, then install its Claude Code extension from the Extensions panel. On the desktop version, the built-in browser shows local pages: use <strong>Browser: Open Integrated Browser</strong> from the command palette.</p>
 <h2 id="r-and-python" class="anchored">R and Python</h2>
-<p>Install R from CRAN, then the packages you used:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;tidyfinance&quot;</span>, <span class="st">&quot;fixest&quot;</span>, <span class="st">&quot;duckdb&quot;</span>, <span class="st">&quot;btw&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install R from <a href="https://cran.r-project.org">cran.r-project.org</a>. Then type <code>R</code> in a terminal to start it, and install the packages you used:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;tidyfinance&quot;</span>, <span class="st">&quot;fixest&quot;</span>, <span class="st">&quot;duckdb&quot;</span>, <span class="st">&quot;btw&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python projects need only <code>uv</code>: <code>uv init</code>, then <code>uv add &lt;package&gt;</code>.</p>
 <h2 id="latex" class="anchored">LaTeX</h2>
-<p>macOS and Linux:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sL</span> https://yihui.org/tinytex/install-bin-unix.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mac and Linux:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sL</span> https://yihui.org/tinytex/install-bin-unix.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Windows: see <code>yihui.org/tinytex</code>.</p>
 <p>Then install the LaTeX Workshop extension in VS Code, and add <code>latexmk</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install latexmk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install latexmk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="your-project" class="anchored">Your project</h2>
-<p>Install the GitHub CLI from <code>cli.github.com</code>, then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone <span class="op">&lt;</span>username<span class="op">&gt;</span>/workshop-project</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> workshop-project</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add your keys to <code>.env</code>, then start <code>claude</code>.</p>
+<p>This downloads the project you pushed to GitHub, including <code>/workshop-queries</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone <span class="op">&lt;</span>username<span class="op">&gt;</span>/workshop-project</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> workshop-project</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Paste your keys into <code>.env</code> in a text editor, then start <code>claude</code>. On Windows, use <code>copy</code> in place of <code>cp</code>.</p>
+<p>To use the runbooks in every project, not only this one:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> .claude/skills/workshop-queries ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="mcp-servers" class="anchored">MCP servers</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user duckdb <span class="at">--</span> uvx mcp-server-motherduck <span class="at">--db-path</span> :memory: <span class="at">--read-write</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user r-btw <span class="at">--</span> Rscript <span class="at">-e</span> <span class="st">&quot;btw::btw_mcp_server(list(&#39;docs&#39;, &#39;env&#39;, &#39;sessioninfo&#39;, &#39;cran&#39;))&quot;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user <span class="at">--transport</span> http consensus https://mcp.consensus.app/mcp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user duckdb <span class="at">--</span> uvx mcp-server-motherduck <span class="at">--db-path</span> :memory: <span class="at">--read-write</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user r-btw <span class="at">--</span> Rscript <span class="at">-e</span> <span class="st">&quot;btw::btw_mcp_server(list(&#39;docs&#39;, &#39;env&#39;, &#39;sessioninfo&#39;, &#39;cran&#39;))&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--scope</span> user <span class="at">--transport</span> http consensus https://mcp.consensus.app/mcp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="mixtape-tools" class="anchored">Mixtape tools</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/scunning1975/MixtapeTools.git ~/mixtape</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/mixtape/.claude/skills/split-pdf ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/scunning1975/MixtapeTools.git ~/mixtape</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ~/mixtape/.claude/skills/split-pdf ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="stata-mcp" class="anchored">Stata MCP</h2>
 <p>Runs Stata from Claude Code. It needs a licensed Stata, <code>uv</code> and Claude Code.</p>
 <ol type="1">
 <li>Check the setup:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> stata-mcp doctor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> stata-mcp doctor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Register the server:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add stata-mcp <span class="at">--scope</span> user <span class="at">--</span> uvx stata-mcp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add stata-mcp <span class="at">--scope</span> user <span class="at">--</span> uvx stata-mcp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>Restart Claude and ask:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Run sysuse auto, then regress price mpg weight, and show me the table.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Run sysuse auto, then regress price mpg weight, and show me the table.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last step is the real test. With an expired Stata licence, <code>doctor</code> passes and the tool reports success with no output. Read the table.</p>
 <p>The package is <code>stata-mcp</code>. Its diagnostics stay in local files, and each project gets a <code>.statamcp</code> folder of logs. Output that Claude reads goes to Anthropic, so take care with confidential data.</p>
 <h2 id="claude-in-chrome" class="anchored">Claude in Chrome</h2>
