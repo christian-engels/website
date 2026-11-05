@@ -839,9 +839,10 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
   <li><a href="#terminal-desktop-and-cloud" id="toc-terminal-desktop-and-cloud">13. Terminal, desktop and cloud</a></li>
   <li><a href="#your-own-server" id="toc-your-own-server">14. Your own server</a></li>
   <li><a href="#licensed-data-with-the-wrds-guard" id="toc-licensed-data-with-the-wrds-guard">15. Licensed data with the WRDS guard</a></li>
+  <li><a href="#regional-growth-and-convergence-in-europe" id="toc-regional-growth-and-convergence-in-europe">16. Regional growth and convergence in Europe</a></li>
   </ul>
 </nav>
-<p>Choose any track. Each takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account; track 15 runs in either. New words are explained in <a href="basics.html">Basics</a>.</p>
+<p>Choose any track. Each takes 20 to 40 minutes. Tracks 1 to 9 and 16 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account; track 15 runs in either. New words are explained in <a href="basics.html">Basics</a>.</p>
 <p>For anything that involves installing, signing in or a server, let Claude take you through a tested runbook. Type this inside Claude, with what you want to do:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries I want to publish a website</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Claude says what the runbook does, what it costs and how far it has been tested, then goes one step at a time. You do sign-ins, passwords and payments yourself.</p>
@@ -1176,6 +1177,43 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </ol>
 <p>Then try to get a row out. The end-to-end test in <code>tests/e2e.sh</code> does this with headless sessions and checks the transcripts for a canary value; run it against your own routing before you trust the setup with real data.</p>
 <p>The guard is one reading of the WRDS policy, not a ruling. Check it with your library or the vendor.</p>
+<h2 id="regional-growth-and-convergence-in-europe" class="anchored">16. Regional growth and convergence in Europe</h2>
+<p>Runs in the workspace. Two free sources, neither needing a key: Eurostat’s regional accounts, and ARDECO, the Annual Regional Database of the European Commission, kept by the Joint Research Centre. Both have R packages on CRAN, <code>eurostat</code> and <code>ARDECO</code>, which Claude installs with <code>install.packages()</code>.</p>
+<p>Exercise: β-convergence across NUTS 2 regions since 2000.</p>
+<ol type="1">
+<li>Download GDP per head by region:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Install the eurostat R package. Download nama_10r_2gdp for all NUTS 2 regions</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>from 2000 to the latest year, in the units PPS_EU27_2020_HAB and EUR_HAB. Save</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>the script as code/04-regional_gdp.R and the data as data/regional_gdp.csv.</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Report the number of regions, the years covered and the Eurostat update date.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check: Comunitat Valenciana, ES52, in 2022: 24,700 euro and 27,300 PPS per inhabitant, 75% of the EU27 average (Eurostat vintage of 10 February 2026; the series are revised).</p>
+<ol start="2" type="1">
+<li><p>Decide the specification before you see a result, as in session 3: write down the regression, then ask Claude to log every specification it runs to <code>tables/spec_log.csv</code>.</p></li>
+<li><p>Estimate convergence:</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Regress the average annual growth of GDP per head in PPS from 2000 to the last</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>year on the log of its 2000 level, once across all regions and once with</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>country fixed effects using fixest. Draw the scatter with both fitted lines,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>report the implied speed of convergence, and save the figure in figures/ and</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>the table in tables/. State which regions you dropped because their NUTS code</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>changed.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check: the slope is negative. Compare the two slopes: how much of the convergence is between countries rather than within them? NUTS codes changed in 2016, 2021 and 2024, so a region that disappears from the series is usually a recoding, not a data gap.</p>
+<ol start="4" type="1">
+<li>Compare with ARDECO:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Install the ARDECO R package. List its variables with</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ardeco_get_variable_list(), find GDP per head in PPS, and download it for NUTS 2</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>regions over the same years. List the region-years where it differs from the</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Eurostat series by more than 1%.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check: ARDECO is a harmonised series with gaps filled by estimation, so small differences are expected. Ask where the gaps were filled. If the ARDECO service is down, as it was on 5 November, continue with Eurostat only.</p>
+<ol start="5" type="1">
+<li>Optional, a map:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Use get_eurostat_geospatial at NUTS level 2 to draw a map of GDP per head in</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>PPS as a percentage of the EU average in 2022. Save it as</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>figures/regional_gdp_map.png.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nothing here needs uploading: the data are public. Record the Eurostat vintage date in your README, since both sources revise their series.</p>
 
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
