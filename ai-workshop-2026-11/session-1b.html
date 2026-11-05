@@ -1827,10 +1827,11 @@ margin-right: 0; }
 <section id="duckdb" class="slide level2">
 <h2>DuckDB</h2>
 <p>A database engine that reads data files directly. <strong>SQL</strong> is the language for asking it questions. <strong>Parquet</strong> is a compact file format for tables.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href aria-hidden="true" tabindex="-1"></a>Save the Dow Jones daily returns to returns.parquet with the duckdb R package.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href aria-hidden="true" tabindex="-1"></a>Save the Dow Jones daily returns to data/returns.parquet with the duckdb R</span>
+<span id="cb15-2"><a href aria-hidden="true" tabindex="-1"></a>package.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add <span class="at">--transport</span> stdio duckdb <span class="at">--</span> uvx mcp-server-motherduck <span class="at">--db-path</span> :memory: <span class="at">--read-write</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href aria-hidden="true" tabindex="-1"></a>Using the duckdb server, which firm in returns.parquet had the most volatile</span>
-<span id="cb17-2"><a href aria-hidden="true" tabindex="-1"></a>daily returns between 2020 and 2024? Show the SQL you ran.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href aria-hidden="true" tabindex="-1"></a>Using the duckdb server, which firm in data/returns.parquet had the most</span>
+<span id="cb17-2"><a href aria-hidden="true" tabindex="-1"></a>volatile daily returns between 2020 and 2024? Show the SQL you ran.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="expect">
 <p>Check: Nvidia, with a daily standard deviation of about 0.034.</p>
 </div>

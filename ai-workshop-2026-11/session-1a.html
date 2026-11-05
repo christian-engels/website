@@ -1747,6 +1747,7 @@ margin-right: 0; }
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-a</span> <span class="at">-L</span> 1 <span class="at">-I</span> <span class="st">&#39;.git&#39;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>.
 ├── .claude
+├── CLAUDE.md
 ├── code
 ├── data
 ├── .env.example
@@ -1758,8 +1759,9 @@ margin-right: 0; }
 └── tables</code></pre>
 <p><code>.claude</code> holds Claude’s settings and skills for this project. <code>-a</code> shows hidden files, and <code>-L 1</code> shows one level.</p>
 </section>
-<section id="folder-structure-for-analysis" class="slide level2">
-<h2>Folder structure for analysis</h2>
+<section id="folder-structure-for-larger-projects" class="slide level2">
+<h2>Folder structure for larger projects</h2>
+<p>Today’s <code>project</code> is simpler: <code>code/</code>, <code>data/</code>, <code>figures/</code>, <code>tables/</code> and <code>papers/</code> at the top level.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1871,7 +1873,7 @@ margin-right: 0; }
 </table>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a>/init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="expect">
-<p>Check: <code>CLAUDE.md</code> appears in the Explorer. Open it and delete anything that is wrong.</p>
+<p>Check: Claude reads the short <code>CLAUDE.md</code> your project starts with and suggests changes. Accept what you want, then open the file and delete anything that is wrong.</p>
 </div>
 <p>Aim for under 200 lines. Claude treats it as context, not as enforced rules.</p>
 </section>
