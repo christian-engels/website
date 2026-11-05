@@ -881,12 +881,12 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <tr class="even">
 <td style="text-align: left;">GPT-6 Astra</td>
 <td style="text-align: left;">OpenAI</td>
-<td style="text-align: left;">ChatGPT, or <code>openai/gpt-6-astra</code> on OpenRouter</td>
+<td style="text-align: left;">ChatGPT, or <code>openai/gpt-6-astra</code> on OpenRouter with your own key</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Gemini 4 Argon</td>
 <td style="text-align: left;">Google</td>
-<td style="text-align: left;">Gemini, or <code>google/gemini-4-argon</code> on OpenRouter</td>
+<td style="text-align: left;">Gemini, or <code>google/gemini-4-argon</code> on OpenRouter with your own key</td>
 </tr>
 </tbody>
 </table>
@@ -939,12 +939,14 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <li>Needs a claude.ai sign-in, on a Pro plan or above</li>
 </ul>
 <h2 id="other-models-through-openrouter" class="anchored">5. Other models through OpenRouter</h2>
-<p>OpenRouter gives you one account and one key for many companies’ models. It charges per use, so set a credit limit. Its runbook has not been tested: Claude will say so before it starts.</p>
+<p>OpenRouter gives you one account and one key for many companies’ models. It charges per use, so set a credit limit. Its runbook is partly tested: Claude will say which parts before it starts.</p>
+<p>Your workspace already has a shared key in <code>OPENROUTER_API_KEY</code>. It allows only Claude Haiku 5.5, Sonnet 5.5 and Opus 5.5, on zero-retention endpoints, and everyone shares its $50 limit. Any other model needs your own key.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries set up OpenRouter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For classification and other batch work, keep Claude in charge and have it write a script that calls another model.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Write a script that sends each row of data/texts.csv to the OpenRouter API at https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env, using a fixed model, temperature 0 and JSON output. Save the label, the model name returned by the API and the time to data/labels.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To run the agent itself on another model:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> <span class="op">&lt;</span>model-id<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To run the agent itself through OpenRouter on the shared key:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> anthropic/claude-haiku-5.5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A one-word reply cost about half a cent on Haiku and 25 cents on Opus, so start with Haiku. With your own key, <code>--model</code> takes any model ID.</p>
 <p>Or set these variables before you start <code>claude</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_BASE_URL</span><span class="op">=</span>https://openrouter.ai/api</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_AUTH_TOKEN</span><span class="op">=</span><span class="va">$OPENROUTER_API_KEY</span></span>
