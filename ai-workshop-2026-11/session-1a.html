@@ -1399,8 +1399,9 @@ margin-right: 0; }
 </section>
 <section id="what-the-terminal-is" class="slide level2">
 <h2>What the terminal is</h2>
-<p>A text interface to the computer. You type a command, press Enter and read the result. Many commands print nothing when they succeed.</p>
-<p>The terminal in VS Code runs on the workspace, not on your laptop. Open it with <code>Ctrl+`</code>.</p>
+<p>A text interface to the computer. You type a command, press Enter and read the result. Many commands print nothing when they succeed. The terminal in VS Code runs on the workspace, not on your laptop.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1431,10 +1432,18 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: <code>/home/coder/project</code>. Then type <code>ls</code>.</p>
+</div>
+</div></div>
 </section>
 <section id="working-in-the-terminal" class="slide level2">
 <h2>Working in the terminal</h2>
-<p><code>ls -a papers</code> has three parts: the command <code>ls</code>, the option <code>-a</code> and the folder <code>papers</code>.</p>
+<p><code>ls -a papers</code> has three parts: the command <code>ls</code>, the option <code>-a</code> and the folder <code>papers</code>. A <strong>path</strong> says where a file is: <code>papers/paper.pdf</code> is <code>paper.pdf</code> in the folder <code>papers</code>.</p>
+<div class="columns">
+<div class="column" style="width:54%;">
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -1465,7 +1474,13 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>A <strong>path</strong> says where a file is: <code>papers/paper.pdf</code> is <code>paper.pdf</code> in the folder <code>papers</code>.</p>
+</div><div class="column" style="width:46%;">
+<p>Type this, press <code>Tab</code>, then Enter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> exer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: <code>Tab</code> completes it to <code>exercises/</code>, and the list shows <code>references-to-check.bib</code>.</p>
+</div>
+</div></div>
 </section>
 <section id="two-places-to-type" class="slide level2">
 <h2>Two places to type</h2>
@@ -1514,7 +1529,7 @@ margin-right: 0; }
 </section>
 <section id="starting-claude" class="slide level2">
 <h2>Starting Claude</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>Choose your Claude subscription as the login method</li>
 <li>Open the link it shows and approve</li>
@@ -1555,7 +1570,7 @@ margin-right: 0; }
 </section>
 <section id="when-something-goes-wrong" class="slide level2">
 <h2>When something goes wrong</h2>
-<p>Error messages are normal. Most say exactly what is wrong.</p>
+<p>Error messages are normal and most say exactly what is wrong.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -1584,12 +1599,12 @@ margin-right: 0; }
 <td style="text-align: left;">You want an earlier state back</td>
 <td style="text-align: left;"><code>Esc</code> twice rewinds</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">You are setting something up</td>
-<td style="text-align: left;"><code>/workshop-queries</code>, then what you want</td>
-</tr>
 </tbody>
 </table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href aria-hidden="true" tabindex="-1"></a>Count slowly from 1 to 500, one number per line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Press <code>Esc</code> while it counts. Check: Claude stops and waits.</p>
+</div>
 </section>
 <section id="coding-assistant-and-chatbot" class="slide level2">
 <h2>Coding assistant and chatbot</h2>
@@ -1689,7 +1704,7 @@ margin-right: 0; }
 </section>
 <section id="tools-available-to-claude" class="slide level2">
 <h2>Tools available to Claude</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href aria-hidden="true" tabindex="-1"></a>What tools do you have available?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href aria-hidden="true" tabindex="-1"></a>What tools do you have available?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1729,7 +1744,7 @@ margin-right: 0; }
 </section>
 <section id="folder-structure" class="slide level2">
 <h2>Folder structure</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-a</span> <span class="at">-L</span> 1 <span class="at">-I</span> <span class="st">&#39;.git&#39;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-a</span> <span class="at">-L</span> 1 <span class="at">-I</span> <span class="st">&#39;.git&#39;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>.
 ├── .claude
 ├── code
@@ -1813,12 +1828,15 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>Your workspace is deleted on 7 November. What you push to GitHub stays. Session 1b connects your project to GitHub.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: one commit, “Start from the workshop project”. Session 1b connects your project to GitHub, and what you push there stays.</p>
+</div>
 </section>
 <section id="the-.env-file" class="slide level2">
 <h2>The <code>.env</code> file</h2>
 <p>An <strong>API key</strong> is a long password that a program uses to reach a service. Anyone who has it can use your account. <code>.env</code> is a text file in the project that holds your keys, so they stay out of your code.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>This copies the template. Then open <code>.env</code> in the Explorer and paste your keys after the <code>=</code></li>
 <li>Fill in only the keys you use</li>
@@ -1851,14 +1869,16 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<ul>
-<li><code>/init</code> writes a starter file from the project</li>
-<li>Aim for under 200 lines</li>
-<li>Claude treats it as context, not as enforced rules</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a>/init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: <code>CLAUDE.md</code> appears in the Explorer. Open it and delete anything that is wrong.</p>
+</div>
+<p>Aim for under 200 lines. Claude treats it as context, not as enforced rules.</p>
 </section>
 <section id="where-config-files-are-stored" class="slide level2">
 <h2>Where config files are stored</h2>
+<div class="columns">
+<div class="column" style="width:66%;">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1893,7 +1913,13 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p><code>~</code> is your home folder. Files starting with <code>.</code> are hidden: use <code>ls -a</code> to see them.</p>
+</div><div class="column" style="width:34%;">
+<p><code>~</code> is your home folder. Files starting with <code>.</code> are hidden: <code>ls -a</code> shows them.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> .claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: <code>skills</code>, which holds <code>/workshop-queries</code>.</p>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="part-4-controlling-claude" class="title-slide slide level1 divider center">
@@ -1946,8 +1972,7 @@ margin-right: 0; }
 </tbody>
 </table>
 <ul>
-<li>New sessions start in Auto</li>
-<li><code>Shift+Tab</code> changes the mode</li>
+<li>New sessions start in Auto. <code>Shift+Tab</code> changes the mode: press it now, watch the label under the prompt, then return to Auto</li>
 <li><code>.claude/settings.json</code> can deny particular tools and files: session 2 uses this</li>
 </ul>
 </section>
@@ -1987,6 +2012,8 @@ margin-right: 0; }
   </g>
 </svg>
 </div>
+<div class="columns">
+<div class="column" style="width:50%;">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -2013,12 +2040,21 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>The window is everything the model can see at once, measured in tokens: words or parts of words. Claude compacts automatically when it fills, and early instructions can be lost: keep lasting rules in <code>CLAUDE.md</code>.</p>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href aria-hidden="true" tabindex="-1"></a>/context</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: a grid of the window. The system prompt and tools already use part of it.</p>
+</div>
+<p>The window is all the model can see at once, in tokens. It compacts automatically when full, and early instructions can be lost: keep lasting rules in <code>CLAUDE.md</code>.</p>
+</div></div>
 </section>
 <section id="adding-files-to-context" class="slide level2">
 <h2>Adding files to context</h2>
 <p>Type <code>@</code> to pick a file by name.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href aria-hidden="true" tabindex="-1"></a>Explain what @code/01-apple_returns.R does.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href aria-hidden="true" tabindex="-1"></a>Explain what @README.md says this project is for.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: Claude quotes the file. Type <code>@</code> and a few letters to see the picker.</p>
+</div>
 <ul>
 <li><code>@file</code> adds the file’s contents</li>
 <li><code>@folder/</code> adds a listing of the folder, not its contents</li>
@@ -2058,17 +2094,29 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
+<div class="columns">
+<div class="column" style="width:66%;">
 <ul>
-<li><code>opus</code> is Opus 5.5, and its default effort is <code>medium</code></li>
-<li><code>fable</code> is Fable 5.1, which can bill to usage credits on some plans</li>
+<li><code>opus</code> is Opus 5.5, default effort <code>medium</code></li>
+<li><code>fable</code> is Fable 5.1; on some plans it bills to usage credits</li>
 <li>On Pro, turn on <strong>Dynamic workflows</strong> in <code>/config</code> before <code>/effort ultracode</code></li>
 <li>Stronger models and higher effort use your allowance faster</li>
 </ul>
+</div><div class="column" style="width:34%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href aria-hidden="true" tabindex="-1"></a>/model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: the list opens with <code>opus</code> selected. <code>Esc</code> leaves it unchanged.</p>
+</div>
+</div></div>
 </section>
 <section id="adding-folders" class="slide level2">
 <h2>Adding folders</h2>
 <p><code>/add-dir &lt;path&gt;</code> gives Claude access to another folder for the current session.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href aria-hidden="true" tabindex="-1"></a>/add-dir /opt/workshop-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href aria-hidden="true" tabindex="-1"></a>/add-dir /opt/workshop-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href aria-hidden="true" tabindex="-1"></a>What files are in /opt/workshop-data?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: <code>dow_constituents.csv</code>, <code>dow_prices_2000_2024.csv.gz</code> and an IBEX file.</p>
+</div>
 <p>Most <code>.claude/</code> configuration in the added folder is not loaded.</p>
 </section></section>
 <section>
@@ -2080,10 +2128,10 @@ margin-right: 0; }
 <h2>Tidy Finance: Apple share prices</h2>
 <p><code>tidyfinance</code> is an R package. You do not need to know R: Claude writes the script and you check the result.</p>
 <p>Switch to plan mode, then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a>Download daily prices for Apple (AAPL) from 2000-01-01 to 2024-12-31 with the</span>
-<span id="cb8-2"><a href aria-hidden="true" tabindex="-1"></a>tidyfinance package, compute daily returns from adjusted close prices and plot</span>
-<span id="cb8-3"><a href aria-hidden="true" tabindex="-1"></a>their distribution with the 5% quantile marked. Save the script as</span>
-<span id="cb8-4"><a href aria-hidden="true" tabindex="-1"></a>code/01-apple_returns.R and the figure in figures/.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href aria-hidden="true" tabindex="-1"></a>Download daily prices for Apple (AAPL) from 2000-01-01 to 2024-12-31 with the</span>
+<span id="cb17-2"><a href aria-hidden="true" tabindex="-1"></a>tidyfinance package, compute daily returns from adjusted close prices and plot</span>
+<span id="cb17-3"><a href aria-hidden="true" tabindex="-1"></a>their distribution with the 5% quantile marked. Save the script as</span>
+<span id="cb17-4"><a href aria-hidden="true" tabindex="-1"></a>code/01-apple_returns.R and the figure in figures/.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="expect">
 <p>Check: 6,289 trading days of prices and 6,288 returns.</p>
 </div>
@@ -2091,15 +2139,15 @@ margin-right: 0; }
 </section>
 <section id="tidy-finance-the-dow-jones" class="slide level2">
 <h2>Tidy Finance: the Dow Jones</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href aria-hidden="true" tabindex="-1"></a>Now do the same for all current constituents of the Dow Jones Industrial</span>
-<span id="cb9-2"><a href aria-hidden="true" tabindex="-1"></a>Average: download their daily prices from 2000 to 2024, compute daily returns,</span>
-<span id="cb9-3"><a href aria-hidden="true" tabindex="-1"></a>and make a table with the mean, standard deviation, minimum and maximum daily</span>
-<span id="cb9-4"><a href aria-hidden="true" tabindex="-1"></a>return for each firm. Save the script as code/02-dow_returns.R.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href aria-hidden="true" tabindex="-1"></a>Now do the same for all current constituents of the Dow Jones Industrial</span>
+<span id="cb18-2"><a href aria-hidden="true" tabindex="-1"></a>Average: download their daily prices from 2000 to 2024, compute daily returns,</span>
+<span id="cb18-3"><a href aria-hidden="true" tabindex="-1"></a>and make a table with the mean, standard deviation, minimum and maximum daily</span>
+<span id="cb18-4"><a href aria-hidden="true" tabindex="-1"></a>return for each firm. Save the script as code/02-dow_returns.R.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="expect">
 <p>Check: 30 firms and 184,323 daily prices.</p>
 </div>
 <p>If the download fails, use the saved copy:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a>Use the saved copy in /opt/workshop-data/dow_prices_2000_2024.csv.gz instead.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href aria-hidden="true" tabindex="-1"></a>Use the saved copy in /opt/workshop-data/dow_prices_2000_2024.csv.gz instead.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="section-1" class="slide level2 closing" data-background-color="#003764">
 <h2></h2>

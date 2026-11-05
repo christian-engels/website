@@ -1275,7 +1275,7 @@ margin-right: 0; }
 </tbody>
 </table>
 <aside class="notes">
-<p>Rough timing for 60 minutes: Part 1, 4 minutes. Part 2, 22. Part 3, 4. Part 4, 8. Part 5, 14. Part 6, 8. Backup slides follow the last part.</p>
+<p>Rough timing for 60 minutes: Part 1, 4 minutes. Part 2, 20, including two things participants run. Part 3, 5. Part 4, 7. Part 5, 13. Part 6, 11, including /footprint on their own session. Move fast over Productivity and Industry reports. Backup slides follow the last part.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1810,6 +1810,7 @@ display:block!important;
 <p>The data alone do not decide. Choosing needs a story about how the data were made: abduction, inference to the best explanation.</p>
 <p>An agent tends to take the first story that fits, and may “clean” the day away without telling you it chose.</p>
 </div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href aria-hidden="true" tabindex="-1"></a>Show Apple&#39;s row in the Dow summary table, then its prices and returns for the five trading days around 29 September 2000.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The survivorship problem in session 1b was of the same kind: the code ran, and the flaw was in how the sample was chosen.</p>
 <aside class="notes">
 <p>It is real: Apple fell 52% on 29 September 2000 after a profit warning. The June 2000 two-for-one split is already in adjusted_close, so it is not that. Ask the room what they would check first, then show the news.</p>
@@ -1861,6 +1862,14 @@ display:block!important;
 </tr>
 </tbody>
 </table>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a>Run code/02-dow_returns.R from scratch and report how many daily prices it loaded.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:38%;">
+<div class="expect">
+<p><code>/clear</code> first. Check: 184,323, the number from this morning.</p>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="part-3-what-a-session-costs" class="title-slide slide level1 divider center">
@@ -1935,10 +1944,14 @@ display:block!important;
 <div class="columns">
 <div class="column" style="width:55%;">
 <ul>
-<li><strong>Paid Claude plans</strong> (Pro, Max and above) include usage up to a limit; <code>/usage</code> shows how much is left</li>
+<li><strong>Paid Claude plans</strong> (Pro, Max and above) include usage up to a limit</li>
 <li><strong>Pay per token</strong> through an API key: the price table applies directly</li>
 <li><strong>Ori and OpenCode</strong> run through OpenRouter on a pay-per-token key</li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href aria-hidden="true" tabindex="-1"></a>/usage</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="expect">
+<p>Check: how much of your allowance the morning used.</p>
+</div>
 </div><div class="column" style="width:45%;">
 <div class="expect">
 <p>Anthropic reports an average of about <strong>$13 per developer per active day</strong> for companies. The 150 agents on TAQ cost <strong>$1,558</strong> in all, with a median first stage of $3.17 per agent.</p>
@@ -2013,9 +2026,9 @@ display:block!important;
 </div>
 </div><div class="column" style="width:34%;">
 <p>For a single request, one parameter does the same:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href aria-hidden="true" tabindex="-1"></a><span class="st">&quot;provider&quot;</span><span class="er">:</span> <span class="fu">{</span></span>
-<span id="cb2-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;zdr&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb2-3"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href aria-hidden="true" tabindex="-1"></a><span class="st">&quot;provider&quot;</span><span class="er">:</span> <span class="fu">{</span></span>
+<span id="cb5-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;zdr&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb5-3"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The request setting can switch zero retention on, never off. Claude Code cannot send it, so it needs the account setting.</p>
 </div></div>
 <p><span class="source">openrouter.ai/settings/privacy, 3 Nov 2026; parameter from the OpenRouter ZDR documentation.</span></p>
@@ -2252,7 +2265,7 @@ display:block!important;
 </section>
 <section id="what-a-deny-rule-stops" class="slide level2">
 <h2>What a deny rule stops</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a><span class="st">&quot;deny&quot;</span><span class="er">:</span> <span class="ot">[</span><span class="st">&quot;Read(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.csv)&quot;</span><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href aria-hidden="true" tabindex="-1"></a><span class="st">&quot;deny&quot;</span><span class="er">:</span> <span class="ot">[</span><span class="st">&quot;Read(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.csv)&quot;</span><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="plain">
 <p><strong>Deny rule:</strong> a line in <code>.claude/settings.json</code> that forbids a tool or a file.</p>
 </div>
@@ -2592,45 +2605,21 @@ src/       code</code></pre>
 </section>
 <section id="footprint" class="slide level2">
 <h2><code>/footprint</code></h2>
-<div class="columns">
-<div class="column" style="width:56%;">
-<p>An add-on that shows an estimate on each turn, and a panel:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Tab</th>
-<th style="text-align: left;">Shows</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1 Energy</td>
-<td style="text-align: left;">This session, with low to high ranges</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2 Where</td>
-<td style="text-align: left;">Routing flag and sites on the record</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3 Copyright</td>
-<td style="text-align: left;">Rulings, allegations, what is unknown</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4 Privacy</td>
-<td style="text-align: left;">Telemetry, what this session sent</td>
-</tr>
-</tbody>
-</table>
-</div><div class="column" style="width:44%;">
-<p>Each row states its evidence:</p>
+<p>An add-on that estimates each turn’s electricity and water, with a panel of four tabs: <strong>Energy</strong> (this session, low to high), <strong>Where</strong>, <strong>Copyright</strong> and <strong>Privacy</strong>. Each row states its evidence:</p>
 <p><span class="ev nd">Not disclosed</span> <span class="ev says">Anthropic says</span> <span class="ev self">Self-reported</span> <span class="ev est">Estimate</span></p>
+<p>Install it and resume your morning session: type <code>/exit</code>, then in the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/christian-engels/claude-footprint.git ~/claude-footprint</span>
+<span id="cb11-2"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills <span class="kw">&amp;&amp;</span> <span class="fu">ln</span> <span class="at">-s</span> ~/claude-footprint ~/.claude/skills/footprint</span>
+<span id="cb11-3"><a href aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--continue</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href aria-hidden="true" tabindex="-1"></a>/footprint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:70%;">
 <div class="expect">
-<p>Rebuilding this session, literature search included: 62 model calls, $11.78 at list price and about 1.0 kWh.</p>
+<p>Check: this morning’s electricity and water, low to high, and the session total under the prompt. If nothing opens, <code>claude plugin list</code> should show <code>footprint@skills-dir</code>; otherwise watch the demonstration.</p>
 </div>
 </div></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash prompt shell code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/christian-engels/claude-footprint.git ~/claude-footprint</span>
-<span id="cb8-2"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/claude-footprint ~/.claude/skills/footprint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><span class="source">github.com/christian-engels/claude-footprint. Tested on a Mac, not in the workspaces. Usage: scripts/08-extract_rebuild_usage.py.</span></p>
+<p><span class="source">github.com/christian-engels/claude-footprint. Rebuilding this session, literature search included: 62 model calls, $11.78 at list price and about 1.0 kWh (scripts/08-extract_rebuild_usage.py). Tested on a Mac, not in the workspaces.</span></p>
 <aside class="notes">
 <p>Show it live: type /footprint in my terminal, then keys 1 to 4. Press Esc to close. The header turns to “stale” 90 days after the last check of the ledger, which was on 12 October 2026.</p>
 <style type="text/css">
@@ -2897,28 +2886,28 @@ display:block!important;
 <section id="wrds-permissions-file" class="slide level2">
 <h2>WRDS: permissions file</h2>
 <p><code>.claude/settings.json</code>, committed. The deny rules, abridged; the hooks follow in the same file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb9-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;permissions&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;deny&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb9-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(./output/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(./logs/**)&quot;</span><span class="ot">,</span></span>
-<span id="cb9-3"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Edit(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Edit(./output/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Edit(./logs/**)&quot;</span><span class="ot">,</span></span>
-<span id="cb9-4"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(**/*.csv)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.parquet)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.rds)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.dta)&quot;</span><span class="ot">,</span></span>
-<span id="cb9-5"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(**/*.sas7bdat)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.xlsx)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.duckdb)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.gz)&quot;</span><span class="ot">,</span></span>
-<span id="cb9-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WebFetch&quot;</span><span class="ot">,</span> <span class="st">&quot;WebSearch&quot;</span> <span class="ot">]</span> <span class="fu">},</span></span>
-<span id="cb9-7"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;hooks&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;PreToolUse&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;matcher&quot;</span><span class="fu">:</span> <span class="st">&quot;Bash&quot;</span><span class="fu">,</span> <span class="dt">&quot;hooks&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;command&quot;</span><span class="fu">,</span></span>
-<span id="cb9-8"><a href aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;python3 </span><span class="ch">\&quot;</span><span class="st">${CLAUDE_PROJECT_DIR}/.claude/hooks/guardhooks.py</span><span class="ch">\&quot;</span><span class="st"> pre-bash&quot;</span><span class="fu">,</span></span>
-<span id="cb9-9"><a href aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;timeout&quot;</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span> <span class="dt">&quot;onFailure&quot;</span><span class="fu">:</span> <span class="st">&quot;block&quot;</span> <span class="fu">}</span> <span class="ot">]</span> <span class="fu">}</span> <span class="ot">]</span> <span class="fu">}</span> <span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb13-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;permissions&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;deny&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb13-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(./output/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(./logs/**)&quot;</span><span class="ot">,</span></span>
+<span id="cb13-3"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Edit(./data/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Edit(./output/**)&quot;</span><span class="ot">,</span> <span class="st">&quot;Edit(./logs/**)&quot;</span><span class="ot">,</span></span>
+<span id="cb13-4"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(**/*.csv)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.parquet)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.rds)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.dta)&quot;</span><span class="ot">,</span></span>
+<span id="cb13-5"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Read(**/*.sas7bdat)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.xlsx)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.duckdb)&quot;</span><span class="ot">,</span> <span class="st">&quot;Read(**/*.gz)&quot;</span><span class="ot">,</span></span>
+<span id="cb13-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WebFetch&quot;</span><span class="ot">,</span> <span class="st">&quot;WebSearch&quot;</span> <span class="ot">]</span> <span class="fu">},</span></span>
+<span id="cb13-7"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;hooks&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;PreToolUse&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;matcher&quot;</span><span class="fu">:</span> <span class="st">&quot;Bash&quot;</span><span class="fu">,</span> <span class="dt">&quot;hooks&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;command&quot;</span><span class="fu">,</span></span>
+<span id="cb13-8"><a href aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;python3 </span><span class="ch">\&quot;</span><span class="st">${CLAUDE_PROJECT_DIR}/.claude/hooks/guardhooks.py</span><span class="ch">\&quot;</span><span class="st"> pre-bash&quot;</span><span class="fu">,</span></span>
+<span id="cb13-9"><a href aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;timeout&quot;</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span> <span class="dt">&quot;onFailure&quot;</span><span class="fu">:</span> <span class="st">&quot;block&quot;</span> <span class="fu">}</span> <span class="ot">]</span> <span class="fu">}</span> <span class="ot">]</span> <span class="fu">}</span> <span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Read rules reach Claude’s file tools, recognised shell commands such as <code>cat</code>, and Grep and Glob on a best-effort basis. Scripts are not covered, which is what the hooks and <code>guard</code> are for.</p>
 </section>
 <section id="wrds-routing-settings" class="slide level2">
 <h2>WRDS: routing settings</h2>
 <p><code>.claude/settings.local.json</code>, never committed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;env&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb10-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;CLAUDE_CODE_USE_BEDROCK&quot;</span><span class="fu">:</span> <span class="st">&quot;1&quot;</span><span class="fu">,</span></span>
-<span id="cb10-3"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;AWS_PROFILE&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;your SSO profile&gt;&quot;</span><span class="fu">,</span></span>
-<span id="cb10-4"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;AWS_REGION&quot;</span><span class="fu">:</span> <span class="st">&quot;eu-west-1&quot;</span><span class="fu">,</span></span>
-<span id="cb10-5"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_OPUS_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
-<span id="cb10-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_SONNET_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
-<span id="cb10-7"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_HAIKU_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
-<span id="cb10-8"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC&quot;</span><span class="fu">:</span> <span class="st">&quot;1&quot;</span> <span class="fu">}</span> <span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb14-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;env&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb14-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;CLAUDE_CODE_USE_BEDROCK&quot;</span><span class="fu">:</span> <span class="st">&quot;1&quot;</span><span class="fu">,</span></span>
+<span id="cb14-3"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;AWS_PROFILE&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;your SSO profile&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb14-4"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;AWS_REGION&quot;</span><span class="fu">:</span> <span class="st">&quot;eu-west-1&quot;</span><span class="fu">,</span></span>
+<span id="cb14-5"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_OPUS_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb14-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_SONNET_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb14-7"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ANTHROPIC_DEFAULT_HAIKU_MODEL&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;eu. inference profile ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb14-8"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC&quot;</span><span class="fu">:</span> <span class="st">&quot;1&quot;</span> <span class="fu">}</span> <span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On OpenRouter instead: <code>ANTHROPIC_BASE_URL=https://openrouter.ai/api</code>, <code>ANTHROPIC_AUTH_TOKEN=&lt;key&gt;</code> and an empty <code>ANTHROPIC_API_KEY</code>. Do not use <code>/setup-bedrock</code> here: it writes to your user settings, so Bedrock would apply to every project.</p>
 
 </section></section>
