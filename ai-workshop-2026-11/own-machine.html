@@ -731,6 +731,8 @@ pre.sourceCode { overflow: visible; }
    
   <ul>
   <li><a href="#claude-code" id="toc-claude-code">Claude Code</a></li>
+  <li><a href="#claude-desktop-app" id="toc-claude-desktop-app">Claude desktop app</a></li>
+  <li><a href="#github-cli" id="toc-github-cli">GitHub CLI</a></li>
   <li><a href="#uv" id="toc-uv"><code>uv</code></a></li>
   <li><a href="#vs-code" id="toc-vs-code">VS Code</a></li>
   <li><a href="#r-and-python" id="toc-r-and-python">R and Python</a></li>
@@ -751,6 +753,13 @@ pre.sourceCode { overflow: visible; }
 <p>Windows PowerShell:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>claude<span class="op">.</span><span class="fu">ai</span><span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Open a new terminal, then run <code>claude</code> and sign in. On Windows, Git for Windows is recommended.</p>
+<h2 id="claude-desktop-app" class="anchored">Claude desktop app</h2>
+<p>Download it from <a href="https://claude.ai/download">claude.ai/download</a> and sign in with the same Claude account. <code>/desktop</code> hands a terminal session to the app on macOS and Windows (x64).</p>
+<h2 id="github-cli" class="anchored">GitHub CLI</h2>
+<p>Cloud sessions reach your repositories through <code>gh</code>.</p>
+<p>macOS: <code>brew install gh</code></p>
+<p>Windows: <code>winget install --id GitHub.cli</code></p>
+<p>Then run <code>gh auth login</code>.</p>
 <h2 id="uv" class="anchored"><code>uv</code></h2>
 <p>macOS and Linux:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

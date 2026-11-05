@@ -742,11 +742,12 @@ pre.sourceCode { overflow: visible; }
   <li><a href="#papers-through-chrome-into-zotero" id="toc-papers-through-chrome-into-zotero">10. Papers through Chrome into Zotero</a></li>
   <li><a href="#stata-mcp" id="toc-stata-mcp">11. Stata MCP</a></li>
   <li><a href="#remote-control" id="toc-remote-control">12. Remote control</a></li>
-  <li><a href="#your-own-server" id="toc-your-own-server">13. Your own server</a></li>
+  <li><a href="#terminal-desktop-and-cloud" id="toc-terminal-desktop-and-cloud">13. Terminal, desktop and cloud</a></li>
+  <li><a href="#your-own-server" id="toc-your-own-server">14. Your own server</a></li>
   </ul>
 </nav>
 <p><a href="index.html">Back to the workshop page</a></p>
-<p>Each track takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 13 need your laptop or a cloud account.</p>
+<p>Each track takes 20 to 40 minutes. Tracks 1 to 9 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account.</p>
 <h2 id="long-tasks-with-goal" class="anchored">1. Long tasks with <code>/goal</code></h2>
 <p><code>/goal</code> sets a condition. Claude keeps working until a small model confirms that the condition is met.</p>
 <p>Exercise: convert a PDF to Word.</p>
@@ -980,7 +981,18 @@ access, download the PDF to papers/. Do not sign in for me.</code></pre>
 <p>Remote Control connects claude.ai or the Claude mobile app to a session running on your own machine. Code and files stay on that machine.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> remote-control</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or type <code>/remote-control</code> in a session. It needs a claude.ai subscription, and the machine must stay on.</p>
-<h2 id="your-own-server" class="anchored">13. Your own server</h2>
+<h2 id="terminal-desktop-and-cloud" class="anchored">13. Terminal, desktop and cloud</h2>
+<p>Runs on your laptop. One session moves from the terminal to the Claude desktop app and then to a cloud machine, which keeps working after you close the laptop.</p>
+<p>Needs Claude Code, the Claude desktop app on macOS or Windows (x64) and the GitHub CLI signed in with <code>gh auth login</code>: see <a href="own-machine.html#claude-desktop-app">Setting up your own machine</a>. The project must be a GitHub repository.</p>
+<ol type="1">
+<li>In your project, start <code>claude</code> and run <code>/web-setup</code>. Cloud sessions can then reach your repositories through your <code>gh</code> login</li>
+<li>Run <code>/desktop</code> to continue the session in the desktop app</li>
+<li>In the desktop app, open the session menu and choose <strong>Open in</strong>, then <strong>Cloud</strong>. The dialog says whether your files move too</li>
+<li>Follow the cloud session at <a href="https://claude.ai/code">claude.ai/code</a> or in the Claude mobile app</li>
+<li>To bring it back, run <code>/teleport</code> in a terminal in your local checkout</li>
+</ol>
+<p>The cloud machine works from GitHub, so push first. Uncommitted changes can arrive as a work-in-progress commit: fold it into your next commit rather than pushing it as it is.</p>
+<h2 id="your-own-server" class="anchored">14. Your own server</h2>
 <p>The workshop runs on one server with Coder. You can set up something similar.</p>
 <table class="caption-top">
 <colgroup>
