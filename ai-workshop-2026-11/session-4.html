@@ -1250,7 +1250,7 @@ margin-right: 0; }
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">16:00 – 16:10</td>
-<td style="text-align: left;">Further avenues</td>
+<td style="text-align: left;">Choose a track</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">16:10 – 16:45</td>
@@ -1258,7 +1258,7 @@ margin-right: 0; }
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16:45 – 17:00</td>
-<td style="text-align: left;">Keeping going, and questions</td>
+<td style="text-align: left;">Save your work and ask questions</td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1279,7 @@ margin-right: 0; }
 <td style="text-align: left;">Workspace</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2. One shot or long horizon</td>
+<td style="text-align: left;">2. One prompt or several steps</td>
 <td style="text-align: left;">Workspace</td>
 </tr>
 <tr class="odd">
@@ -1370,7 +1370,7 @@ margin-right: 0; }
 </section>
 <section id="workshop-queries" class="slide level2">
 <h2><code>/workshop-queries</code></h2>
-<p>Tested step-by-step runbooks for anything you set up yourself: installations, sign-ins, websites and servers.</p>
+<p>Step-by-step runbooks for common setup tasks: installations, sign-ins, websites and servers.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href aria-hidden="true" tabindex="-1"></a>/workshop-queries I want my own RStudio on a server</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Claude says what it does, what it costs and whether it has been tested</li>
@@ -1408,10 +1408,10 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>If a step fails, Claude stops and shows you the message. It does not guess.</p>
+<p>The runbooks tell Claude to stop on an unexpected error and show you the message.</p>
 </section>
-<section id="one-shot-or-long-horizon" class="slide level2">
-<h2>One shot or long horizon</h2>
+<section id="one-prompt-or-several-steps" class="slide level2">
+<h2>One prompt or several steps</h2>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -1421,8 +1421,8 @@ margin-right: 0; }
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: left;">One shot</th>
-<th style="text-align: left;">Long horizon</th>
+<th style="text-align: left;">One prompt</th>
+<th style="text-align: left;">Several steps</th>
 </tr>
 </thead>
 <tbody>
@@ -1451,12 +1451,12 @@ margin-right: 0; }
 </section>
 <section id="goal" class="slide level2">
 <h2><code>/goal</code></h2>
-<p>Sets a condition. Claude keeps working until a small model confirms it is met.</p>
+<p>Sets a completion condition. A separate model checks it after each turn; the task can also stop on an error or if the condition is judged impossible.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href aria-hidden="true" tabindex="-1"></a>/goal every script in code/ runs from scratch and every number in</span>
 <span id="cb2-2"><a href aria-hidden="true" tabindex="-1"></a>manuscript/main.tex matches tables/, or stop after 20 turns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>State a check Claude can show in the conversation</li>
-<li>Add a limit on turns or time</li>
+<li>Add a limit on turns or time, and check that the output exists</li>
 <li>Clear it with <code>/goal clear</code></li>
 </ul>
 <p><span class="source">Source: Claude Code documentation, “Keep Claude working toward a goal”.</span></p>
@@ -1472,15 +1472,16 @@ margin-right: 0; }
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href aria-hidden="true" tabindex="-1"></a>/workshop-queries put this project on GitHub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Push before 17:00</li>
-<li><code>.env</code> stays behind: it is in <code>.gitignore</code>, so note your keys elsewhere</li>
-<li>Right-click a file and choose <strong>Download…</strong> for single files</li>
+<li><code>.env</code> stays behind; keep credentials privately in a password manager</li>
+<li>Download <strong>workshop-take-home.zip</strong> from the home page</li>
 </ul>
 </section>
 <section id="after-the-workshop" class="slide level2">
 <h2>After the workshop</h2>
 <ol type="1">
+<li>Download the take-home package and open its <code>index.html</code>; the guides work offline</li>
 <li>Install Claude Code on your laptop, using the guide below</li>
-<li>Clone your repository: this brings <code>/workshop-queries</code> with it</li>
+<li>Clone your repository: this brings <code>/workshop-queries</code> and the materials with it</li>
 <li>Ask Claude to install the rest:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href aria-hidden="true" tabindex="-1"></a>/workshop-queries install the workshop tools on my laptop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

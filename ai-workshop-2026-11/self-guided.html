@@ -712,6 +712,7 @@ a:hover { color: var(--navy); }
 :focus-visible { outline: 2px solid var(--teal-ink); outline-offset: 2px; }
 li { margin-bottom: 0.35em; }
 code { font-family: "Fira Code", Menlo, Consolas, monospace; font-size: 0.86em; color: var(--teal-ink); font-variant-ligatures: none; }
+:not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
 h2 code, h3 code { color: inherit; font-weight: 400; }
 
 .site-bar {
@@ -825,7 +826,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
    
   <ul>
   <li><a href="#long-tasks-with-goal" id="toc-long-tasks-with-goal">1. Long tasks with <code>/goal</code></a></li>
-  <li><a href="#one-shot-or-long-horizon" id="toc-one-shot-or-long-horizon">2. One shot or long horizon</a></li>
+  <li><a href="#one-prompt-or-several-steps" id="toc-one-prompt-or-several-steps">2. One prompt or several steps</a></li>
   <li><a href="#loop-and-schedule" id="toc-loop-and-schedule">3. <code>/loop</code> and <code>/schedule</code></a></li>
   <li><a href="#artefacts" id="toc-artefacts">4. Artefacts</a></li>
   <li><a href="#other-models-through-openrouter" id="toc-other-models-through-openrouter">5. Other models through OpenRouter</a></li>
@@ -842,12 +843,12 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
   <li><a href="#regional-growth-and-convergence-in-europe" id="toc-regional-growth-and-convergence-in-europe">16. Regional growth and convergence in Europe</a></li>
   </ul>
 </nav>
-<p>Choose any track. Each takes 20 to 40 minutes. Tracks 1 to 9 and 16 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account; track 15 runs in either. New words are explained in <a href="basics.html">Basics</a>.</p>
-<p>For anything that involves installing, signing in or a server, let Claude take you through a tested runbook. Type this inside Claude, with what you want to do:</p>
+<p>Choose a track that fits the tools and accounts you have. Most exercises take 20 to 40 minutes once those are ready; a new laptop or server setup can take longer. Tracks 1 to 9 and 16 run in the workspace. Tracks 10 to 14 need your laptop or a cloud account; track 15 runs in either. New words are explained in <a href="basics.html">Basics</a>.</p>
+<p>For anything that involves installing, signing in or a server, use the matching runbook with Claude. Type this inside Claude, with what you want to do:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries I want to publish a website</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Claude says what the runbook does, what it costs and how far it has been tested, then goes one step at a time. You do sign-ins, passwords and payments yourself.</p>
 <h2 id="long-tasks-with-goal" class="anchored">1. Long tasks with <code>/goal</code></h2>
-<p><code>/goal</code> sets a condition. Claude keeps working until a small model confirms that the condition is met.</p>
+<p><code>/goal</code> sets a completion condition. A separate model checks it after each turn. It can also stop on an error or if the condition is judged impossible.</p>
 <p>Exercise: convert a PDF to Word.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>/goal papers/lopez-lira-tang.docx exists and contains every section heading of papers/lopez-lira-tang.pdf in the same order. Show the list of headings from both files. Stop after 15 turns.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
@@ -857,8 +858,8 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <li><code>/goal clear</code> removes the goal</li>
 </ul>
 <p>Check: open the <code>.docx</code> with <strong>Download…</strong> and compare it with the PDF. Tables and equations need particular attention.</p>
-<h2 id="one-shot-or-long-horizon" class="anchored">2. One shot or long horizon</h2>
-<p>Some tasks suit one strong model and one prompt. Others suit an agent with tools and a stopping condition.</p>
+<h2 id="one-prompt-or-several-steps" class="anchored">2. One prompt or several steps</h2>
+<p>Use one prompt for a question you can state in full. Use an agent for work that needs files, tools and several checks.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -940,30 +941,27 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </ul>
 <h2 id="other-models-through-openrouter" class="anchored">5. Other models through OpenRouter</h2>
 <p>OpenRouter gives you one account and one key for many companies’ models. It charges per use, so set a credit limit. Its runbook is partly tested: Claude will say which parts before it starts.</p>
-<p>Your workspace already has a shared key in <code>OPENROUTER_API_KEY</code>. It allows only Claude Haiku 5.5, Sonnet 5.5 and Opus 5.5, on zero-retention endpoints, and everyone shares its $50 limit. Any other model needs your own key.</p>
+<p>Your workspace already has a shared key in <code>OPENROUTER_API_KEY</code>. It allows only Claude Haiku 5.5, Sonnet 5.5 and Opus 5.5, on zero-retention endpoints, and everyone shares its $50 total limit. It expires on 12 November 2026 at 15:43 UTC. Other models need your own key; your Claude subscription remains the default for the workshop.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries set up OpenRouter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For classification and other batch work, keep Claude in charge and have it write a script that calls another model.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Write a script that sends each row of data/texts.csv to the OpenRouter API at https://openrouter.ai/api/v1/chat/completions with OPENROUTER_API_KEY from .env, using a fixed model, temperature 0 and JSON output. Save the label, the model name returned by the API and the time to data/labels.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run the agent itself through OpenRouter on the shared key:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ori</span> claude <span class="at">--model</span> anthropic/claude-haiku-5.5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A one-word reply cost about half a cent on Haiku and 25 cents on Opus, so start with Haiku. With your own key, <code>--model</code> takes any model ID.</p>
-<p>Or set these variables before you start <code>claude</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_BASE_URL</span><span class="op">=</span>https://openrouter.ai/api</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_AUTH_TOKEN</span><span class="op">=</span><span class="va">$OPENROUTER_API_KEY</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&quot;&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This uses OpenRouter credit, not your Claude plan. Claude Code is tuned for Anthropic models, so results with other models vary.</p>
+<p>Start with Haiku: cost depends on the model, context and amount of work. This command uses OpenRouter credit. Plain <code>claude</code> still uses your subscription. If Ori asks where to get its key, choose the environment.</p>
+<p>For direct Claude Code access with the optional data guard, follow <a href="#licensed-data-with-the-wrds-guard">track 15</a>. That launcher sets routing for one process and keeps your subscription login separate.</p>
+<p>For other companies’ models, use your own key with a script or a compatible client such as OpenCode. Claude Code compatibility varies by model and provider.</p>
 <p>Routers such as <code>typesafe/jev-router</code> choose a model for each request. For research labels, pin one specific model so that the results can be reproduced and reported.</p>
 <h2 id="research-websites" class="anchored">6. Research websites</h2>
 <p>Exercise: a personal or project page on GitHub Pages, GitHub’s free hosting for web pages. On a free GitHub plan the repository must be public, so keep the site in a repository of its own.</p>
-<p>The simplest route is to let Claude take you through it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries publish a website with GitHub Pages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ask Claude to follow the runbook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries publish a website with GitHub Pages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The steps below are the same, by hand.</p>
 <p>Install the design plugin:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>/plugin install frontend-design@claude-plugins-official</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>/plugin install frontend-design@claude-plugins-official</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create the site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Create a one-page academic website in docs/index.html with my name, research interests, papers and contact details. Plain HTML and CSS, no build step.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For a project showcase:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Create docs/index.html that presents this project: the question, the data, the main figure from figures/ and a link to the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Create a one-page academic website in docs/index.html with my name, research interests, papers and contact details. Plain HTML and CSS, no build step.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a project page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Create docs/index.html that presents this project: the question, the data, the main figure from figures/ and a link to the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Publish it:</p>
 <ol type="1">
 <li>Create a public repository on GitHub and push the site to its <code>main</code> branch</li>
@@ -1016,30 +1014,31 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </table>
 <p>DNS changes can take up to 24 hours.</p>
 <h2 id="quarto-slide-decks" class="anchored">7. Quarto slide decks</h2>
-<p>The workshop slides are Quarto files: plain text that Quarto turns into slides. Claude can take you through this with <code>/workshop-queries make Quarto slides</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init slides <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> slides</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add quarto-cli</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run quarto render deck.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The workshop slides and guides are Quarto files: editable text that Quarto turns into HTML. Your <code>workshop-materials/source/slides/</code> folder contains all of them, with themes and images. See the package README to rebuild them.</p>
+<p>To make a new deck, use <code>/workshop-queries make Quarto slides</code>, or follow the steps below.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init slides <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> slides</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add quarto-cli</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run quarto render deck.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A minimal deck with a fixed 16:9 frame:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    width: 1280</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    height: 720</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    margin: 0.03</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    center: false</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## First slide</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>One point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background, with a full-width navy title bar, Fira Sans Light and wide margins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">    width: 1280</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    height: 720</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    margin: 0.03</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    center: false</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## First slide</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>One point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Add a stylesheet that shows each slide as a fixed 16:9 card on a dark background, with a full-width navy title bar, Fira Sans Light and wide margins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Simple Browser cannot open a local file in a workspace. To view the deck, ask Claude to serve the folder and give you the address, or right-click <code>deck.html</code> and choose <strong>Download…</strong>.</p>
 <h2 id="primary-data-collection" class="anchored">8. Primary data collection</h2>
 <p>Exercise: the survivorship problem from session 1b needs the history of the Dow Jones index.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and find the changes to its components since 2000. Then write code/03-dow_history.R that collects the same table without the browser and saves it to data/dow_changes.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Use the browser to open the Wikipedia page on the Dow Jones Industrial Average and find the changes to its components since 2000. Then write code/03-dow_history.R that collects the same table without the browser and saves it to data/dow_changes.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Before you collect data from a site:</p>
 <ul>
 <li>Read its terms and <code>robots.txt</code></li>
@@ -1066,14 +1065,14 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <li>Sign in to your library in Chrome yourself</li>
 <li>Start Claude Code with <code>claude --chrome</code></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives access, download the PDF to papers/. Do not sign in for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Open the journal page for doi:10.1111/jofi.12162 in Chrome. If my library gives access, download the PDF to papers/. Do not sign in for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The browser uses your real logins, so Claude can reach any site you are signed in to. Check your library’s and the publisher’s terms. Bulk downloading is often not allowed.</p>
-<p>Zotero 10 on your laptop has a local API at <code>localhost:23119</code>, enabled in Zotero’s Advanced settings. Scripts on the same machine can read and write your library through it.</p>
+<p>On your laptop, Zotero’s local API at <code>localhost:23119</code> provides library access when enabled in Advanced settings. Check which operations your installed version supports. The <a href="https://www.zotero.org/support/dev/web_api/v3/start">Zotero Web API</a>, using your own key, is the route used for adding items in session 3.</p>
 <h2 id="stata-mcp" class="anchored">11. Stata MCP</h2>
 <p>Runs on your laptop and needs your own licensed Stata. See <a href="own-machine.html#stata-mcp">Setting up your own machine</a>, or use <code>/workshop-queries use Stata from Claude</code> there.</p>
 <h2 id="remote-control" class="anchored">12. Remote control</h2>
 <p>Remote Control connects claude.ai or the Claude mobile app to a session running on your own machine. Code and files stay on that machine.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> remote-control</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> remote-control</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or type <code>/remote-control</code> in a session. It needs a claude.ai subscription, and the machine must stay on.</p>
 <h2 id="terminal-desktop-and-cloud" class="anchored">13. Terminal, desktop and cloud</h2>
 <p>Runs on your laptop. One session moves from the terminal to the Claude desktop app and then to a cloud machine, which keeps working after you close the laptop.</p>
@@ -1088,7 +1087,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <p>The cloud machine works from GitHub, so push first. Uncommitted changes can arrive as a work-in-progress commit: fold it into your next commit rather than pushing it as it is.</p>
 <h2 id="your-own-server" class="anchored">14. Your own server</h2>
 <p>A server is a computer you rent that runs all the time. You might want one for long jobs, or to run RStudio or Coder for a group. It costs money from the moment you create it, and only deleting it stops the charge.</p>
-<p>Let Claude take you through the tested runbooks, in this order:</p>
+<p>Use the runbooks in this order:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -1126,96 +1125,85 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tbody>
 </table>
 <p>Do this from your laptop if you can. An SSH key made in a workspace is deleted with the workspace.</p>
-<p>The runbooks were tested on a Hetzner cx23 with Ubuntu 24.04, which costs about €6.59 a month or €0.011 an hour with VAT. Other providers were not tested:</p>
+<p>The server steps were checked on a Hetzner cx23 with Ubuntu 24.04. Choose a size that fits your work and check the current price before creating it. Trial credits and free tiers have limits and expiry dates.</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Provider</th>
-<th style="text-align: left;">Offer</th>
-<th style="text-align: left;">Fit</th>
+<th style="text-align: left;">Current plans and terms</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Hetzner</td>
-<td style="text-align: left;">No free tier; from about €6.59 a month</td>
-<td style="text-align: left;">Simplest for ongoing use</td>
+<td style="text-align: left;"><a href="https://www.hetzner.com/cloud/">Cloud plans</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">AWS</td>
-<td style="text-align: left;">Up to $200 in credits, for up to 6 months</td>
-<td style="text-align: left;">Trial</td>
+<td style="text-align: left;"><a href="https://aws.amazon.com/free/">Free tier and credits</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Google Cloud</td>
-<td style="text-align: left;">$300 for 90 days; one small <code>e2-micro</code> always free</td>
-<td style="text-align: left;">Trial; <code>e2-micro</code> is too small for R or Coder</td>
+<td style="text-align: left;"><a href="https://cloud.google.com/free">Free tier and credits</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Azure</td>
-<td style="text-align: left;">12 months of small burstable VMs for new customers</td>
-<td style="text-align: left;">Trial</td>
+<td style="text-align: left;"><a href="https://azure.microsoft.com/free/">Free account</a></td>
 </tr>
 </tbody>
 </table>
-<p>Check each provider’s current page before you sign up. All of them ask for a payment card.</p>
 <p>Delete the server when you finish. Providers keep charging for a server that is switched off.</p>
 <h2 id="licensed-data-with-the-wrds-guard" class="anchored">15. Licensed data with the WRDS guard</h2>
-<p>Workspace or laptop. Session 2 set out two safeguards for data whose licence forbids loading it into a language model: route the model through a contract with zero retention, and keep every row out of the conversation with permission rules and hooks. The folder <code>wrds-guard/</code> in the <a href="https://github.com/christian-engels/ai-research-workshop">workshop repository</a> is that setup, built and tested. In the workspace it uses the workshop’s OpenRouter key; on your laptop, your own OpenRouter key. Claude Code’s hooks run locally in either case.</p>
-<p>The simplest route is to let Claude take you through it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries use the WRDS guard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the workshop workspace, macOS or Linux; the launcher is not a native PowerShell command. Session 2 discussed provider contracts and local controls for licensed data. A zero-retention setting alone does not grant permission to send licensed data. The guard uses permission rules and hooks to limit what enters the conversation; check the licence and the guard’s limits before using real data. The folder <code>wrds-guard/</code> in the <a href="https://github.com/christian-engels/ai-research-workshop">workshop repository</a> is that setup, built and tested. In the workspace it uses the workshop’s OpenRouter key; on your laptop, your own OpenRouter key. Claude Code’s hooks run locally in either case.</p>
+<p>Ask Claude to follow the runbook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries use the WRDS guard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>By hand:</p>
 <ol type="1">
-<li>In a workspace, <code>cp -r /opt/wrds-guard ~/wrds-guard</code>. Elsewhere, download <a href="wrds-guard.zip">wrds-guard.zip</a> and unzip it</li>
-<li>Read its <code>README.md</code>: what Claude may see, what it never sees, and what the tests cover</li>
-<li>Run <code>bin/claude-openrouter</code>: it uses the workspace key and preserves your subscription login. On a laptop, first load your own <code>OPENROUTER_API_KEY</code> and enable zero retention in your account</li>
-<li>Run the unit tests: <code>python3 -m unittest discover -s tests</code></li>
-<li>Start <code>claude</code> in the folder. The first message tells you how the session is routed</li>
+<li>In a workspace, copy the guard with <code>cp -r /opt/wrds-guard ~/wrds-guard</code>, then run <code>cd ~/wrds-guard</code>. Use a new name if that folder exists. On a laptop, use <code>wrds-guard/</code> from the take-home package, or unzip <a href="wrds-guard.zip">wrds-guard.zip</a>, and open a terminal there</li>
+<li>Read <code>README.md</code> for the allowed information, tests and limits</li>
+<li>On a laptop, load your own <code>OPENROUTER_API_KEY</code> into the terminal and enable zero retention in your account. The workshop workspace already supplies a key</li>
+<li>Run <code>python3 -m unittest discover -s tests</code>, then <code>bin/claude-openrouter --check</code></li>
+<li>Start with <code>bin/claude-openrouter</code>. Use <code>--model sonnet</code> or <code>--model opus</code> for the other 5.5 models, and <code>--continue</code> to resume</li>
 </ol>
 <p>Then try to get a row out. The end-to-end test in <code>tests/e2e.sh</code> does this with headless sessions and checks the transcripts for a canary value; run it against your own routing before you trust the setup with real data.</p>
 <p>The guard is one reading of the WRDS policy, not a ruling. Check it with your library or the vendor.</p>
 <h2 id="regional-growth-and-convergence-in-europe" class="anchored">16. Regional growth and convergence in Europe</h2>
-<p>Runs in the workspace. Two free sources, neither needing a key: Eurostat’s regional accounts, and ARDECO, the Annual Regional Database of the European Commission, kept by the Joint Research Centre. Both have R packages on CRAN, <code>eurostat</code> and <code>ARDECO</code>, which Claude installs with <code>install.packages()</code>.</p>
+<p>Runs in the workspace. Two free sources, neither needing a key: Eurostat’s regional accounts, and ARDECO, the Annual Regional Database of the European Commission, kept by the Joint Research Centre. Both have R packages on CRAN, <code>eurostat</code> and <code>ARDECO</code>. Initialise a project with <code>renv</code> as described in <a href="own-machine.html#r-and-python">the setup guide</a>, add the packages with <code>renv::install(c(&quot;eurostat&quot;, &quot;ARDECO&quot;))</code>, and save the environment with <code>renv::snapshot()</code>.</p>
 <p>Exercise: β-convergence across NUTS 2 regions since 2000.</p>
 <ol type="1">
 <li>Download GDP per head by region:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Install the eurostat R package. Download nama_10r_2gdp for all NUTS 2 regions</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>from 2000 to the latest year, in the units PPS_EU27_2020_HAB and EUR_HAB. Save</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>the script as code/04-regional_gdp.R and the data as data/regional_gdp.csv.</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Report the number of regions, the years covered and the Eurostat update date.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Install the eurostat R package. Download nama_10r_2gdp for all NUTS 2 regions</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>from 2000 to the latest year, in the units PPS_EU27_2020_HAB and EUR_HAB. Save</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>the script as code/04-regional_gdp.R and the data as data/regional_gdp.csv.</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>Report the number of regions, the years covered and the Eurostat update date.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check: Comunitat Valenciana, ES52, in 2022: 24,700 euro and 27,300 PPS per inhabitant, 75% of the EU27 average (Eurostat vintage of 10 February 2026; the series are revised).</p>
 <ol start="2" type="1">
 <li><p>Decide the specification before you see a result, as in session 3: write down the regression, then ask Claude to log every specification it runs to <code>tables/spec_log.csv</code>.</p></li>
 <li><p>Estimate convergence:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Regress the average annual growth of GDP per head in PPS from 2000 to the last</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>year on the log of its 2000 level, once across all regions and once with</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>country fixed effects using fixest. Draw the scatter with both fitted lines,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>report the implied speed of convergence, and save the figure in figures/ and</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>the table in tables/. State which regions you dropped because their NUTS code</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>changed.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Check: the slope is negative. Compare the two slopes: how much of the convergence is between countries rather than within them? NUTS codes changed in 2016, 2021 and 2024, so a region that disappears from the series is usually a recoding, not a data gap.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Regress the average annual growth of GDP per head in PPS from 2000 to the last</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>year on the log of its 2000 level, once across all regions and once with</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>country fixed effects using fixest. Draw the scatter with both fitted lines,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>report the implied speed of convergence, and save the figure in figures/ and</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>the table in tables/. State which regions you dropped because their NUTS code</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>changed.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check the sample, units and dates before interpreting either slope. Compare the two estimates: how much of the convergence is between countries rather than within them? NUTS codes changed in 2016, 2021 and 2024, so a region that disappears from the series is usually a recoding, not a data gap.</p>
 <ol start="4" type="1">
 <li>Compare with ARDECO:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Install the ARDECO R package. List its variables with</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ardeco_get_variable_list(), find GDP per head in PPS, and download it for NUTS 2</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>regions over the same years. List the region-years where it differs from the</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Eurostat series by more than 1%.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Install the ARDECO R package. List its variables with</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ardeco_get_variable_list(), find GDP per head in PPS, and download it for NUTS 2</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>regions over the same years. List the region-years where it differs from the</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Eurostat series by more than 1%.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check: ARDECO is a harmonised series with gaps filled by estimation, so small differences are expected. Ask where the gaps were filled. If the ARDECO service is down, as it was on 5 November, continue with Eurostat only.</p>
 <ol start="5" type="1">
 <li>Optional, a map:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Use get_eurostat_geospatial at NUTS level 2 to draw a map of GDP per head in</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>PPS as a percentage of the EU average in 2022. Save it as</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>figures/regional_gdp_map.png.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Nothing here needs uploading: the data are public. Record the Eurostat vintage date in your README, since both sources revise their series.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Use get_eurostat_geospatial at NUTS level 2 to draw a map of GDP per head in</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>PPS as a percentage of the EU average in 2022. Save it as</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>figures/regional_gdp_map.png.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The exercise uses public data. Keep downloaded files in the project. Record the Eurostat vintage date in your README, since both sources revise their series.</p>
 
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

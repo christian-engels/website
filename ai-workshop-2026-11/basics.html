@@ -712,6 +712,7 @@ a:hover { color: var(--navy); }
 :focus-visible { outline: 2px solid var(--teal-ink); outline-offset: 2px; }
 li { margin-bottom: 0.35em; }
 code { font-family: "Fira Code", Menlo, Consolas, monospace; font-size: 0.86em; color: var(--teal-ink); font-variant-ligatures: none; }
+:not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
 h2 code, h3 code { color: inherit; font-weight: 400; }
 
 .site-bar {
@@ -1021,7 +1022,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="even">
 <td style="text-align: left;">Pull</td>
-<td style="text-align: left;">Fetch commits from GitHub</td>
+<td style="text-align: left;">Fetch commits from GitHub and integrate them into your local branch</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Clone</td>
@@ -1037,7 +1038,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>.gitignore</code></td>
-<td style="text-align: left;">A list of files that Git must leave out</td>
+<td style="text-align: left;">Files Git should ignore when adding new work; it does not remove files already tracked</td>
 </tr>
 </tbody>
 </table>
@@ -1103,7 +1104,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>uv</code></td>
-<td style="text-align: left;">Installs Python, packages and tools. <code>uvx</code> runs a tool without installing it</td>
+<td style="text-align: left;">Manages Python and project packages. <code>uvx</code> runs a tool in an isolated environment</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Package manager</td>
@@ -1115,7 +1116,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 </tbody>
 </table>
-<p>Everything is already installed in your workspace. You need these terms only for your own laptop.</p>
+<p>The main tools are installed in your workspace. Some exercises need extra project packages or your own account; each guide says which.</p>
 <h2 id="servers-and-ssh" class="anchored">Servers and SSH</h2>
 <table class="caption-top">
 <colgroup>
@@ -1135,7 +1136,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="even">
 <td style="text-align: left;">Workspace</td>
-<td style="text-align: left;">Your own computer on the workshop server, used through the browser</td>
+<td style="text-align: left;">Your own working environment on the shared server, used through the browser</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SSH</td>
@@ -1167,7 +1168,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="even">
 <td style="text-align: left;">Docker</td>
-<td style="text-align: left;">Runs a program in a sealed box, with everything it needs</td>
+<td style="text-align: left;">Runs software in a separate environment on a shared computer</td>
 </tr>
 </tbody>
 </table>
@@ -1257,19 +1258,23 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 </tr>
 <tr class="odd">
 <td style="text-align: left;">YAML</td>
-<td style="text-align: left;">Settings between <code>---</code> lines at the top of a file</td>
+<td style="text-align: left;">A text format for settings; Quarto uses it between <code>---</code> lines at the top of a file</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Quarto (<code>.qmd</code>)</td>
+<td style="text-align: left;">Editable text that Quarto turns into a web page, slide deck or document</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">BibTeX (<code>.bib</code>)</td>
 <td style="text-align: left;">A list of references for LaTeX</td>
 </tr>
 </tbody>
 </table>
 <h2 id="when-something-goes-wrong" class="anchored">When something goes wrong</h2>
-<p>Error messages are normal, including for experts. Most say exactly what is wrong.</p>
+<p>Error messages are common. Start with the command, file or package they name.</p>
 <ol type="1">
 <li>Read the last lines of the message. The cause is usually there</li>
-<li>Copy the message into Claude and ask what it means</li>
+<li>Remove keys, personal information and confidential values, then ask Claude what the message means</li>
 <li>If Claude is doing the wrong thing, press <code>Esc</code></li>
 <li>If the terminal seems stuck, press <code>Ctrl+C</code></li>
 <li>If you were setting something up, use <code>/workshop-queries</code></li>

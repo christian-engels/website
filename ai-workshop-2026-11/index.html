@@ -677,6 +677,7 @@ a:hover { color: var(--navy); }
 :focus-visible { outline: 2px solid var(--teal-ink); outline-offset: 2px; }
 li { margin-bottom: 0.35em; }
 code { font-family: "Fira Code", Menlo, Consolas, monospace; font-size: 0.86em; color: var(--teal-ink); font-variant-ligatures: none; }
+:not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
 h2 code, h3 code { color: inherit; font-weight: 400; }
 
 .site-bar {
@@ -792,7 +793,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <section id="workspace" class="home-work">
 <h2 class="anchored">Workspace</h2>
 <p><a href="https://vscode.christianengels.net" class="action">Open your workspace</a></p>
-<p>Sign in with GitHub at vscode.christianengels.net. The workspaces are deleted on Saturday 7 November. Push your work to GitHub before 17:00 on Friday.</p>
+<p>Sign in with GitHub at vscode.christianengels.net, then use your own Claude subscription in the terminal. The optional shared OpenRouter key is for the exercises that explicitly use it. The workspaces are deleted on Saturday 7 November. Push your work to GitHub before 17:00 on Friday.</p>
 </section>
 <section id="slides" class="home-slides">
 <h2 class="anchored">Slides</h2>
@@ -820,6 +821,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <section id="files" class="home-files">
 <h2 class="anchored">Files</h2>
 <ul>
+<li><a href="workshop-take-home.zip">workshop-take-home.zip</a>: all slides and guides for offline reading, their editable <code>.qmd</code> sources, themes, figures, exercise files and the WRDS guard. The same material is in <code>~/project/workshop-materials/</code> in your workspace</li>
 <li><a href="workshop-project.zip">workshop-project.zip</a>: the starter project, with <code>.env.example</code> and the exercise files</li>
 <li><a href="env.example.txt">env.example.txt</a>: a list of common API key names</li>
 <li><a href="wrds-guard.zip">wrds-guard.zip</a>: the settings, hooks and <code>guard</code> for licensed data from session 2, with tests</li>

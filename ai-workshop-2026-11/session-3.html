@@ -1370,7 +1370,7 @@ margin-right: 0; }
 </section>
 <section id="openalex" class="slide level2">
 <h2>OpenAlex</h2>
-<p>Get a free key at <code>openalex.org/settings/api</code>, then paste it into <code>.env</code> in the editor.</p>
+<p>Get a free key at <code>openalex.org/settings/api</code>, verify your email, then put the key in <code>.env</code> in the editor.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href aria-hidden="true" tabindex="-1"></a>Using the OpenAlex API with OPENALEX_API_KEY from .env, find the 20 most cited</span>
 <span id="cb1-2"><a href aria-hidden="true" tabindex="-1"></a>papers on <span class="co">[</span><span class="ot">your topic</span><span class="co">]</span> since 2015. Save title, authors, year, journal, DOI and</span>
 <span id="cb1-3"><a href aria-hidden="true" tabindex="-1"></a>citation count to data/papers.csv.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1499,7 +1499,7 @@ margin-right: 0; }
 <section id="zotero" class="slide level2">
 <h2>Zotero</h2>
 <p>The desktop app runs on your laptop, which a workspace cannot reach. Use the Web API.</p>
-<p>Create a key at <code>zotero.org/settings/keys</code> with write access, and paste it into <code>.env</code> with your user ID. <code>pyzotero</code> is a Python package for Zotero.</p>
+<p>Create a key at <code>zotero.org/settings/keys</code> with access to your own library and permission to write. Put it in <code>.env</code> with your user ID. <code>pyzotero</code> is a Python package for Zotero.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown prompt code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a>Using pyzotero with ZOTERO_API_KEY and ZOTERO_USER_ID from .env, add the</span>
 <span id="cb3-2"><a href aria-hidden="true" tabindex="-1"></a>confirmed references from exercises/references-to-check.bib to a new collection</span>
 <span id="cb3-3"><a href aria-hidden="true" tabindex="-1"></a>called workshop. Add metadata only, with no attachments.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1562,7 +1562,7 @@ margin-right: 0; }
 <li>Model knowledge cut-offs are not exact</li>
 <li>Names, dates and firm identifiers can reveal the outcome</li>
 </ul>
-<p>Mitigation: use data after the knowledge cut-off, remove identifying details, and test on a period the model cannot have seen.</p>
+<p>Prefer data collected after the model was released, and record its version. Masking identifiers can help, but does not establish that the model has never seen an observation.</p>
 </section>
 <section id="specification-search" class="slide level2">
 <h2>Specification search</h2>
@@ -1581,7 +1581,7 @@ margin-right: 0; }
 <span id="cb9-2"><a href aria-hidden="true" tabindex="-1"></a>from a plain description of the method, without reading the R script. Compare</span>
 <span id="cb9-3"><a href aria-hidden="true" tabindex="-1"></a>the two sets of results and report any differences above 0.0001.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Errors in one implementation rarely repeat in the other</li>
+<li>Different implementations can reveal coding errors; both can still share a mistaken assumption</li>
 <li>Checks should be numbers you can compare</li>
 </ul>
 <div class="planb">
@@ -1702,15 +1702,12 @@ margin-right: 0; }
 <td style="text-align: left;"><code>uvx coarse-ink review paper.pdf</code></td>
 <td style="text-align: left;">Your own <code>OPENROUTER_API_KEY</code></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>coarse-review paper.tex</code></td>
-<td style="text-align: left;">Claude Code subscription</td>
-</tr>
 </tbody>
 </table>
 <ul>
 <li>Writes <code>paper_review.md</code> with macro issues and numbered comments</li>
-<li>Estimated cost: about $0.25 to $1 per paper</li>
+<li>Uses separate API credit; inspect its model choices and cost before starting</li>
+<li>The restricted workshop key does not support the default pipeline; the three-subagent exercise above uses your own Claude plan</li>
 </ul>
 <p><span class="source">Source: coarse-ink package documentation.</span></p>
 </section>
@@ -1760,7 +1757,7 @@ margin-right: 0; }
 <span id="cb13-2"><a href aria-hidden="true" tabindex="-1"></a>AI tools were used: which model, for which tasks, and what I checked myself.</span>
 <span id="cb13-3"><a href aria-hidden="true" tabindex="-1"></a>Report only what the repository shows.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Keep prompts and model versions as you work</li>
+<li>Keep prompts and model versions as you work; a Git log alone is incomplete</li>
 <li>The Journal of Finance asks for both when AI builds data</li>
 <li>Authors remain responsible for the content</li>
 </ul>
@@ -1803,7 +1800,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>Upload only material you are comfortable storing on the workshop server.</p>
+<p>Use public, synthetic or your own shareable material. The workspace is on the workshop server, and model requests leave it.</p>
 
 </section></section>
     </div>
