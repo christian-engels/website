@@ -840,7 +840,7 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
   <li><a href="#claude-in-chrome" id="toc-claude-in-chrome">Claude in Chrome</a></li>
   </ul>
 </nav>
-<p>The workshop workspaces are deleted on Saturday 7 November. This page sets up the same tools on your laptop. Allow at least 30 to 60 minutes; downloads and permissions can take longer. You can read the slides and guides offline by opening <code>index.html</code> in the <a href="workshop-take-home.zip">take-home package</a>. AI tools still need internet access and an account.</p>
+<p>The workshop workspaces closed on Saturday 7 November; <a href="workspace.html">Continue on your own machine</a> explains where your project went. This page sets up the same tools on your laptop. Allow at least 30 to 60 minutes; downloads and permissions can take longer. You can read the slides and guides offline by opening <code>index.html</code> in the <a href="workshop-take-home.zip">take-home package</a>. AI tools still need internet access and an account.</p>
 <p>Go in this order. Once Claude Code runs, use the appropriate runbook:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/workshop-queries install the workshop tools on my laptop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To use that, first get your project onto the laptop: see <a href="#your-project">Your project</a>. New words are explained in <a href="basics.html">Basics</a>.</p>
@@ -904,9 +904,9 @@ document.querySelector(`.site-bar a[href="${page}"]`)?.setAttribute('aria-curren
 <p>Then install the LaTeX Workshop extension in VS Code, and add <code>latexmk</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tlmgr</span> install latexmk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h2 id="your-project" class="anchored">Your project</h2>
-<p>This downloads the project you pushed to GitHub, including <code>/workshop-queries</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone <span class="op">&lt;</span>username<span class="op">&gt;</span>/workshop-project</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> workshop-project</span>
+<p>This downloads your project from GitHub, including <code>/workshop-queries</code>. Use the repository you were invited to after the workshop, or the one you pushed yourself:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone <span class="op">&lt;</span>owner<span class="op">&gt;</span>/<span class="op">&lt;</span>repository<span class="op">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="op">&lt;</span>repository<span class="op">&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Paste any keys you need into <code>.env</code> in a text editor, then start <code>claude</code>. Your Claude subscription needs no API key. PowerShell accepts <code>cp</code> here; in Command Prompt use <code>copy</code>. If you did not push a project, extract <code>workshop-project.zip</code> from the take-home package and start in its <code>project</code> folder.</p>
 <p>To use the runbooks in every project, copy the skill folder. On Mac or Linux:</p>
