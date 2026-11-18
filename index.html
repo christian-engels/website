@@ -390,10 +390,10 @@
     var arrivals = new IntersectionObserver(function (entries) {
       entries.filter(function (entry) { return entry.isIntersecting; }).forEach(function (entry, i) {
         entry.target.style.transitionDelay = (i * 70) + 'ms';   // things arriving together follow one another
-        entry.target.classList.add('seen');
+        entry.target.classList.replace('unseen', 'seen');
         arrivals.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -10% 0px' });
+    }, { rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('main > section, main h2, main h3, .paper, .awards li, .module, .body > p, .list:not(.awards) li').forEach(function (el) {
       if (el.getBoundingClientRect().top > innerHeight) {
         el.classList.add('unseen');
