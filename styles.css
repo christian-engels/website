@@ -171,12 +171,14 @@ main > section::before, h3::after { content: ""; position: absolute; left: 0; wi
 main > section::before { top: 0; }
 h3::after { bottom: 0; }
 main > section + section { margin-top: 5.5rem; }
-h2.label { grid-column: 1; grid-row: 1; position: sticky; top: 2rem; align-self: start; margin: 0; font: 400 2.25rem/1.15 var(--serif); letter-spacing: -0.045em; }
+h2.label { margin: 0; font: 400 2.25rem/1.15 var(--serif); letter-spacing: -0.045em; }
+.rail, .grid > h2.label { grid-column: 1; grid-row: 1; align-self: start; }
 .grid > .body { grid-column: 2; grid-row: 1; align-self: start; }
 
-/* Beneath the section's name a thread follows the reader down the page (drawn by thread.js):
-   one series with a mark for each item, green as far as has been read. */
-.thread { grid-column: 1; grid-row: 1; align-self: start; position: sticky; top: 6.25rem; margin-top: 4.25rem; width: 100%; height: 0; pointer-events: none; animation: surface 1200ms var(--ease) both; }
+/* The section's name and its thread share one rail, so they stay with the reader and leave together.
+   The thread (drawn by thread.js) is one series with a mark for each item, green as far as has been read. */
+.rail { position: sticky; top: 2rem; }
+.thread { margin-top: 1.75rem; width: 100%; height: 0; vertical-align: top; pointer-events: none; animation: surface 1200ms var(--ease) both; }
 .label-continuation { display: block; }
 h3 { position: relative; margin: 4rem 0 0; padding-bottom: 0.85rem; font: italic 400 1.3125rem/1.4 var(--serif); letter-spacing: -0.01em; }
 .body > h3:first-child { margin-top: 0.4rem; }
@@ -287,8 +289,8 @@ pre { margin: 0.6rem 0 0.9rem; padding: 1rem 1.2rem; overflow-x: auto; backgroun
   .grid { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
   main > section { padding-top: 2.25rem; }
   main > section + section { margin-top: 3.5rem; }
-  h2.label { position: static; }
-  h2.label, .grid > .body { grid-column: 1; grid-row: auto; }
+  .rail { position: static; }
+  .rail, .grid > h2.label, .grid > .body { grid-column: 1; grid-row: auto; }
   .thread { display: none; }
   h3 { margin-top: 3rem; }
   .paper { padding: 1.6rem 0 1.3rem; }
@@ -322,7 +324,7 @@ pre { margin: 0.6rem 0 0.9rem; padding: 1rem 1.2rem; overflow-x: auto; backgroun
   .site-header, .skip-link, .site-footer a, .hero-figure, .thread, .copy { display: none; }
   .unseen { opacity: 1; transform: none; }
   .masthead { padding-top: 0; }
-  h2.label { position: static; }
+  .rail { position: static; }
   .paper, .module, .awards li { break-inside: avoid; }
   #workshops { background: none; color: var(--text); border: 1px solid var(--rule); }
   #workshops .body > p, #workshops a { color: var(--text); }

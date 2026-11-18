@@ -8,7 +8,7 @@
   function clamp(u, lo, hi) { return Math.max(lo, Math.min(hi, u)); }
 
   document.querySelectorAll('canvas.thread').forEach(function (canvas) {
-    var body = canvas.parentElement.querySelector('.body');
+    var body = canvas.closest('section').querySelector('.body');
     if (!body || !canvas.getContext) return;
     var ctx = canvas.getContext('2d');
     var W = 0, H = 0, dpr = 1, raf = 0, seen = false, ink = {}, marks = [], at = 0;
