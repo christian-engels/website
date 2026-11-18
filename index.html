@@ -16,7 +16,7 @@
   <link rel="icon" href="favicon.ico">
   <link rel="preload" href="assets/fonts/literata-roman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261118">
+  <link rel="stylesheet" href="styles.css?v=20261118d">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,6 +38,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
+<canvas class="hero-figure" hidden aria-hidden="true"></canvas>
 <div class="page" id="top">
 
   <div class="site-header">
@@ -49,13 +50,10 @@
     </nav>
   </div>
 
-  <canvas class="flows" hidden aria-hidden="true"></canvas>
-
   <header class="masthead">
     <div class="hero-copy">
-      <p class="eyebrow">Household finance &amp; banking</p>
       <h1>Christian Engels</h1>
-      <p class="title">Lecturer (Assistant Professor) in Banking and Finance</p>
+      <p class="title">Lecturer (Assistant Professor) in Banking and Finance<br>University of St Andrews Business School</p>
       <div class="intro">
         <p class="lead">My research is in household finance and banking, with a focus on consumer credit, mortgage markets and cross-border payments.</p>
         <p>I use administrative, transaction and survey data, and my work has been published in the <em>Journal of Banking and Finance</em> and the <em>European Journal of Finance</em>.</p>
@@ -63,8 +61,7 @@
       </div>
     </div>
     <figure class="profile">
-      <div class="portrait-frame"><img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="400" height="400" fetchpriority="high"></div>
-      <figcaption><span>University of St Andrews</span>Business School</figcaption>
+      <img class="portrait" src="pictures/christian-engels.jpg" alt="Christian Engels" width="400" height="400" fetchpriority="high">
     </figure>
     <div class="contact-strip">
       <a class="email contact-link" data-u="seiriuqne" data-d="ten.slegnenaitsirhc">enquiries [at] christianengels [dot] net</a>
@@ -81,15 +78,16 @@
   <main id="main">
 
     <section id="research" class="grid">
-      <h2 class="label"><span class="section-number" aria-hidden="true">01 /</span>Research</h2>
+      <h2 class="label">Research</h2>
+      <canvas class="thread" hidden aria-hidden="true"></canvas>
       <div class="body">
         <h3>Working papers</h3>
 
         <article class="paper">
           <span class="year">2026</span>
           <h4><a href="papers/paymentinfrastructureandremittancepricing.pdf">Payment Infrastructure and Pricing of Cross-Border Transfers: Evidence from Banks and Money Transfer Operators</a></h4>
+          <p class="finding">When national payment systems are linked directly, banks lower their fees for cross-border transfers. Money transfer operators do not.</p>
           <p class="byline">with <a href="https://www.st-andrews.ac.uk/business-school/people/finance/als23/">Anna L. Sobiech</a></p>
-          <p class="meta"><a href="papers/paymentinfrastructureandremittancepricing.pdf">PDF</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=7725999">SSRN</a></p>
           <p class="note">Conferences: LAPE&ndash;FINEST Spring Workshop, June 2026</p>
           <div class="toggles">
             <details>
@@ -106,14 +104,16 @@
   url    = {https://ssrn.com/abstract=7725999}
 }</pre>
             </details>
+            <a href="papers/paymentinfrastructureandremittancepricing.pdf">PDF</a>
+            <a href="https://ssrn.com/abstract=7725999">SSRN</a>
           </div>
         </article>
 
         <article class="paper">
           <span class="year">2026</span>
           <h4><a href="papers/genderincomegapamongchildren.pdf">A childhood gender gap in parent-to-child financial transfers</a></h4>
+          <p class="finding">Girls aged 6&ndash;10 receive 6&ndash;11% less money per month from their parents than boys. The gap narrows and reverses in adolescence.</p>
           <p class="byline">with <a href="https://www.darden.virginia.edu/faculty-research/directory/ray-charles-howard">Ray Charles &ldquo;Chuck&rdquo; Howard</a>, <a href="https://www.st-andrews.ac.uk/business-school/people/finance/mfl3/">Marcel Lukas</a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/">Dennis Philip</a></p>
-          <p class="meta"><a href="papers/genderincomegapamongchildren.pdf">PDF</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=4879297">SSRN</a></p>
           <p class="note">Media: <a href="https://www.zeit.de/geld/2024-07/ungleiches-einkommen-gender-gap-frauen-gleichberechtigung">Zeit Online, &ldquo;Es beginnt schon beim Taschengeld&rdquo;</a>&nbsp;&middot; <a href="https://news.darden.virginia.edu/articles/girls-get-less-money-than-boys-heres-the-simple-fix">Darden Report, &ldquo;Girls Get Less Money Than Boys. Here&rsquo;s the Simple Fix.&rdquo;</a></p>
           <div class="toggles">
             <details>
@@ -130,15 +130,17 @@
   url    = {https://ssrn.com/abstract=4879297}
 }</pre>
             </details>
+            <a href="papers/genderincomegapamongchildren.pdf">PDF</a>
+            <a href="https://ssrn.com/abstract=4879297">SSRN</a>
           </div>
         </article>
 
         <article class="paper">
           <span class="year">2026</span>
           <h4><a href="papers/hatecrimesandthemarketformortgagecredit.pdf">When Prejudice Hits Home: Hate Crime and the Market for Mortgage Credit</a></h4>
+          <p class="finding">Racial hate crimes are linked to significantly lower local mortgage demand, among minority and White applicants alike.</p>
           <p class="byline">with <a href="https://www.fordham.edu/gabelli-school-of-business/faculty/full-time-faculty/iftekhar-hasan/">Iftekhar Hasan</a>, <a href="https://www.gla.ac.uk/schools/business/staff/sizhehong/">Sizhe Hong</a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/">Dennis Philip</a></p>
-          <p class="meta"><a href="papers/hatecrimesandthemarketformortgagecredit.pdf">PDF</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=4580504">SSRN</a></p>
-          <p class="note">Best Paper Award in Memory of Phil Molyneux, FINEST Autumn Workshop, Milan, 2023</p>
+          <p class="note award">Best Paper Award in Memory of Phil Molyneux, FINEST Autumn Workshop, Milan, 2023</p>
           <div class="toggles">
             <details>
               <summary>Abstract</summary>
@@ -154,14 +156,16 @@
   url    = {https://ssrn.com/abstract=4580504}
 }</pre>
             </details>
+            <a href="papers/hatecrimesandthemarketformortgagecredit.pdf">PDF</a>
+            <a href="https://ssrn.com/abstract=4580504">SSRN</a>
           </div>
         </article>
 
         <article class="paper">
           <span class="year">2026</span>
           <h4><a href="papers/captivelendersandmonetarypolicy.pdf">Who Lends Matters: Captive Lenders, Deposit Funding, and the Transmission of Monetary Policy</a></h4>
+          <p class="finding">In response to monetary policy shocks, captive lenders raise loan rates and cut loan-to-value ratios, maturities and loan amounts by more than general banks.</p>
           <p class="byline">with <a href="https://www.business-school.ed.ac.uk/staff/raffaella-calabrese">Raffaella Calabrese</a>, <a href="https://business.leeds.ac.uk/departments-analytics-technology-operations/staff/2920/dr-yujia-chen">Yujia Chen</a> and <a href="https://www.federalreserve.gov/econres/daniel-a-dias.htm">Daniel A. Dias</a></p>
-          <p class="meta"><a href="papers/captivelendersandmonetarypolicy.pdf">PDF</a></p>
           <div class="toggles">
             <details>
               <summary>Abstract</summary>
@@ -177,6 +181,7 @@
   url    = {https://christianengels.net/papers/captivelendersandmonetarypolicy.pdf}
 }</pre>
             </details>
+            <a href="papers/captivelendersandmonetarypolicy.pdf">PDF</a>
           </div>
         </article>
 
@@ -185,8 +190,9 @@
         <article class="paper">
           <span class="year">2022</span>
           <h4><a href="https://doi.org/10.1016/j.jbankfin.2022.106620">When It Rains It Drains: Psychological Distress and Household Net Worth</a></h4>
+          <p class="venue">Journal of Banking and Finance <span>143, 106620</span></p>
+          <p class="finding">A one standard deviation increase in psychological distress decreases net worth by 13.2 per cent.</p>
           <p class="byline">with Adnan Balloch and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/">Dennis Philip</a></p>
-          <p class="meta"><span><em>Journal of Banking and Finance</em> 143, 106620</span>&nbsp;&middot; <a href="https://doi.org/10.1016/j.jbankfin.2022.106620">DOI</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=3521323">SSRN</a></p>
           <div class="toggles">
             <details>
               <summary>Abstract</summary>
@@ -204,14 +210,17 @@
   doi     = {10.1016/j.jbankfin.2022.106620}
 }</pre>
             </details>
+            <a href="https://doi.org/10.1016/j.jbankfin.2022.106620">DOI</a>
+            <a href="https://ssrn.com/abstract=3521323">SSRN</a>
           </div>
         </article>
 
         <article class="paper">
           <span class="year">2020</span>
           <h4><a href="https://doi.org/10.1080/1351847X.2019.1646666">Financial Literacy and Fraud Detection</a></h4>
+          <p class="venue">European Journal of Finance <span>26, 420&ndash;442</span></p>
+          <p class="finding">A one standard deviation increase in financial knowledge raises the probability of detecting fraud by 3 percentage points.</p>
           <p class="byline">with <a href="https://scholar.google.co.uk/citations?user=P6qgG7EAAAAJ&amp;hl=en">Kamlesh Kumar</a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/">Dennis Philip</a></p>
-          <p class="meta"><span><em>European Journal of Finance</em> 26, 420&ndash;442</span>&nbsp;&middot; <a href="https://doi.org/10.1080/1351847X.2019.1646666">DOI</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=3308537">SSRN</a></p>
           <div class="toggles">
             <details>
               <summary>Abstract</summary>
@@ -230,6 +239,8 @@
   doi     = {10.1080/1351847X.2019.1646666}
 }</pre>
             </details>
+            <a href="https://doi.org/10.1080/1351847X.2019.1646666">DOI</a>
+            <a href="https://ssrn.com/abstract=3308537">SSRN</a>
           </div>
         </article>
 
@@ -246,8 +257,8 @@
         <article class="paper">
           <span class="year">2022</span>
           <h4><a href="papers/bankdepositorsreactionstobreaches.pdf">The Cost of Privacy Failures: Evidence from Bank Depositors&rsquo; Reactions to Breaches</a></h4>
+          <p class="finding">After a privacy breach, depositors move money away from the breached bank: a 12% differential in total deposit growth against control banks in the following year.</p>
           <p class="byline">with <a href="https://faculty.rpi.edu/bill-francis">Bill Francis</a> and <a href="https://www.durham.ac.uk/business/our-people/dennis-philip/">Dennis Philip</a></p>
-          <p class="meta"><a href="papers/bankdepositorsreactionstobreaches.pdf">PDF</a>&nbsp;&middot; <a href="https://ssrn.com/abstract=3625668">SSRN</a></p>
           <div class="toggles">
             <details>
               <summary>Abstract</summary>
@@ -263,13 +274,16 @@
   url    = {https://ssrn.com/abstract=3625668}
 }</pre>
             </details>
+            <a href="papers/bankdepositorsreactionstobreaches.pdf">PDF</a>
+            <a href="https://ssrn.com/abstract=3625668">SSRN</a>
           </div>
         </article>
       </div>
     </section>
 
     <section id="teaching" class="grid">
-      <h2 class="label"><span class="section-number" aria-hidden="true">02 /</span>Teaching</h2>
+      <h2 class="label">Teaching</h2>
+      <canvas class="thread" hidden aria-hidden="true"></canvas>
       <div class="body">
         <h3>Awards</h3>
         <ul class="list awards">
@@ -322,7 +336,7 @@
     </section>
 
     <section id="workshops" class="grid">
-      <h2 class="label"><span class="section-number" aria-hidden="true">03 /</span>Workshops <span class="label-continuation">&amp; consultancy</span></h2>
+      <h2 class="label">Workshops <span class="label-continuation">&amp; consultancy</span></h2>
       <div class="body">
         <p>I give regular workshops on three topics:</p>
         <ul class="list">
@@ -352,7 +366,43 @@
     a.href = 'mailto:' + addr;
     a.textContent = addr;
   });
+
+  // Each BibTeX entry gets a copy button, added here so it only exists where it can work.
+  if (navigator.clipboard) document.querySelectorAll('.toggles pre').forEach(function (pre) {
+    var wrap = document.createElement('div'), button = document.createElement('button');
+    wrap.className = 'bib';
+    button.type = 'button';
+    button.className = 'copy';
+    button.textContent = 'Copy';
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        button.textContent = 'Copied';
+        setTimeout(function () { button.textContent = 'Copy'; }, 1600);
+      });
+    });
+    pre.replaceWith(wrap);
+    wrap.append(pre, button);
+  });
+
+  // Below the first screen, rules draw across and text settles as it is scrolled to.
+  // The hiding class is added here, so without this script nothing is ever hidden.
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var arrivals = new IntersectionObserver(function (entries) {
+      entries.filter(function (entry) { return entry.isIntersecting; }).forEach(function (entry, i) {
+        entry.target.style.transitionDelay = (i * 70) + 'ms';   // things arriving together follow one another
+        entry.target.classList.add('seen');
+        arrivals.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('main > section, main h2, main h3, .paper, .awards li, .module, .body > p, .list:not(.awards) li').forEach(function (el) {
+      if (el.getBoundingClientRect().top > innerHeight) {
+        el.classList.add('unseen');
+        arrivals.observe(el);
+      }
+    });
+  }
 </script>
-<script src="flows.js?v=20261118" defer></script>
+<script src="hero.js?v=20261118d" defer></script>
+<script src="thread.js?v=20261118d" defer></script>
 </body>
 </html>
