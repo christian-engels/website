@@ -175,10 +175,8 @@ h2.label { margin: 0; font: 400 2.25rem/1.15 var(--serif); letter-spacing: -0.04
 .rail, .grid > h2.label { grid-column: 1; grid-row: 1; align-self: start; }
 .grid > .body { grid-column: 2; grid-row: 1; align-self: start; }
 
-/* The section's name and its thread share one rail, so they stay with the reader and leave together.
-   The thread (drawn by thread.js) is one series with a mark for each item, green as far as has been read. */
+/* The name of a long section stays with the reader. */
 .rail { position: sticky; top: 2rem; }
-.thread { margin-top: 1.75rem; width: 100%; height: 0; vertical-align: top; pointer-events: none; animation: surface 1200ms var(--ease) both; }
 .label-continuation { display: block; }
 h3 { position: relative; margin: 4rem 0 0; padding-bottom: 0.85rem; font: italic 400 1.3125rem/1.4 var(--serif); letter-spacing: -0.01em; }
 .body > h3:first-child { margin-top: 0.4rem; }
@@ -291,7 +289,6 @@ pre { margin: 0.6rem 0 0.9rem; padding: 1rem 1.2rem; overflow-x: auto; backgroun
   main > section + section { margin-top: 3.5rem; }
   .rail { position: static; }
   .rail, .grid > h2.label, .grid > .body { grid-column: 1; grid-row: auto; }
-  .thread { display: none; }
   h3 { margin-top: 3rem; }
   .paper { padding: 1.6rem 0 1.3rem; }
   .paper h4 { font-size: 1.3125rem; }
@@ -321,7 +318,7 @@ pre { margin: 0.6rem 0 0.9rem; padding: 1rem 1.2rem; overflow-x: auto; backgroun
 @media print {
   :root { color-scheme: light; --bg: #fff; --text: #111; --muted: #444; --accent: #222; --rule: #ccc; }
   .page { max-width: none; padding: 0; }
-  .site-header, .skip-link, .site-footer a, .hero-figure, .thread, .copy { display: none; }
+  .site-header, .skip-link, .site-footer a, .hero-figure, .copy { display: none; }
   .unseen { opacity: 1; transform: none; }
   .masthead { padding-top: 0; }
   .rail { position: static; }
